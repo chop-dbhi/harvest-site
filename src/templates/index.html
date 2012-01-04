@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Data Discovery for Humans{% endblock %}
+
+{% block body-id %}home{% endblock %}
+
+{% block header %}
+    <section id="promo" class="clearfix"> 
+        <img class="harvest_logo" src="{{ STATIC_URL }}images/header_tractor_logo.png" alt="Harvest Logo">
+        <h1>Data discovery for humans.</h1>
+        <h2>Explore your data not your database.</h2>
+        <nav class="clearfix">
+
+            <section class="harvest_box harvest_demo">
+            <h3><a href="{% url page "demo" %}"> <span class="sprite"></span>The Harvest Demo </a></h3>
+                <h5>Explore USDA Nutrition Data</h5>
+            </section><!-- harvest_demo -->
+
+            <section class="harvest_box get_started">
+            <h3><a href="{% url page "get-started" %}"> <span class="sprite"></span>Get Started </a></h3>
+                <h5>Tutorial and Documentation</h5>
+            </section><!-- get_started -->
+
+            <section class="harvest_box download">
+            <h3><a href="{% url page "download" %}"> <span class="sprite"></span>Download </a></h3>
+                <h5>Get Your Hands Dirty</h5>
+            </section><!-- download -->
+
+        </nav>
+    </section><!-- #promo -->
+    <section id="feature">
+        <h2>Designed by and for biomedical researchers, The Harvest Stack is an open source tool kit for building web applications for integrating, discovering, and reporting&nbsp;data.</h2>
+    </section> <!-- #feature -->
+{% endblock %}
+
+{% block content %}
+    <section id="content" class="clearfix">
+        <section class="info">
+            <div class="one-half first">
+                <h2>Open Source &amp; Available on GitHub</h2>
+                <p>We routinely use open source technologies and are active within the community. Harvest is licensed under BSD License.</p>
+            </div>
+            <div class="one-half">
+                <h2>Web-Based Stack</h2>
+                <p>Harvest implements an HTML5 web interface supported by a collection of discoverable REST APIs.</p>
+            </div>
+            <div class="one-half first">
+                <h2>Designed for Biomedical Data</h2>
+                <p>Created by Center of Biomedical Informatics at The Children's Hospital of Philadelphia, Harvest addresses the unique needs of biomedical researchers.</p>
+            </div>
+            <div class="one-half">
+                <h2>Nationally Funded Harvest Deployments</h2>
+                <p>National Human Genome Research Institute, National Institute on Deafness and Other Communication Disorders, National Heart, Lung and Blood Institute.</p>
+            </div>
+        </section><!-- .info -->
+    </section><!-- #content -->
+
+    <section id="whats_inside"> <img class="whats_inside_logo" src="{{ STATIC_URL }}images/whats_inside_logo.gif" alt="What's Inside?" />
+        <h2 class="title">What's Inside?</h2>
+        <ul class="first clearfix">
+            <li class="html5"><a href="#link">HTML5</a></li>
+            <li class="django"><a href="#link">Django</a></li>
+            <li class="python"><a href="#link">Python</a></li>
+            <li class="osi"><a href="#link">Open Source Initiative</a></li>
+            <li class="jquery"><a href="#link">jQuery</a></li>
+        </ul>
+        <ul class="last clearfix">
+            <li class="coffeescript"><a href="#link">CoffeeScript</a></li>
+            <li class="requirejs"><a href="#link">Require JS</a></li>
+            <li class="backbonejs"><a href="#link">Backbone.js</a></li>
+            <li class="highchartjs"><a href="#link">Highchart JS</a></li>
+        </ul>
+    </section><!-- #whats_inside -->
+{% endblock %}
