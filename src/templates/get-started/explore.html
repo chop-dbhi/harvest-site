@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Explore the Demo{% endblock %}
+
+{% block header %}
+    <section id="promo" class="clearfix">
+        <div id="title">
+            <img class="box-demo" src="{{ STATIC_URL }}images/box-demo.png" alt="Demo">
+            <h1>Explore the Demo</h1>
+            <h2>Introduction &amp; Tutorials</h2>
+        </div><!-- #title -->
+    </section><!-- #promo -->
+{% endblock %}
+
+
+{% block content %}
+    <section id="content">
+
+        <nav>
+            <ul class="clearfix">
+                <li class="explore-the-demo first"><a class="active" href={% url page "demo" %}>Explore the Demo</a></li><!-- adding class "active" to A tag sets active state -->
+                <li class="use-your-data"><a class="active" href="#link">Use Your Data</a></li>
+                <li class="deploy"><a href="#link">Deploy</a></li>
+                <li class="now-what"><a href="#link">Now What?</a></li>
+            </ul>
+        </nav><!-- nav -->
+
+        <section class="getting-started-info">
+
+            <section class="gray clearfix">
+                <h2>Explore the Demo</h2>
+                <ul>
+                    <li>How to setup a simple local instance of Harvest using the USDA demo data</li>
+                    <li>Understand the high levels components of The Stack and how they interact</li>
+                    <li>Introduction to Translators, Query Views and Formatters</li>
+                    <li>Add simple customizations to the interface</li>
+                </ul>
+            </section>
+
+            <section class="blue clearfix">
+                <h2>Use Your Data</h2>
+                <ul>
+                    <li>Considerations of how a database schema impacts it's utility in Harvest</li>
+                    <li>How to build and populate your data's metadata index (easier than you think)</li>
+                    <li>How to approach defining Concepts</li>
+                    <li>Writing Query Views and Formatters appropriate for your data</li>
+                </ul>
+            </section>
+
+            <section class="green clearfix">
+                <h2>Deploy</h2>
+                <ul>
+                    <li>Deployment environments</li>
+                    <li>Scalability</li>
+                    <li>Upgrades and migrations</li>
+                </ul>
+            </section>
+
+            <section class="red clearfix">
+                <h2>Now What?</h2>
+                <ul>
+                    <li>Writing complex Translators and integrating your own Exporters</li>
+                    <li>How to contribute.</li>
+                </ul>
+            </section>
+
+        </section><!-- .getting-started-info -->
+
+    </section><!-- #content -->
+
+    <!--
+    <section class="technical-docs clearfix">
+        <h2>Technical Documentation</h2>
+        <div class="one-half first">
+            <p>
+                <a href="#link" title="ModelTree">ModelTree:</a> the "engine" behind Avocado which contains adds an additional layer to the Django ORM for auto-joining database&nbsp;tables
+            </p>
+        </div>
+
+        <div class="one-half">
+            <p>
+                <a href="#link" title="Serrano">Serrano:</a> a RESTful API exposing various parts of Avocado allows for programmatic access to the&nbsp;metadata
+            </p>
+        </div>
+
+        <div class="one-half first">
+            <p>
+                <a href="#link" title="Avocado">Avocado:</a> the metadata management app and extension to ModelTree which defines the organizational data structures such as <strong>Definition</strong>, <strong>Concept</strong>, and&nbsp;<strong>Domain</strong>
+            </p>
+        </div>
+
+        <div class="one-half">
+            <p>
+                <a href="#link" title="Cilantro">Cilantro:</a> an in-browser Web application interface which talks to the Serrano exposed REST API for graphical querying and viewing&nbsp;data
+            </p>
+        </div>
+
+    </section><!-- .technical-docs -->
+{% endblock %}
+

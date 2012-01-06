@@ -1,0 +1,48 @@
+footer {
+    max-width: 940px;
+    padding: 0 10px;
+    margin: 20px auto;
+    font-size: 12px;
+	text-shadow: 0 1px 1px #fff;
+    text-align: center;
+    border-top: none;
+
+    section {
+        @include inline-block;
+        margin: 0 auto;
+        vertical-align: middle;
+        margin-right: 40px;
+        text-align: left;
+    }
+
+    .harvest-logo {
+    	text-align: center;
+    	opacity: 0.3;
+    }
+
+    .copyright {
+        max-width: 320px;
+    }
+
+    .sitemap {
+        max-width: 200px;
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .community {
+        max-width: 320px;
+        margin-right: 0;
+    }
+    
+    p { font-size: 12px; }
+
+    h5 {
+    	color: #374656;
+    	font-weight: normal;
+    }
+
+}

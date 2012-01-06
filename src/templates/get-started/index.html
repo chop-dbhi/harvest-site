@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
+{% block title %}Get Started{% endblock %}
+
 {% block header %}
-    <section id="promo" class="clearfix">
-        <div id="title">
-            <img class="box_demo" src="{{ STATIC_URL }}images/box-demo.png" alt="Demo">
+    <section id="page-title">
+        <img class="harvest-box" src="{{ STATIC_URL }}images/box-get-started.png" alt="Demo">
+        <hgroup>
             <h1>Get Started</h1>
             <h2>Introduction &amp; Tutorials</h2>
-        </div><!-- #title -->
-    </section><!-- #promo -->
+        </hgroup>
+    </section>
 {% endblock %}
 
 
@@ -16,14 +18,14 @@
 
         <nav>
             <ul class="clearfix">
-                <li class="explore_the_demo first"><a class="active" href="#link">Explore the Demo</a></li><!-- adding class "active" to A tag sets active state -->
-                <li class="use_your_data"><a class="active" href="#link">Use Your Data</a></li>
+                <li class="explore-the-demo first"><a class="active" href={% url page "demo" %}>Explore the Demo</a></li><!-- adding class "active" to A tag sets active state -->
+                <li class="use-your-data"><a class="active" href="#link">Use Your Data</a></li>
                 <li class="deploy"><a href="#link">Deploy</a></li>
-                <li class="now_what"><a href="#link">Now What?</a></li>
+                <li class="now-what"><a href="#link">Now What?</a></li>
             </ul>
         </nav><!-- nav -->
 
-        <section class="getting_started_info">
+        <section class="getting-started-info">
 
             <section class="gray clearfix">
                 <h2>Explore the Demo</h2>
@@ -62,11 +64,12 @@
                 </ul>
             </section>
 
-        </section><!-- .getting_started_info -->
+        </section><!-- .getting-started-info -->
 
     </section><!-- #content -->
 
-    <section class="tech_doc clearfix">
+    <!--
+    <section class="technical-docs clearfix">
         <h2>Technical Documentation</h2>
         <div class="one-half first">
             <p>
@@ -92,6 +95,6 @@
             </p>
         </div>
 
-    </section><!-- .tech_doc -->
+    </section><!-- .technical-docs -->
 {% endblock %}
 

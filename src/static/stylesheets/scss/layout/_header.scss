@@ -1,0 +1,42 @@
+header {
+	width: 100%;
+	background-image: url('../../images/bg_promo.gif'); /* fallback background image */
+    /* multiple images on one element only supported in grade A browsers */
+	background: url('../../images/bg_promo_gradient.png') repeat-x bottom,  url('../../images/bg_promo.gif') repeat #485563;
+    /* fallback background color */
+	background-color:#485563;
+	
+	.harvest-logo {
+	    margin: 10px 0;
+	}
+	
+	.inner {
+	    display: block;
+	    max-width: 1000px;
+	    margin: 0 auto;
+	    padding-top: 10px;
+        text-align: center;
+        text-shadow: 0 1px 0 #000;        
+	}
+	
+	padding-bottom: 100px;
+}
+
+#page-title {
+    > * {
+        @include inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+    
+    .harvest-box {
+        margin-right: 10px;
+    }
+
+    hgroup {
+        h1 {
+            color: #fff;
+            margin-bottom: 0;
+        }
+    }
+}

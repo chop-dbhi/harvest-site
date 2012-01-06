@@ -1,0 +1,100 @@
+#content nav ul li {
+	float:left;
+	display:block;
+	margin:0 0 0 -30px;
+	position:relative;
+}
+#content nav ul li.first{margin:0 0 0 -45px;}
+nav ul li a {
+	display:block;
+	height:35px;
+	line-height:35px;
+	background:url('../../images/chart_nav_sprite.png') no-repeat transparent;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#fff;
+	font-size:18px;
+	text-decoration:none;
+	position:relative;
+	width:180px;
+	padding:0 20px 0 10px;
+	text-align:center;
+}
+nav ul li a:hover { text-decoration:none; }
+nav ul li.explore-the-demo a:hover, nav ul li.explore-the-demo a.active { background-position:0px 0px; }
+nav ul li.use-your-data a:hover, nav ul li.use-your-data a.active { background-position:-215px 0px; }
+nav ul li.deploy a:hover, nav ul li.deploy a.active { background-position:-430px 0px; }
+nav ul li.now-what a:hover, nav ul li.now-what a.active { background-position:-645px 0px; }
+nav ul li.explore-the-demo a {
+	background-position:0px -46px;
+	z-index:10;
+}
+nav ul li.use-your-data a {
+	background-position:-215px -46px;
+	z-index:8;
+}
+nav ul li.deploy a {
+	background-position:-430px -46px;
+	z-index:6;
+}
+nav ul li.now-what a {
+	background-position:-645px -46px;
+	z-index:4;
+}
+nav ul li.explore-the-demo {
+	z-index:10;
+	position:relative;
+}
+nav ul li.use-your-data {
+	z-index:8;
+	position:relative;
+}
+nav ul li.deploy {
+	z-index:6;
+	position:relative;
+}
+nav ul li.now-what {
+	z-index:4;
+	position:relative;
+}
+
+.getting-started-info {
+	width:755px;
+	margin:0 auto;
+}
+.getting-started-info h2 {
+	font-size:22px;
+	color:#333;
+	display:block;
+	float:left;
+	width:200px;
+	padding:0 0 0 5px;
+    margin:0;
+}
+.getting-started-info section {
+	padding:15px 15px 12px 15px;
+	width:715px;
+	margin:0 0 7px 5px;
+}
+.getting-started-info section.gray {
+	background:#e9e9e9;
+}
+.getting-started-info section.blue {
+	background:#dff1f8;
+}
+.getting-started-info section.green {
+	background:#e5efc7;
+}
+.getting-started-info section.red {
+	background:#f4d1c9;
+}
+#content .getting-started-info ul {
+	font-family:Arial, Helvetica, sans-serif;
+	color:#333;
+	float:left;
+	width:485px;
+	list-style:disc;
+	font-size:13px;
+    line-height:16px;
+	margin:0 0 0 8px;
+	padding:0 0 0 15px;
+}

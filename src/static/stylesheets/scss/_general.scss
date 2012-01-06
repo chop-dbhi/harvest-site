@@ -1,0 +1,32 @@
+body {
+	background: #edeae3;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+h1, h2, h3, h4 {
+	color: #ee9934;
+}
+
+h5, h6 {
+    font-weight: bold;
+}
+
+a {
+	color: #54acca;
+	text-decoration: none;
+
+    &:hover, &:active {
+        color: #54acca;
+        text-decoration: underline;
+    }
+}
+
+p {
+	color: #595959;
+    font-size: 14px;
+    line-height: 20px;
+}

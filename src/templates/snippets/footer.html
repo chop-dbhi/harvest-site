@@ -1,42 +1,31 @@
-            <footer class="clearfix">
-                <section class="copyright">
-                    <img class="harvest_logo" src="{{ STATIC_URL }}images/footer_tractor_logo.gif" alt="Harvest Logo" />
-                    <div class="info">
-                        <h5>The Harvest Stack</h5>
-                        <p>&#64; 2011 All Rights Reserved</p>
-                        <p>The Harvest Stack including Avocado, Cilantro, and Serrano are licensed under the <a href="#" title="BSD License">BSD License</a>.</p>
-                    </div>
-                </section><!-- .copyright -->
+<footer>
+    <section class="harvest-logo">
+        <img src="{{ STATIC_URL }}images/footer_tractor_logo.gif" alt="Harvest Logo">
+    </section>
 
-                <section class="sitemap">
-                    <h5>Site Map</h5>
-                    <ul class="first">
-                        <li><a href="#link" title="">Overview</a></li>
-                        <li><a href="#link" title="">The Demo</a></li>
-                        <li><a href="#link" title="">Get Started</a>
-                            <ul>
-                                <li><a href="#link" title="">Tutorial</a></li>
-                                <li><a href="#link" title="">Now What?</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="last">
-                        <li><a href="#link" title="">Download</a></li>
-                        <li><a href="#link" title="">Community</a></li>
-                        <li><a href="#link" title="">Technical Docs</a>
-                            <ul>
-                                <li><a href="#link" title="">Avocado</a></li>
-                                <li><a href="#link" title="">Serrano</a></li>
-                                <li><a href="#link" title="">Cilantro</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </section><!-- .sitemap -->
+    <section class="copyright">
+        <h5>The Harvest Stack</h5>
+        <p>&copy; 2011-{% now "Y" %} All Rights Reserved</p>
+        <p>The Harvest Stack including Avocado, Cilantro, and Serrano are licensed under the <a href="http://www.opensource.org/licenses/BSD-2-Clause" title="BSD License" target=_blank>BSD 2-Clause License</a>.</p>
+    </section><!-- .copyright -->
 
-                <section class="community">
-                    <h5>Community</h5>
-                    <p>Follow <a href="#link" title="Follow us on Twitter">@harvestack</a> for updates on bug fixes, news releases, and general news.</p>
-                    <p class="watch_us">Watch <a href="#link" title="Harvest">Harvest</a>, <a href="#link" title="Avocado">Avocado</a>, <a href="#link" title="Serrano">Serrano</a>, and <a href="#link" title="Cilantro">Cilantro</a> on GitHub.</p>
-                </section><!-- .community -->
-            </footer><!-- footer -->
+    <section class="sitemap">
+        <h5>Site Map</h5>
+        <ul>
+            <li><a href={% url index %} title="">Home</a>
+            <li><a href={% url page "demo" %} title="">The Demo</a>
+            <li><a href={% url page "get-started" %} title="">Get Started</a>
+            <li><a href={% url page "download" %} title="">Download</a>
+        </ul>
+    </section><!-- .sitemap -->
 
+    <section class="community">
+        <h5>Community</h5>
+        <p>Follow <a href="https://twitter.com/TheHarvestStack" title="Follow us on Twitter">@TheHarvestStack</a>
+        for updates on bug fixes, new releases, and general news.</p>
+        <p>Watch <a href="https://github.com/cbmi/harvest-template/toggle_watch" title="Harvest">Harvest</a>, <a href="https://github.com/cbmi/django-avocado/toggle_watch" title="Avocado">Avocado</a>,
+        <a href="https://github.com/cbmi/django-serrano/toggle_watch" title="Serrano">Serrano</a>, and
+        <a href="https://github.com/cbmi/django-cilantro/toggle_watch" title="Cilantro">Cilantro</a>
+        on GitHub.</p>
+    </section><!-- .community -->
+</footer><!-- footer -->

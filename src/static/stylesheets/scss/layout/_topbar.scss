@@ -1,0 +1,40 @@
+#topbar-container {
+	height: 50px;
+	background: #333;
+}
+
+#topbar {
+    margin: 0 auto;
+    max-width: 1000px;
+    position: relative;
+}
+
+#topbar a {
+	background: url('../../images/topbar_sprite.gif') no-repeat;
+	display: block;
+	float: left;
+	text-indent: -9998px;
+	overflow: hidden;
+}
+
+#topbar a.cbmi {
+	height: 30px;
+	width: 402px;
+	background-position: 0px 0px;
+	position: absolute;
+	top: 9px;
+	left: 5px;
+    
+    &:hover { background-position:0px -39px; }
+}
+
+#topbar a.chop-research {
+	height: 26px;
+	width: 464px;
+	background-position: 0px -78px;
+	position: absolute;
+	top: 11px;
+	right: 5px;
+
+    &:hover { background-position: 0px -114px; }
+}

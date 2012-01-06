@@ -22,27 +22,37 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
     <link rel="stylesheet" href="{{ CSS_URL }}style.css">
+    {% block styles %}{% endblock %}
 
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
     <!-- All JavaScript at the bottom, except this Modernizr build incl. Respond.js
-        Respond is a polyfill for min/max-width media queries. Modernizr enables HTML5 elements & feature detects; 
+        Respond is a polyfill for min/max-width media queries. Modernizr enables HTML5 elements & feature detects;
         for optimal performance, create your own custom Modernizr build: www.modernizr.com/download/ -->
     <!-- <script src="{{ JAVASCRIPT_URL }}modernizr.js"></script> -->
 </head>
 
 <!-- This is hideous.. -->
-<body id="{% block body-id %}{% endblock %}">
+<body>
     {% include "snippets/topbar.html" %}
 
-    <header>{% block header %}{% endblock %}</header>
+    <header>
+        <section class=inner>
+            <a class="harvest-logo" href={% url index %}><img src="{{ STATIC_URL }}images/header_tractor_logo.png" alt="Harvest Logo"></a>
+            {% block header %}{% endblock %}
+        </section>
+    </header>
 
-    <div class="pagewrap_container">
-        <div class="pagewrap_wide">
-            {% block content %}{% endblock %}
-            {% include "snippets/footer.html" %}
-	</div><!-- .pagewrap_wide -->
-    </div><!-- .pagewrap_container -->
+    <div class="pagewrap-container">
+        <div class="pagewrap-wide">
+            {% block content %}
+            {% endblock %}
+	    </div><!-- .pagewrap-wide -->
+    </div><!-- .pagewrap-container -->
+
+    {% include "snippets/footer.html" %}
+
+    <script src="{{ JAVASCRIPT_URL }}prettify.js"></script>
 
     <!-- JavaScript at the bottom for fast page loading -->
 
