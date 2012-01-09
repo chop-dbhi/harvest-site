@@ -1,12 +1,26 @@
 @media screen and (max-width: 480px) {
-    #topbar {}
-
     footer {
         section {
             min-width: 200px;
             text-align: center;
             margin-bottom: 10px;
             margin-right: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 775px) {
+    #topbar-container {
+        height: 58px;
+    }
+
+    #topbar {
+        a {
+            &.cbmi, &.chop-research {
+                position: static;
+                display: block;
+                margin: 0 auto;
+            }
         }
     }
 }

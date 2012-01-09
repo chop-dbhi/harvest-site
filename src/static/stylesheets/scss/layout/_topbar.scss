@@ -1,6 +1,6 @@
 #topbar-container {
-	height: 50px;
-	background: #333;
+	background-color: #333;
+    height: 50px;
 }
 
 #topbar {
@@ -12,14 +12,13 @@
 #topbar a {
 	background: url('../../images/topbar_sprite.gif') no-repeat;
 	display: block;
-	float: left;
 	text-indent: -9998px;
 	overflow: hidden;
 }
 
 #topbar a.cbmi {
 	height: 30px;
-	width: 402px;
+	width: 300px;
 	background-position: 0px 0px;
 	position: absolute;
 	top: 9px;
