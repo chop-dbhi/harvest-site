@@ -2,6 +2,10 @@
 
 {% block title %}Get Started{% endblock %}
 
+{% block styles %}
+    <link rel=stylesheet href={{ CSS_URL }}page/get-started.css>
+{% endblock %}
+
 {% block header %}
     <section id="page-title">
         <img class="harvest-box" src="{{ STATIC_URL }}images/box-get-started.png" alt="Demo">
@@ -16,18 +20,18 @@
 {% block content %}
     <section id="content">
 
-        <nav>
-            <ul class="clearfix">
-                <li class="explore-the-demo first"><a class="active" href={% url page "demo" %}>Explore the Demo</a></li><!-- adding class "active" to A tag sets active state -->
-                <li class="use-your-data"><a class="active" href="#link">Use Your Data</a></li>
+        <nav id=get-started-navigation>
+            <ul class=unstyled>
+                <li class="explore-the-demo"><a href={% url page "demo" %}>Explore the Demo</a></li><!-- adding class "active" to A tag sets active state -->
+                <li class="use-your-data"><a href="#link">Use Your Data</a></li>
                 <li class="deploy"><a href="#link">Deploy</a></li>
                 <li class="now-what"><a href="#link">Now What?</a></li>
             </ul>
-        </nav><!-- nav -->
+        </nav>
 
-        <section class="getting-started-info">
+        <section class="get-started-info">
 
-            <section class="gray clearfix">
+            <section class=gray>
                 <h2>Explore the Demo</h2>
                 <ul>
                     <li>How to setup a simple local instance of Harvest using the USDA demo data</li>
@@ -37,7 +41,7 @@
                 </ul>
             </section>
 
-            <section class="blue clearfix">
+            <section class=blue>
                 <h2>Use Your Data</h2>
                 <ul>
                     <li>Considerations of how a database schema impacts it's utility in Harvest</li>
@@ -47,7 +51,7 @@
                 </ul>
             </section>
 
-            <section class="green clearfix">
+            <section class=green>
                 <h2>Deploy</h2>
                 <ul>
                     <li>Deployment environments</li>
@@ -56,7 +60,7 @@
                 </ul>
             </section>
 
-            <section class="red clearfix">
+            <section class=red>
                 <h2>Now What?</h2>
                 <ul>
                     <li>Writing complex Translators and integrating your own Exporters</li>
@@ -64,9 +68,9 @@
                 </ul>
             </section>
 
-        </section><!-- .getting-started-info -->
+        </section>
 
-    </section><!-- #content -->
+    </section>
 
     <!--
     <section class="technical-docs clearfix">
