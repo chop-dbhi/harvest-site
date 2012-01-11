@@ -1,0 +1,31 @@
+{% extends "get-started/index.html" %}
+
+{% block title %}Now What?{% endblock %}
+
+{% block header %}
+    <section id="page-title">
+        <img class="harvest-box" src="{{ STATIC_URL }}images/box-get-started.png" alt="Demo">
+        <hgroup>
+            <h1>Now What?</h1>
+            <h2>Refine &amp; Iterate</h2>
+        </hgroup>
+    </section>
+{% endblock %}
+
+
+{% block content %}
+    <section id="content">
+
+        <nav id=get-started-navigation>
+            <ul class=unstyled>
+                <li class="explore-the-demo"><a href={% url page "get-started/explore" %}>Explore the Demo</a></li><!-- adding class "active" to A tag sets active state -->
+                <li class="use-your-data"><a href={% url page "get-started/your-data" %}>Use Your Data</a></li>
+                <li class="deploy"><a href={% url page "get-started/deploy" %}>Deploy</a></li>
+                <li class="now-what"><a class=active href={% url page "get-started/now-what" %}>Now What?</a></li>
+            </ul>
+        </nav>
+
+        <h1>Coming soon...</h1>
+
+    </section>
+{% endblock %}

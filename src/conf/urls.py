@@ -1,12 +1,9 @@
 import re
-from django.conf.urls.defaults import url, patterns, include
+from django.conf.urls.defaults import url, patterns
 from django.conf import settings
 from django.contrib import admin
-from django.template import add_to_builtins
 
 admin.autodiscover()
-
-add_to_builtins('django.contrib.markup.templatetags.markup')
 
 urlpatterns = patterns('',
     # Poor man's flatpages..

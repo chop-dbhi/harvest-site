@@ -15,63 +15,63 @@
 
 {% block content %}
     <section id=content>
-{% filter restructuredtext %}
-Outline
--------
-- `Clone from GitHub`_ (recommended)
 
-Clone from GitHub
------------------
-Keep up with bug fixes and new features incrementally by starting your
-project as a cloned (or forked project if on GitHub) from the Harvest
-git repository. Why?
+        <h2 id=download-release>Download Release</h2>
 
-- Any upstream changes we make for various bug fixes and new features can be
-  easily applied to your Harvest build with minimal or no effort.
-- You start off immediately versioning your code which is a best (necessary)
-  practice for software development.
-- This is not only for bleeding edge usage of Harvest. Using this method, you
-  can choose with version (old or new) of Harvest you want to use
+        <p>Current tagged release: <strong>1.0</strong></p>
 
-Follow these simple steps:
+        <ul>
+            <li><a href=#>harvest-template.tar.gz</a>
+            <li><a href=#>harvest-template.zip</a> (use for Windows)
+        </ul>
 
-1. Create a new empty project
+        <h2 id=clone-from-github>Clone from GitHub <span class="label notice">recommended</span></h2>
 
-.. class:: prettyprint linenums
+        <p>Keep up with bug fixes and new features incrementally by starting your
+        project as a cloned repository from the Harvest git repository. Why?</p>
 
-::
+        <ul>
+            <li>Any upstream changes we make for various bug fixes and new features can be
+            easily applied to your Harvest build with minimal or no effort
+            <li>You start off immediately versioning your code which is a best (necessary)
+            practice for software development
+            <li>This is not only for bleeding edge usage of Harvest. Using this method, you
+            can choose with version (old or new) of Harvest you want to use
+        </ul>
 
-    git init my-harvest-project
-    cd my-harvest-project
+        <p>Follow these simple steps:</p>
 
-2. Add the **upstream** repository and fetch it
+        <ol>
+            <li>Create a new empty project
 
-.. class:: prettyprint linenums
+<pre class="prettyprint linenums lang-bsh">
+git init my-harvest-project
+cd my-harvest-project
+</pre>
 
-::
+            <li>Add the <strong>upstream</strong> repository and fetch it
 
-    git remote add upstream git://github.com/cbmi/harvest-template.git
-    git fetch upstream
+<pre class="prettyprint linenums lang-bsh">
+git remote add upstream git://github.com/cbmi/harvest-template.git
+git fetch upstream
+</pre>
 
-3. Merge the lastest version into your local repository. If you prefer a tagged
-   release (the master branch is very stable), you can replace ``master``
-   with the lastest tag.
+            <li>Merge the lastest version into your local repository. If you prefer
+            a tagged release (the master branch is very stable), you can replace
+            <code>master</code> with the lastest tag.
 
-.. class:: prettyprint linenums
+<pre class="prettyprint linenums lang-bsh">
+git merge upstream/master
+</pre>
 
-::
+            <li>Add the <strong>origin</strong> server (where you want to push your changes to)
 
-    git merge upstream/master
+<pre class="prettyprint linenums lang-bsh">
+git remote add origin YOUR_REMOTE_URL
+git push -u origin master
+</pre>
 
-4. Add the **origin** server (where you want to push your changes to)
+        </ol>
 
-.. class:: prettyprint linenums
-
-::
-
-    git remote add origin YOUR_REMOTE_URL
-    git push -u origin master
-
-{% endfilter %}
     </section>
 {% endblock %}

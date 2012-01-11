@@ -1,4 +1,20 @@
 #content {
     padding: 20px 20px;
     min-height: 30px;
+
+    h3, h4, ,h5 {
+        color: #333;
+    }
+
+    .label {
+        text-shadow: none;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    h1, h2 {
+        .label {
+            vertical-align: top;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    }
 }

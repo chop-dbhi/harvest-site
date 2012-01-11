@@ -1,0 +1,122 @@
+{% extends "get-started/index.html" %}
+
+{% block title %}Get Started{% endblock %}
+
+{% block header %}
+    <section id="page-title">
+        <img class="harvest-box" src="{{ STATIC_URL }}images/box-get-started.png" alt="Demo">
+        <hgroup>
+            <h1>Explore the Demo</h1>
+            <h2>Get Your Feet</h2>
+        </hgroup>
+    </section>
+{% endblock %}
+
+
+{% block content %}
+    <section id="content">
+
+        <nav id=get-started-navigation>
+            <ul class=unstyled>
+                <li class="explore-the-demo"><a class=active href={% url page "get-started/explore" %}>Explore the Demo</a></li><!-- adding class "active" to A tag sets active state -->
+                <li class="use-your-data"><a href={% url page "get-started/your-data" %}>Use Your Data</a></li>
+                <li class="deploy"><a href={% url page "get-started/deploy" %}>Deploy</a></li>
+                <li class="now-what"><a href={% url page "get-started/now-what" %}>Now What?</a></li>
+            </ul>
+        </nav>
+
+        <h1>Outline</h1>
+
+        <ul>
+            <li><a href=#setup-local-instance>Setup a local instance</a> of Harvest using the USDA demo data
+            <li>Understand the high levels <a href=#components-of-the-stack>components of The Stack</a>
+            and how they interact
+            <li>Introduction to Translators, Query Views and Formatters
+            <li>Add simple customizations to the interface
+        </ul>
+
+        <h1 id=setup-local-instance>Setup a Local Instance</h1>
+
+        <ul>
+            <li><a href=#dependencies>Dependencies</a>
+            <li><a href=#get-it>Get It</a>
+            <li><a href=#setup-environment>Setup Environment</a>
+        </ul>
+
+        <h2 id=dependencies>Dependencies</h2>
+
+        <ul>
+            <li><a href=http://www.python.org/download/>Python 2.6+</a>
+            <li><a href=http://pypi.python.org/pypi/setuptools>setuptools</a>
+            <li><a href=http://pypi.python.org/pypi/virtualenv>virtualenv</a>
+            <li><a href=http://git-scm.com/>Git</a> <em>(if cloning the repository)</em>
+        </ul>
+
+
+        <h2 id=get-it>Get It</h2>
+
+        <p>Obtain the demo either by cloning the Git repository or download a packaged release.</p>
+
+        <h4>Clone<h4>
+
+<pre class="prettyprint linenums lang-bsh">
+git clone git://github.com/cbmi/harvest-usda.git
+</pre>
+
+        <h4>Download</h4>
+
+        <ul>
+            <li><a href=https://github.com/cbmi/harvest-usda/tarball>harvest-usda.tar.gz</a>
+            <li><a href=https://github.com/cbmi/harvest-usda/zipball>harvest-usda.zip</a> (use for Windows)
+        </ul>
+
+        <p>Unzip or untar the package. For the tarball:</p>
+
+<pre class="prettyprint linenums lang-bsh">
+tar zxf harvest-usda.tar.gz
+</pre>
+
+        <h2 id=setup-environment>Setup Environment</h2>
+
+        <p>Follow the steps below to create a local environment for the demo using
+        <code>virtualenv</code> and install it's dependencies. <em>Note: virtualenv is used
+        to create a local Python environment without polluting the system Python
+        site-packages.</em></p>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>Unix</th>
+                    <td>
+
+<pre class="prettyprint linenums lang-bsh">
+virtualenv harvest-usda-env
+mv harvest-usda harvest-usda-env
+cd harvest-usda-env
+source bin/activate
+pip install -r requirements.pip
+</pre>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Windows</th>
+                    <td>
+<pre class="prettyprint linenums lang-bsh">
+virtualenv harvest-usda-env
+mv harvest-usda harvest-usda-env
+chdir harvest-usda-env
+./Scripts/activate.bat
+pip install -r requirements.pip
+</pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 id=components-of-the-stack>Components of the Stack</h2>
+
+    </section>
+{% endblock %}
+
+

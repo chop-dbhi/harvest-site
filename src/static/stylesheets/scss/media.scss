@@ -7,6 +7,13 @@
             margin-right: 0;
         }
     }
+
+    #get-started-navigation ul li {
+        margin-left: 0;
+        margin-bottom: 5px;
+        display: block;
+    }
+
 }
 
 @media screen and (max-width: 775px) {
