@@ -39,7 +39,7 @@
                 Unless your data is coming from a very well controlled, curated data source, it's likely that you
                 will have to put some manual effort into data cleanup. How much effort depends entirely on the data
                 source. In our experience with biomedical data, pulling data from active, electronic health records requires considerable cleaning, whereas
-                something like an electronic case report form tends to have a better structure since it was designed upfront for ease of analysis</p>
+                something like an electronic case report form tends to have a better structure since it was designed upfront for ease of analysis.</p>
             
             <p>All that being said, don't be discouraged if you've got messy data. One of the pleasant surprises about putting data into Harvest
                 is that it gives you a very easy way to monitor data quality. Because the user interface components are all generated dynamically from
@@ -47,8 +47,11 @@
                 vocabularies will cause your bar graphs and pick lists to have too many obviously overlapping items. You may also find that some fields
                 that you consider important may not be as frequently populated as you had hoped. Because you get started looking at your data early in
                 the deployment process, you can iterate rapidly to clean and organize the data, seeing the impacts in the live application immediately.</p>
-            <h2>Data Models</h2>
-            <p>In order to perform all the dynamic queries and displays in Harvest, you'll need to adhere to a few general data modeling rules. These are
+            <h2>Choosing the Right Data Model</h2>
+            <p>Harvest is most definitely a BYOM ("Bring Your Own Model") system. You are largely free to create the tables and organizational 
+                structure that best suits your needs for a given project. This level of customization means you'll need to be familiar with basic
+                database modeling techniques and concepts. You can also use an existing database "as-is", though in some cases this may be more work 
+                than it seems at first, and may yield suboptimal results. The reason for this is that in order to perform all the dynamic queries and displays in Harvest, you'll need to adhere to a few general data modeling rules. These are
                covered in greater detail later, but briefly they are as follows:</p>
                <ul>
                    <li>Avoid excessive use of key/value data structures unless absolutely necessary</li>
@@ -64,6 +67,22 @@
                   users.</p>
             <div class="alert alert-info">
                 <b>Considerations for Healthcare Data Models</b>
+                <p>One of the challenges to working with healthcare data is that the data is often very hierarchical. In a typical electronic medical record 
+                    system, one might have a patient with one or more "visits" or "encounters" with each of those having procedures, diagnoses, tests, 
+                    test results, notes, etc... In general, it is usually desirable to preserve this hierarchy. However, the nesting also can lead to 
+                    end-user confusion about data. The notion of a "visit" in particular makes certain kinds of queries difficult. For example, if two kinds
+                    of tests are never given at the same time, constructing a search where one is "normal" AND the other is "elevated" will produce no results. Removing
+                    the notion of a visit, and instead storing temporal information on measurements themselves can help alleviate this problem. However, this can lead to
+                    confusing results, since users now get all results, regardless of when the test was done. Depending on the use case and specific scenarios, one approach
+                    may be more desirable than the other.</p>
+                <p>In many cases, medical record systems are optimized for transactions, so there may be multiple database rows for something an end-user thinks of as a
+                    distinct unit. Diagnosis is a good example of this. In general, diagnoses are likely to be stored one per row, with a foreign key to the visit where 
+                    they apply. While this makes querying diagnoses very easy, it makes display in reports difficult because users get a proliferation of rows in their reports,
+                    one for each unique diagnosis. In cases like this, we find that storing the data in two places makes the most sense. Diagnoses are queried using the model
+                    of one diagnosis per row. But for display purposes, a "diagnosis summary" concatenates all the individual rows together in a simple text field. This allows the
+                    user to see one row per visit without having diagnosis ballooning the number of rows</p>
+                <p>These are just some of the considerations one needs to keep in mind when working with healthcare data. For a more detailed discussion of these and other issues,
+                    see <a href=#todo>AudGenDB: A Harvest Case Study</a>
             </div>
         <h1 id=modeling-your-data>Modeling Your Data</h1>
             <h2>Django Models</h2>
