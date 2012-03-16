@@ -35,9 +35,36 @@
         
         <h1 id=before-you-start>Before You Start</h1>
             <h2>A Word on Data Quality</h2>
+            <p>While Harvest can make a lot of things simpler, it won't magically make messy, disorganized data clean.
+                Unless your data is coming from a very well controlled, curated data source, it's likely that you
+                will have to put some manual effort into data cleanup. How much effort depends entirely on the data
+                source. In our experience with biomedical data, pulling data from active, electronic health records requires considerable cleaning, whereas
+                something like an electronic case report form tends to have a better structure since it was designed upfront for ease of analysis</p>
+            
+            <p>All that being said, don't be discouraged if you've got messy data. One of the pleasant surprises about putting data into Harvest
+                is that it gives you a very easy way to monitor data quality. Because the user interface components are all generated dynamically from
+                your data, it's easy to see when a particular field needs some attention. Numerical outliers will skew your histograms, and uncontrolled
+                vocabularies will cause your bar graphs and pick lists to have too many obviously overlapping items. You may also find that some fields
+                that you consider important may not be as frequently populated as you had hoped. Because you get started looking at your data early in
+                the deployment process, you can iterate rapidly to clean and organize the data, seeing the impacts in the live application immediately.</p>
             <h2>Data Models</h2>
-            <h2>Considerations for Healthcare Data Models</h2>
-     
+            <p>In order to perform all the dynamic queries and displays in Harvest, you'll need to adhere to a few general data modeling rules. These are
+               covered in greater detail later, but briefly they are as follows:</p>
+               <ul>
+                   <li>Avoid excessive use of key/value data structures unless absolutely necessary</li>
+                   <li>All tables should have a single primary key column, composite keys are not allowed</li>
+                   <li>Avoid circular references</li>
+                   <li>Overly normalized schemas can become unwieldy when loading and managing data</li>
+                   <li>Consider aggregating multi-row data that users may want to see in a single row of output</li>
+                   <li>Try to decompose complex values (e.g. measurements and units) into individual database columns</li>
+                   
+              </ul>
+              <p>While some of the above requirements may seem limiting at first, they force a simple, predictable data model that is
+                  easily traversed by the automated tools embedded in Harvest while at the same time providing a good experience for end
+                  users.</p>
+            <div class="alert alert-info">
+                <b>Considerations for Healthcare Data Models</b>
+            </div>
         <h1 id=modeling-your-data>Modeling Your Data</h1>
             <h2>Django Models</h2>
             <h2>Starting from a Clean Slate</h2>
