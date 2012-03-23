@@ -28,7 +28,8 @@
         <h1>Outline</h1>
 
         <ul>
-            <li><a href=#before-you-start>Before You Start</a></li> 
+            <li><a href=#before-you-start>Before You Start</a></li>
+            <li><a href=#set-up-your-instance>Set up a New Harvest Instance</a></li>
             <li><a href=#modeling-your-data>Modeling Your Data</a></li>
             <li><a href=#creating-metadata>Creating and Customizing Metadata</a></li>
         </ul>
@@ -85,13 +86,75 @@
                 <p>These are just some of the considerations one needs to keep in mind when working with healthcare data. For a more detailed discussion of these and other issues,
                     see <a href=#todo>AudGenDB: A Harvest Case Study</a>
             </div>
+        
+        <div class="page-header">
+            <h1 id=set-up-your-instance>Setting up a New Harvest Instance</h1>
+        </div>
+        <div class="alert alert-info">
+            <span class="label label-info">Tip</span>
+            <p>If you haven't yet run through the <a href="http://localhost:8000/get-started/explore/">USDA demo project</a>, you will probably want to do that 
+                first before tackling your own project from scratch. This guide
+                assumes some background understanding of Harvest and Django that you will get from that tutorial</p>
+        </div>
+        <ol>
+            <li>Visit the <a href="/download">Dowload</a> page and download a copy of the harvest project.</li>
+            <li>If you haven't already done so, be sure you install the <a href="http://localhost:8000/get-started/explore/#dependencies">dependencies</a> for Harvest as outlined on the <a href="http://localhost:8000/get-started/explore/">Explore the Demo</a> page.</li>
+            <li>Set up the environment as follows:</li>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Unix</th>
+                                    <td>
+
+                <pre class="prettyprint linenums lang-bsh">
+virtualenv your-project-name-env
+cd your-project-name-env
+source bin/activate
+TODO: describe how to initialize the project
+                </pre>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Windows</th>
+                                    <td>
+                <pre class="prettyprint linenums lang-bsh">
+virtualenv your-project-name-env
+chdir your-project-name-env
+./Scripts/activate.bat
+
+                </pre>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+        <li>Make sure your installation is configured properly:</li>
+        </ol>
         <div class="page-header">
             <h1 id=modeling-your-data>Modeling Your Data</h1>
         </div>
             <h2>Django Models</h2>
-            <h2>Starting from a Clean Slate</h2>
+            <p>Data models are the heart of any Harvest application. Harvest is built using the <a href="https://www.djangoproject.com/">Django
+                web framework</a> which has an object relational mapping (ORM) layer for interfacing with relational databases. The 
+                ORM allows you to descirbe your database schema and the relationships between various tables using a simple Python 
+                syntax. It's likely that for a majority of cases, you will have a 1:1 relationship between a table and 
+                a Python class describing it. Before going too far, you might want to familiarize yourself with the excellent documentation
+                on <a href="https://docs.djangoproject.com/en/dev/topics/db/models/">Django models</a>. If you've worked with similar tools such as Hibernate in Java or ActiveRecord in Ruby on Rails, Django models
+                should be pretty familiar.</p>
             <h2>Using an Existing Database Schema with InspectDB</h2>
-            <h2>Loading Data</h2>
+                <p>If you have an existing database that you're looking to use with Harvest, you can probably get something running quickly 
+                    by using the tables and data structures you already have. While the table structures and formats might be less than ideal, getting started
+                    this way will help you get a sense of the changes you might make to take full advantage of the platform.</p>
+                    <div class="alert alert-error">
+                        <span class="label label-important">Warning</span>
+                        <p>While most data models will work fine, like many ORM tools, Django enforces a strict requirement
+                        that each table have a single primary key column. Tables with composite keys are not permitted.</p>
+                    </div>
+                 
+                -managed=false
+                -Tip: views to help hide some complexity without ETL
+            <h2>Starting from a Clean Slate</h2>
+                
         <div class="page-header">
             <h1 id=creating-metadata>Creating and Customizing Metadata</h1>
         </div>
