@@ -1,6 +1,7 @@
 .DS_Store
 
 *.py[co]
+*.sw[po]
 dist
 sdist
 build
@@ -17,7 +18,8 @@ local_settings.py
 src/static/scripts/javascript/min
 
 # all Sass files will be compiled into this directory
-src/static/stylesheets/css
+src/static/stylesheets/css/*.css
+src/static/stylesheets/css/page/*.css
 
 # Collected static files via Django's staticfiles app
 _site/static
