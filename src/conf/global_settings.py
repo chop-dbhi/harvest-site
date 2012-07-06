@@ -17,7 +17,6 @@ INSTALLED_APPS = (
     'core',
 
     # third-party apps
-    # 'grappelli',
     # 'siteauth',
     # 'south',
     
@@ -118,7 +117,7 @@ STATIC_URL = '/static/'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/grappelli/'
+ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -196,8 +195,8 @@ MIDDLEWARE_CLASSES = (
 # EMAIL
 #
 
-SUPPORT_EMAIL = 'support@example.com'
-DEFAULT_FROM_EMAIL = 'support@example.com'
+SUPPORT_EMAIL = 'cbmisupport@email.chop.edu'
+DEFAULT_FROM_EMAIL = 'cbmisupport@email.chop.edu'
 EMAIL_SUBJECT_PREFIX = '[Harvest Site] '
 
 
@@ -254,11 +253,11 @@ CACHE_MIDDLEWARE_KEY_PREFIX = ''
 # SESSIONS AND COOKIES
 #
 
-CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_COOKIE_NAME = 'harvestio_csrftoken'
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_COOKIE_AGE = 60 * 20 # 20 minutes
-SESSION_COOKIE_NAME = 'sessionid'
+SESSION_COOKIE_NAME = 'harvestio_sessionid'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_SAVE_EVERY_REQUEST = False
 
@@ -269,7 +268,6 @@ SESSION_SAVE_EVERY_REQUEST = False
 
 USE_ETAGS = True
 SEND_BROKEN_LINK_EMAILS = True
-IGNORABLE_404_ENDS += ('robots.txt', 'favicon.ico')
 
 # django-registration2
 # REGISTRATION_ACTIVATION_DAYS = 0

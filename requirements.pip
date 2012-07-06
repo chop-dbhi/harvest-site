@@ -5,7 +5,7 @@
 #     pip install -U -r requirements.pip
 
 # Core requirements
-django
+django>=1.4
 
 # Database Drivers, the Python stdlib has support for SQLite
 # psycopg2
