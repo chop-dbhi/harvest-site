@@ -21,15 +21,9 @@ WATCH_COFFEE = `which coffee` -w -b -o ${JAVASCRIPT_SRC_DIR} -c ${COFFEE_DIR}
 
 REQUIRE_OPTIMIZE = `which node` ./bin/r.js -o ${JAVASCRIPT_DIR}/app.build.js
 
-all: collect
+all: watch collect
 
-setup: init-submodules build-deps
-
-build: build-deps sass coffee optimize
-
-dist: build
-	@echo 'Creating a source distributions...'
-	@python setup.py sdist > /dev/null
+build: sass coffee optimize
 
 collect:
 	@echo 'Symlinking static files...'
@@ -56,70 +50,6 @@ unwatch:
 		rm ${WATCH_FILE}; \
 	fi;
 
-init-submodules:
-	@echo 'Initializing submodules...'
-	@if [ -d .git ]; then \
-		git submodule update --init --recursive; \
-	fi;
-
-# note: html5-boilerplate is not included here since it may overwrite
-# custom settings
-build-deps: clean-deps r.js jquery backbone underscore \
-	requirejs backbone-common sass-twitter-bootstrap
-
-# Removes all code copied from submodule repos
-clean-deps:
-	@rm -rf bin/r.js \
-		src/static/stylesheets/scss/bootstrap \
-		src/static/scripts/coffeescript/common \
-		src/static/scripts/coffeescript/common.coffee \
-		src/static/scripts/javascript/src/{order,require,jquery,underscore,backbone}.js
-
-# Backward compatible aliases
-build-submodules: build-deps
-clean-submodules: clean-deps
-
-# WARNING: this should be run only once since this could overwrite existing
-# customized files
-html5-boilerplate:
-	@echo 'Setting up HTML5 boilerplate...'
-	@cp -r ./modules/html5-boilerplate/*.{png,xml,ico,txt} \
-		./modules/html5-boilerplate/.htaccess ${SITE_DIR}
-
-r.js:
-	@echo 'Setting up r.js...'
-	@cd ./modules/r.js && node dist.js
-	@mkdir -p ./bin
-	@cp ./modules/r.js/r.js ./bin
-
-sass-twitter-bootstrap:
-	@echo 'Setting up Sass Twitter Bootstrap...'
-	@rm -rf ${SASS_DIR}/bootstrap
-	@cp -r ./modules/sass-twitter-bootstrap/lib ${SASS_DIR}/bootstrap
-
-backbone-common:
-	@echo 'Setting up Backbone-common...'
-	@rm -rf ${COFFEE_DIR}/common ${COFFEE_DIR}/common.coffee
-	@cp -r ./modules/backbone-common/src/* ${COFFEE_DIR}
-
-requirejs:
-	@echo 'Setting up RequireJS...'
-	@cp ./modules/requirejs/require.js ${JAVASCRIPT_SRC_DIR}/require.js
-	@cp ./modules/requirejs/order.js ${JAVASCRIPT_SRC_DIR}/order.js
-
-jquery:
-	@echo 'Setting up jQuery...'
-	@cd ./modules/jquery && make update_submodules jquery
-	@cp ./modules/jquery/dist/jquery.js ${JAVASCRIPT_SRC_DIR}/jquery.js
-
-backbone:
-	@echo 'Setting up Backbone...'
-	@cp ./modules/backbone/backbone.js ${JAVASCRIPT_SRC_DIR}/backbone.js
-
-underscore:
-	@echo 'Setting up Underscore...'
-	@cp ./modules/underscore/underscore.js ${JAVASCRIPT_SRC_DIR}/underscore.js
-
 optimize: r.js
 	@echo 'Optimizing JavaScript...'
 	@rm -rf ${JAVASCRIPT_MIN_DIR}
@@ -132,4 +62,4 @@ secret-key:
 	@echo
 	@echo 'SECRET_KEY = \c'; python ./bin/secret_key.py
 
-.PHONY: all sass coffee watch unwatch build dist optimize
+.PHONY: all sass coffee watch unwatch build optimize
