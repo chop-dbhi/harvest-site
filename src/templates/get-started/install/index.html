@@ -336,10 +336,167 @@ pip install -r requirements.pip
 </table>
 
 <h2 id=harvest-basics>Harvest Basics</h2>
-    <p>Fields</p>
-    <p>Concepts</p>
-    <p>Formatters</p>
-    <p>Translators</p>
+<p><em><strong>Fields</strong></em></p>
+<p>A Field in Harvest is called a <code>DataField</code> and corresponds to single Django model field. A Harvest field allows you to associate more metadata with each field to enhance the meaning of the field. This makes the field easier to explore for someone who is unfamiliar with your data fields and consequently your data models. A few metadata fields that Harvest provides need to be defined for each field. These include:</p>
+    <ul>
+    <dl>
+        <dt>Name</dt>
+        <dd>- A verbose, easy to  understand name of the field.</dd>
+        <dt>Name Plural</dt>
+        <dd>- The plural form of the <strong>Name</strong>. If this is undefined and the value for <strong>Name</strong> does not end with 's', an 's' will be appended for the defualt value. </dd>
+        <dt>Description</dt>
+        <dd>- A description of the field that can serve as a definition. This field should be used to make it clear what the associated Django field's purpose and meaning are. </dd>
+        <dt>Keywords</dt>
+        <dd>- Any other words that can be used to describe the field, or could be used to search for the field. </dd>
+        <dt>Unit</dt>
+        <dd>- The unit that the field is collected using, given that the field is a numeric value.</dd>
+        <dt>Unit Plural</dt>
+        <dd>- The plural form of <strong>Unit</strong>. If this is undefined and the value for <strong>Unit</strong> does not end with 's', an 's' will be appended by defualt. </dd>
+    </dl>
+</ul>
+<p>A <code>DataField</code> can be retrieved using the application name, model name, and field name that uniquely identify it. As an example, lets fetch the <code>DataField</code> instance for the white blood cell count field called 'wbc' in the 'LabResult' model for out 'openmrs' application.</p>
+
+<pre class="prettyprint linenums lang-python">
+from avocado.models import DataField
+
+# Get the white blood cell count in the 'wbc' field associated with the model 'LabResult'
+# in the Application 'openmrs'
+wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+</pre>
+
+<p>Harvest fields also come pre-packaged with a number of properties that make exploring your data a walk in the park <span class=muted>(or field!)</span>. For example, using Harvest allows you to easily access and gain information about the underlying data stored in your Django database.</p> 
+
+<pre class="prettyprint linenums lang-python">
+from avocado.models import DataField
+
+wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+
+# Using the 'size' property on a Harvest field, you can retrieve the number of 
+# distinct values stored in the associated Django field.
+# Prints 174, the number of distinct values in the the white blood cell count
+# field.
+print wbc_field.size
+
+# Using the 'values' property on a Harvest field, you can retrieve a list of the 
+# distinct values stored in the Django field.
+# Prints a list of the unique values in the white blood cell count field.
+# There should be 175 elements in this list because it also accounts for None.
+print wbc_field.values
+
+# Using the 'labels' property on a Harvest field, you can retrieve a list of the
+# labels for the distinct values in the Django field. In most cases this will simply
+# return a unicode version of the 'values' property.
+# There should be 175 unicode elements in this list.
+print wbc_field.labels
+
+# Using the 'choices' property on a Harvest field, you can retieve a list of tuples
+# containing the values and the labels.
+# There should be 175 tuples in this list.
+print wbc_field.choices
+
+# Calling the 'values_list' property on the harvest field instance, you can retrieve
+# a `ValuesQuerySet` of distinct values for the field. This is most useful when you want
+# to perform other query operations on the values.
+print wbc_field.values_list
+</pre>
+
+<p>Harvest fields also come with aggregator methods that allow you to further explore your numerical data.</p>
+
+<pre class="prettyprint linenums lang-python">
+from avocado.models import DataField
+
+wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+
+# Calling the aggregator 'count' method on a harvest field will return the number 
+# of total values for the field.
+# Prints [{'count': 1617}]
+print wbc_field.count()
+
+# The aggregator method 'max' will return the maximum value stored in the field.
+# Prints [{'max': 117000.0}]
+print wbc_field.max()
+
+# The aggregator method 'min' will return the minimum values stored in the field.
+# Prints [{'min': 2.5}]
+print wbc_field.min()
+
+# The aggregator method 'avg' will return the average of all the values in the 
+# field.
+# Prints [{'avg': 5441.65924551639}]
+print wbc_field.avg()
+
+# The aggregator method 'sum' will return the summation of all the values in the
+# field.
+# Prints [{'sum': 8799163.0}]
+print wbc_field.sum()
+</pre>
+
+<p>Harvest aggregators can also group by specified fields and be chained together.</p>
+
+<pre class='prettyprint linenums lang-python'>
+from avocado.models import DataField
+
+wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+
+# In order to group by a specific field, pass the field as an argument.
+# We want to group by gender so we pass 'encounter__patient__gender' as an argument.
+# Prints [{'values':[u'F'], 'avg': 5264.52551210428}, {'values': [u'M'], 'avg': 5792.01215469613}]
+print wbc_field.avg('encounter__patient__gender')
+
+# Aggregators can be chained together.
+# We want to get avg, min and max values for the white blood cell count
+# so we chain them together.
+# Prints [{'max': 117000.0, 'avg': 5441.65924551639, 'min': 2.5}]
+print wbc_field.avg().min().max()
+
+# Now we want to get the max, min, and avg grouped by gender.
+# When chaining aggregators and grouping by fields, you need to
+# call the 'groupby' method first and then call the aggregators.
+# All aggregators must group by the same field in order to work
+# properly.
+# Prints [{'values': [u'F'], 'max': 67000.0, 'avg': 5264.52551210428, 'min': 2.5},
+# {'values': [u'M'], 'max': 117000.0, 'avg':5792.01215469613, 'min': 3.1}]
+print wbc_field.groupby('encounter__patient__gender').avg().min().max()
+</pre>
+
+<p><strong><em>Concepts</em></strong></p>
+<p>A Harvest Concept is used to combine fields that logically go together. There are some fields that make more sense when grouped together with other fields but cannot be stored together in the database. In these scenarios, a <code>DataConcept</code> is helpful. </p>
+
+Here is an example of a <code>DataConcept</code> that is composed of the two <code>DataField</code>s 'birthdate' and 'birthdate_estimated'.
+
+<pre class='prettyprint linenums lang-python'>
+from avocado.models import DataField, DataConcept, DataConceptField
+
+# Get the Datafields for the fields
+birthdate = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate')
+estimated = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate_estimated')
+
+# Create the DataConcept
+bday_concept = DataConcept(name="Birthdate")
+bday_concept.save()
+
+# Add the DataFields to the DataConcept
+DataConceptField(concept=bday_concept, field=birthdate, order=1).save()
+DataConceptField(concept=bday_concept, field=estimated, order=2).save()
+</pre>
+
+<p>Existing DataConcepts can be fetched through the typical objects query interface.</p>
+
+<pre class='prettyprint linenums lang-python'>
+from avocado.models import DataConcept
+
+# Get the existing birthdate DataConcept
+birthdate_concept = DataConcept.objects.get(name="Birthdate")
+
+# Get all existing concepts
+concepts = DataConcept.objects.all()
+</pre>
+
+<p><strong><em>Formatters</em></strong></p>
+<p></p>
+
+
+<p><strong><em>Translators</em></strong></p>
 <h2 id=admin-screens>Admin Screens</h2>
 <ul>
     <li>Fields, Concepts, formatters, definintions, keywords</li>
@@ -347,6 +504,69 @@ pip install -r requirements.pip
 </ul>
 <h2 id=making-customizations>Making Customizations</h2>
 <li>Writing a simple formatter</li>
+<pre class='prettyprint linenums lang-python'>
+from avocado.formatters import registry
+from serrano.formatters import HTMLFormatter
+from datetime import date, time, datetime
+
+class AgeFormatter(HTMLFormatter)
+    
+    def to_html(self, values, **context):
+        # Get the values to format
+        dob = values['birthdate']
+        est = values['birthdate_estimated']
+
+        today = date.today()
+
+        # Check to make sure that the date of birth is specified.
+        if not dob: 
+            return "Current Age not available"
+
+        # Calculate the patient's age based on birthdate
+        age = ((today - dob).total_seconds())/60/60/24/365.242
+        age = round(age,1)
+        time = "years"
+
+        # Check to see if patient is less than a year old
+        if age < 1.0:
+            # Recalculate the age in months
+            age = ((today - dob).total_seconds())/60/60/24/30.4368
+            age = round(age, 1)
+            time = "months"
+            
+            # Check to see if the patient is less than 1 month old
+            if age < 1.0:
+                # Recalculate the age in days
+                age = ((today - dob).total_seconds()/60/60/24
+                age = round(age, 1)
+                time = "days"
+                
+                # Check to see if the patient is 1 day old
+                if age == 1.0:
+                    time = "day"
+
+            # Check to see if the patient is exactly 1 month old
+            elif age == 1.0:
+                time = "month"
+
+        # Check to see if patient is exaclty one year old
+        elif age == 1.0:
+            time = "year"
+      
+        if est:
+            # If the birthdate was estimted return the age, the time measurement along with estimated.
+            return "{} {} old <em class="muted">(estimated)</em>".format(age, time)
+        else:
+            # If the birthdate was not estimated, return the age and the time measurement.
+            return "{} {} old".format(age, time)
+
+    # Set the process_multiple flag to True so that birthdate and birthdate_estimated
+    # will be processed together
+    to_html.process_multiple = True
+
+# Register the AgeFormatter
+registry.register(AgeFormatter, "AgeFormatter")
+</pre>
 
 
     </section>
