@@ -133,10 +133,208 @@ pip install -r requirements.pip
         </ul>
 <h2 id=running>Running the Development Server</h2>
 <li>Django development server running instructions</li>
-<h2 id=open-mrs-model>The OpenMRS Demo Data Model</h2>
+<h2 id=open-mrs-model>The OpenMRS Demo Data</h2>
+<h3>Overview</h3>
+<p>It is difficult to find large de-identified medical record sets that can be freely shared without a data use agreement. Fortunately, the Harvest demo application is able to use a publicly available de-identified dataset from <a href="http://www.openmrs.org">OpenMRS</a>. <a href="http://www.openmrs.org">OpenMRS</a> was created in 2004 as an open source medical record system for use in resource constrained environments in developing countries.</p>
+<h3>Data Categories</h3>
+<p>To construct our demo dataset, we have performed Extract Transform and Load (ETL) operations on the MySQL-based <a href="https://wiki.openmrs.org/download/attachments/5047323/large-demo-data-1.8.0.sql.zip">large dataset</a>. We have not attempted to exhaustively capture every piece of information in the schema, but instead have focused on some core areas of information that are best able to showcase the Harvest. These include:
 <ul>
-    <p>Intro: discuss: openmrs origninal schema and ETL process</p>
-    <p>Discuss OpenMRS tables in demo schema and what they mean</p>
+    <li>Basic Patient information
+    <li>Encounters</li>
+    <li>Vital Signs</li>
+    <li>Review of Systems</li>
+    <li>Lab tests</li>
+    <li>Diagnoses</li>
+    <li>Referrals</li>
+    <li>Medications</li>
+    <li>HIV treatment details</li>
+</ul>
+</p>
+<h3>Extract Transform and Load</h3>
+<p>To perform the ETL, we used <a href="http://dataexpress.research.chop.edu">DataExpress</a>, an open source ETL scripting environment our group has developed. For the purposes of the Harvest demo, there is no need to run the ETL script because all data has been packaged into a standalone SQLite database. However, you may want to take a look at the <code>openmrs_extract.scala</code> script in the <code>etl</code> directory to see the transformations performed on the data coming out of OpenMRS.</p>
+<h3>Demo Data Schema<h3>
+<p>Below is a summary of the data tables and their relationships</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Table Name</th>
+            <th>Summary</th>
+            <th>Columns</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>patient</code></td>
+            <td>Basic patient information</td>
+            <td><code>id (PK)</code> <code>gender</code>  <code>birthdate</code> <code>birthdate_estimated</code></td>
+        </tr>
+        <tr>
+            <td><code>encounter</code></td>
+            <td>Record of all patient encounters</td>
+            <td><code>id (PK)</code> <code>patient_id (FK)</code>  <code>encounter_datetime</code> <code>description</code></td>
+        </tr>
+        <tr>
+            <td><code>vital_signs</code></td>
+            <td>Vital signs recorded at an encounter</td>
+            <td><ul class="unstyled">
+                    <li><code>id</code>Primary key</li> 
+                    <li><code>encounter_id</code> Foreign Key (<code>encounter</code>)</li>
+                    <li><code>sbp</code> Systolic blood pressure </li>
+                    <li><code>dbp</code> Diastolic blood pressure</li> 
+                    <li><code>hr</code> Heart rate</li>
+                    <li><code>temp</code> Temperature</li>
+                    <li><code>wt</code> Weight</li>
+                    <li><code>ht</code> Height</li>
+                    <li><code>rr</code> Respiratory rate </li>
+                    <li><code>hc</code> Head Circumference</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><code>lab_result</code></td>
+            <td>All lab measurments, organized by encounter</td>
+            <td><ul class="unstyled">
+                    <li><code>id (PK)</code></li>
+                    <li><code>encounter_id</code><li>
+                    <li><code>hgb</code></li>
+                    <li><code>wbc</code></li>
+                    <li><code>rbc</code></li>
+                    <li><code>platelets</code></li>
+                    <li><code>mcv</code></li>
+                    <li><code>hct</code></li>
+                    <li><code>rdw</code></li>
+                    <li><code>mchc</code></li>
+                    <li><code>mch</code></li>
+                    <li><code>cr</code></li>
+                    <li><code>bun</code></li>
+                    <li><code>glu</code></li>
+                    <li><code>na</code></li>
+                    <li><code>k</code></li>
+                    <li><code>cl</code></li>
+                    <li><code>co2</code></li>
+                    <li><code>cd4</code></li>
+                    <li><code>cd4_percent</code></li>
+                    <li><code>cd8</code></li>
+                    <li><code>sgpt</code></li>
+                    <li><code>alc</code></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><code>systems_review</code></td>
+            <td>Simple normal/abnormal calls for systems review</td>
+            <td><ul class="unstyled">
+                    <li><code>id</code></li>
+                    <li><code>encounter_id</code></li>
+                    <li><code>heent</code></li>
+                    <li><code>chest</code></li>
+                    <li><code>cardiac</code></li>
+                    <li><code>abdominal</code></li>
+                    <li><code>musculoskeletal</code></li>
+                    <li><code>neurologic</code></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><code>drug</code></td>
+            <td>Canonical list of all drugs in the example data set</td>
+            <td><code>id</code> <code>name</code> <code>disease</code></td>
+        </tr>
+        <tr>
+            <td><code>drug_synonym</code></td>
+            <td>Synonyms for drugs in the <code>drug</code> table (used for searching)</td>
+            <td><code>id</code> <code>name</code> <code>drug_id</code></td>
+        </tr>
+        <tr>
+            <td><code>encounter_drug</code></td>
+            <td>Indicates which drugs are associated with each encounter</td>
+            <td><code>id</code> <code>encounter_id</code> <code>drug_id</code></td>
+        </tr>
+        <tr>
+            <td><code>vaccine</code></td>
+            <td>Canonical list of all vaccines in the example data set</td>
+            <td><code>id</code> <code>name</code></td>
+        </tr>
+        <tr>
+            <td><code>vaccine_synonym</code></td>
+            <td>Synonyms for vaccines in the <code>vaccine</code> table (used for searching)</td>
+            <td><code>id</code> <code>name</code> <code>vaccine_id</code></td>
+        </tr>
+        <tr>
+            <td><code>encounter_vaccine</code></td>
+            <td>Indicates which vaccines are associated with each encounter</td>
+            <td><code>id</code> <code>encounter_id</code> <code>drug_id</code>
+        </tr>
+        <tr>
+            <td><code>diagnosis</code></td>
+            <td>Canonical list of all diagnoses in the example data set</td>
+            <td><code>id</code> <code>name</code></td>
+        </tr>
+        <tr>
+            <td><code>diagnosis_synonym</code></td>
+            <td>Synonyms for diagnoses in the <code>diagnosis</code> table (used for searching)</td>
+            <td><code>id</code> <code>name</code> <code>diagnosis_id</code></td>
+        </tr>
+        <tr>
+            <td><code>encounter_diagnosis</code></td>
+            <td>Indicates which diagnoses are associated with each encounter</td>
+            <td><code>id</code> <code>encounter_id</code> <code>diagnosis_id</code>
+        </tr>
+        <tr>
+            <td><code>referral</code></td>
+            <td>Canonical list of all referral types in the example data set</td>
+            <td><code>id</code> <code>name</code></td>
+        </tr>
+        <tr>
+             <td><code>encounter_referral</code></td>
+             <td>Indicates which referrals are associated with each encounter</td>
+             <td><code>id</code> <code>referral_id</code> <code>encounter_id</code></td>
+        </tr>
+        <tr>
+          <td><code>hiv_details</code></td>
+          <td>Contains basic information about HIV stage, treatment plan, treatment adherence, etc...</td>
+          <td><ul class="unstyled">
+                 <li><code>id</code></li>
+                 <li><code>encounter_id</code></li>
+                 <li><code>treat_adhere</code></li>
+                 <li><code>taking_antiretrovirals</code></li>
+                 <li><code>cdc_category</code></li>
+                 <li><code>stage_peds</code></li>
+                 <li><code>stage_adult_last</code></li>
+                 <li><code>plan</code></li>
+                 <li><code>stage_adult</code></li>
+                 <li><code>discordant_couple</code></li>
+              </ul>
+          </td>
+      </tr>
+      <tr>
+        <td><code>tb_details</code></td>
+        <td>Contains info about Tuberculosis treatment</td>
+        <td>
+            <ul class="unstyled">
+                <li><code>id</code></li>
+                <li><code>encounter_id</code></li>
+                <li><code>pro_adhere</code></li>
+                <li><code>pro_plan</code></li>
+                <li><code>treat_plan</code></li>
+                <li><code>treat_adhere</code></li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><code>pcp_details</code></td>
+        <td>Info on Pneumocystis plan and prophylaxis</td>
+        <td><ul class="unstyled">
+                <li><code>id</code></li>
+                <li><code>encounter_id</code></li>
+                <li><code>pro_adhere</code></li>
+                <li><code>pro_plan</code></li>
+            </ul>
+        </td>
+    <tr>
+</tbody>
+</table>
+
 <h2 id=harvest-basics>Harvest Basics</h2>
     <p>Fields</p>
     <p>Concepts</p>
