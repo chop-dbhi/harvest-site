@@ -132,7 +132,35 @@ pip install -r requirements.pip
             <li>Cilantro</li>
         </ul>
 <h2 id=running>Running the Development Server</h2>
-<li>Django development server running instructions</li>
+<p>In order to view your demo web application on your development server, you need to run the Django web server.</p>
+<table>
+    <tbody>
+        <tr>
+            <th>Unix</th>
+            <td>
+<pre class="prettyprint linenums lang-bsh">
+cd harvest-openmrs-env
+source bin/activate
+cd harvest-openmrs
+python bin/manage.py runserver
+</pre>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Windows</th>
+            <td>
+<pre class="prettyprint linenums lang-bsh">
+chdir harvest-openmrs-env
+./Scripts/activate.bat
+chdir harvest-openmrs
+python bin/manage.py runserver
+</pre>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>Once the development server is running, you can visit 'http://localhost:8000' in your web browser to view the demo page.</p>
 <h2 id=open-mrs-model>The OpenMRS Demo Data</h2>
 <h3>Overview</h3>
 <p>It is difficult to find large de-identified medical record sets that can be freely shared without a data use agreement. Fortunately, the Harvest demo application is able to use a publicly available de-identified dataset from <a href="http://www.openmrs.org">OpenMRS</a>. <a href="http://www.openmrs.org">OpenMRS</a> was created in 2004 as an open source medical record system for use in resource constrained environments in developing countries.</p>
@@ -336,7 +364,39 @@ pip install -r requirements.pip
 </table>
 
 <h2 id=harvest-basics>Harvest Basics</h2>
+<p>Now were going to dive into some of the basic components of Harvest using code examples. If you would like to follow along, start your django shell. </p>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Unix</th>
+            <td>
+<pre class="prettyprint linenums lang-bsh">
+cd harvest-openmrs-env
+source bin/activate
+cd harvest-openmrs
+python bin/manage.py shell
+</pre>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Windows</th>
+            <td>
+<pre class="prettyprint linenums lang-bsh">
+chdir harvest-openmrs-env
+./Scripts/activate.bat
+chdir harvest-openmrs
+python bin/manage.py shell
+</pre>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
 <p><em><strong>Fields</strong></em></p>
+
 <p>A Field in Harvest is called a <code>DataField</code> and corresponds to single Django model field. A Harvest field allows you to associate more metadata with each field to enhance the meaning of the field. This makes the field easier to explore for someone who is unfamiliar with your data fields and consequently your data models. A few metadata fields that Harvest provides need to be defined for each field. These include:</p>
     <ul>
     <dl>
@@ -354,146 +414,235 @@ pip install -r requirements.pip
         <dd>- The plural form of <strong>Unit</strong>. If this is undefined and the value for <strong>Unit</strong> does not end with 's', an 's' will be appended by defualt. </dd>
     </dl>
 </ul>
-<p>A <code>DataField</code> can be retrieved using the application name, model name, and field name that uniquely identify it. As an example, lets fetch the <code>DataField</code> instance for the white blood cell count field called 'wbc' in the 'LabResult' model for out 'openmrs' application.</p>
+<p>We can also programatically access these fields but first we need to retrieve our <code>DataField</code>. A <code>DataField</code> can be retrieved using the application name, model name, and field name that uniquely identify it. As an example, lets fetch the <code>DataField</code> instance for the white blood cell count field called 'wbc' in the 'LabResult' model for our 'openmrs' application.</p>
 
-<pre class="prettyprint linenums lang-python">
-from avocado.models import DataField
+<pre class="prettyprint lang-python">
+>> from avocado.models import DataField
 
 # Get the white blood cell count in the 'wbc' field associated with the model 'LabResult'
 # in the Application 'openmrs'
-wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+>> wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+
+# Now we can access the defined metadata for the DataField.
+>> wbc_field.name
+u'White Blood Cells (WBC)'
+
+>> wbc_field.name_plural
+u''
+
+>> wbc_field.description
+u'Blood test to measure the number of white blood cells.'
+
+>> wbc_field.keywords
+u''
+
+>> wbc_field.unit
+u''
+
+>> wbc_field.unit_plural
+u''
 </pre>
 
 <p>Harvest fields also come pre-packaged with a number of properties that make exploring your data a walk in the park <span class=muted>(or field!)</span>. For example, using Harvest allows you to easily access and gain information about the underlying data stored in your Django database.</p> 
 
-<pre class="prettyprint linenums lang-python">
-from avocado.models import DataField
+<pre class="prettyprint lang-python">
+>> from avocado.models import DataField
 
-wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+>> wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
 
 # Using the 'size' property on a Harvest field, you can retrieve the number of 
 # distinct values stored in the associated Django field.
 # Prints 174, the number of distinct values in the the white blood cell count
 # field.
-print wbc_field.size
+>> print wbc_field.size
+174
 
 # Using the 'values' property on a Harvest field, you can retrieve a list of the 
 # distinct values stored in the Django field.
 # Prints a list of the unique values in the white blood cell count field.
 # There should be 175 elements in this list because it also accounts for None.
-print wbc_field.values
+>> print wbc_field.values
+(2.5, 2.6, 2.7, 2.9, 3.1, 3.5, 3.7, 3.8, 3.9, 4.0, ...)
 
 # Using the 'labels' property on a Harvest field, you can retrieve a list of the
 # labels for the distinct values in the Django field. In most cases this will simply
 # return a unicode version of the 'values' property.
 # There should be 175 unicode elements in this list.
-print wbc_field.labels
+>> print wbc_field.labels
+[u'2.5', u'2.6', u'2.7', u'2.9', u'3.1', u'3.5', u'3.7', u'3.8', u'3.9', u'4.0', ...]
 
 # Using the 'choices' property on a Harvest field, you can retieve a list of tuples
 # containing the values and the labels.
 # There should be 175 tuples in this list.
-print wbc_field.choices
+>> print wbc_field.choices
+[(2.5, u'2.5'),
+ (2.6, u'2.6'),
+ (2.7, u'2.7'),
+ (2.9, u'2.9'),
+ (3.1, u'3.1'),
+ (3.5, u'3.5'),
+ (3.7, u'3.7'),
+ (3.8, u'3.8'),
+ (3.9, u'3.9'),
+ (4.0, u'4.0'),
+  ...]
 
 # Calling the 'values_list' property on the harvest field instance, you can retrieve
 # a `ValuesQuerySet` of distinct values for the field. This is most useful when you want
 # to perform other query operations on the values.
-print wbc_field.values_list
+>> print wbc_field.values_list
+[2.5, 2.6, 2.7, 2.9, 3.1, 3.5, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.4, 4.6, 4.7, 4.8, 4.9, 5.1, 
+5.7, 6.0, '...(remaining elements truncated)...']
 </pre>
 
 <p>Harvest fields also come with aggregator methods that allow you to further explore your numerical data.</p>
 
-<pre class="prettyprint linenums lang-python">
-from avocado.models import DataField
+<pre class="prettyprint lang-python">
+>> from avocado.models import DataField
 
-wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+>> wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
 
 # Calling the aggregator 'count' method on a harvest field will return the number 
 # of total values for the field.
-# Prints [{'count': 1617}]
-print wbc_field.count()
+>> print wbc_field.count()
+[{'count': 1617}]
 
 # The aggregator method 'max' will return the maximum value stored in the field.
-# Prints [{'max': 117000.0}]
-print wbc_field.max()
+>> print wbc_field.max()
+[{'max': 117000.0}]
 
 # The aggregator method 'min' will return the minimum values stored in the field.
-# Prints [{'min': 2.5}]
-print wbc_field.min()
+>> print wbc_field.min()
+[{'min': 2.5}]
 
 # The aggregator method 'avg' will return the average of all the values in the 
 # field.
-# Prints [{'avg': 5441.65924551639}]
-print wbc_field.avg()
+>> print wbc_field.avg()
+[{'avg': 5441.65924551639}]
 
 # The aggregator method 'sum' will return the summation of all the values in the
 # field.
-# Prints [{'sum': 8799163.0}]
-print wbc_field.sum()
+>> print wbc_field.sum()
+[{'sum': 8799163.0}]
 </pre>
 
 <p>Harvest aggregators can also group by specified fields and be chained together.</p>
 
-<pre class='prettyprint linenums lang-python'>
-from avocado.models import DataField
+<pre class='prettyprint lang-python'>
+>> from avocado.models import DataField
 
-wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+>> wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
 
 # In order to group by a specific field, pass the field as an argument.
 # We want to group by gender so we pass 'encounter__patient__gender' as an argument.
-# Prints [{'values':[u'F'], 'avg': 5264.52551210428}, {'values': [u'M'], 'avg': 5792.01215469613}]
-print wbc_field.avg('encounter__patient__gender')
+>> print wbc_field.avg('encounter__patient__gender')
+[{'values':[u'F'], 'avg': 5264.52551210428}, {'values': [u'M'], 'avg': 5792.01215469613}]
 
 # Aggregators can be chained together.
 # We want to get avg, min and max values for the white blood cell count
 # so we chain them together.
-# Prints [{'max': 117000.0, 'avg': 5441.65924551639, 'min': 2.5}]
-print wbc_field.avg().min().max()
+>> print wbc_field.avg().min().max()
+[{'max': 117000.0, 'avg': 5441.65924551639, 'min': 2.5}]
 
 # Now we want to get the max, min, and avg grouped by gender.
 # When chaining aggregators and grouping by fields, you need to
 # call the 'groupby' method first and then call the aggregators.
 # All aggregators must group by the same field in order to work
 # properly.
-# Prints [{'values': [u'F'], 'max': 67000.0, 'avg': 5264.52551210428, 'min': 2.5},
-# {'values': [u'M'], 'max': 117000.0, 'avg':5792.01215469613, 'min': 3.1}]
-print wbc_field.groupby('encounter__patient__gender').avg().min().max()
+>> print wbc_field.groupby('encounter__patient__gender').avg().min().max()
+[{'values': [u'F'], 'max': 67000.0, 'avg': 5264.52551210428, 'min': 2.5},
+ {'values': [u'M'], 'max': 117000.0, 'avg':5792.01215469613, 'min': 3.1}]
 </pre>
 
 <p><strong><em>Concepts</em></strong></p>
 <p>A Harvest Concept is used to combine fields that logically go together. There are some fields that make more sense when grouped together with other fields but cannot be stored together in the database. In these scenarios, a <code>DataConcept</code> is helpful. </p>
 
-Here is an example of a <code>DataConcept</code> that is composed of the two <code>DataField</code>s 'birthdate' and 'birthdate_estimated'.
+<p>Here is an example of a <code>DataConcept</code> that is composed of the two <code>DataField</code>s 'birthdate' and 'birthdate_estimated'.</p>
 
-<pre class='prettyprint linenums lang-python'>
-from avocado.models import DataField, DataConcept, DataConceptField
+<pre class='prettyprint lang-python'>
+>> from avocado.models import DataField, DataConcept, DataConceptField
 
 # Get the Datafields for the fields
-birthdate = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate')
-estimated = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate_estimated')
+>> birthdate = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate')
+>> estimated = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate_estimated')
 
 # Create the DataConcept
-bday_concept = DataConcept(name="Birthdate")
-bday_concept.save()
+>> bday_concept = DataConcept(name="My_Birthdate")
+>> bday_concept.save()
 
 # Add the DataFields to the DataConcept
-DataConceptField(concept=bday_concept, field=birthdate, order=1).save()
-DataConceptField(concept=bday_concept, field=estimated, order=2).save()
+>> DataConceptField(concept=bday_concept, field=birthdate, order=1).save()
+>> DataConceptField(concept=bday_concept, field=estimated, order=2).save()
 </pre>
 
 <p>Existing DataConcepts can be fetched through the typical objects query interface.</p>
 
-<pre class='prettyprint linenums lang-python'>
-from avocado.models import DataConcept
+<pre class='prettyprint lang-python'>
+>> from avocado.models import DataConcept
 
 # Get the existing birthdate DataConcept
-birthdate_concept = DataConcept.objects.get(name="Birthdate")
+>> birthdate_concept = DataConcept.objects.get(name="my_birthdate")
 
 # Get all existing concepts
-concepts = DataConcept.objects.all()
+>> concepts = DataConcept.objects.all()
 </pre>
 
 <p><strong><em>Formatters</em></strong></p>
-<p></p>
+<p>A <code>Formatter</code> is useful for changing how data is represened. Formatters can be as simple as formatting and returning a single data element or as complex as evaluating multiple data elements together and returning formatted values based on their collective values. Formatters take in raw data and return an appropriate representation of the data given the current context.</p>
+
+<p>Now let's take a look at Formatters in the context of a <code>DataConcept</code>. Formatters can be used to specify how a <code>DataConcept</code> will represent its <code>DataField</code>elements together. In different contexts, it might be appropriate for a <code>DataConcept</code> to render its fields one way, while in another context it might make more sense for a <code>DataConcept</code> to render its fields in another way. Formatters give <code>DataConcept</code>s the flexibility to render its elements differently based on the context.</p>
+
+<p>As an example, we can use the formatter associated with a 'Birthdate' <code>DataConcept</code> in order to format data for a template.</p>
+
+<pre class='prettyprint lang-python'>
+>> from avocado.models import DataConcept
+>> from datetime import date 
+
+# Get the Birthdate DataConcept 
+>> bday_concept = DataConcept.objects.get(name="Birthdate")
+
+# See the name of the formatter assigned to the
+# DataConcept
+>> bday_concept.formatter_name
+u'Age'
+
+# Now that we know the concept has a formatter associated with it,
+# we can use the formatter. 
+# A formatter always takes a value or values and preferred_formats as arguments.
+# In the case of our Birthdate concept, the values we need to provide to the formatter are
+# a birthdate and a boolean value for whether the birthdate has been estimated.
+# We pass these values in an array as the first argument.
+# The second argument is a list of preferred formats. We want the html format which
+# will give us the birthdate concept formatted for an html element. The preferred_formats
+# argument is a list because the formatter will attempt to render the values in the first format
+# and if that fails, will return the values in the second format and so on.
+>> age = bday_concept.format([date(1975, 10, 23), False], preferred_formats=['html'])
+>> print age
+OrderedDict([(u'Birthdate', '37.0 years old')])
+
+# Access the 'Birthdate' value
+>> print['Birthhdate']
+'37.0 years old'
+
+
+# We want to get how old the patient will be in 10 years, so first we need to format
+# the Birthdate so that it returns the age as a number 
+>> age = bday_concept.format([date(1975, 10, 13), False], preferred_formats=['number'])
+>> print age
+OrderedDict([('Birthdate':[{'age': 37.0, 'est':False, 'time': 'years'}])])
+
+# Access the age value and add 10 in order to get the patients age in 10 years.
+# This calculation is able to easily be performed because the formatter ensures
+# the age value will be formatted as a number when you retrieve it.
+>> print age['Birthdate'][0]['age'] + 10
+47.0
+
+# Get a list of all the current Formatters registered
+>> registry.choices
+</pre>
+
+<p>Formatters can be registered to the <code>registry</code> from <code>avocado.formatters</code> and then easily accessed and referenced from anywhere within your applications. We've already created and registered some formatters so let's explore how they interact with the <code>DataConcept</code>.</p>
+<p>Custom formatters can easily be created by overriding the default <code>Formatter</code> class and methods</p>
 
 
 <p><strong><em>Translators</em></strong></p>
