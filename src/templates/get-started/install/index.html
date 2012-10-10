@@ -135,9 +135,9 @@ pip install -r requirements.pip
 <li>Django development server running instructions</li>
 <h2 id=open-mrs-model>The OpenMRS Demo Data</h2>
 <h3>Overview</h3>
-<p>It is difficult to find large de-identified medical record sets that can be freely shared without a data use agreement. Fortunately, the Harvest demo application is able to use a publicly available de-identified dataset from <a href="http://www.openmrs.org">OpenMRS</a>. <a href="http://www.openmrs.org">OpenMRS</a> was created in 2004 as an open source medical record system for use in resource constrained environments in developing countries.</p>
+<p>It is difficult to find large de-identified medical record sets that can be freely shared without a data use agreement. Fortunately, the Harvest demo application is able to use a publicly available de-identified dataset from <a href="http://www.openmrs.org">OpenMRS</a>. <a href="http://www.openmrs.org">OpenMRS</a> was created in 2004 as an open source medical record system for use in resource constrained environments such as those found in developing countries.</p>
 <h3>Data Categories</h3>
-<p>To construct our demo dataset, we have performed Extract Transform and Load (ETL) operations on the MySQL-based <a href="https://wiki.openmrs.org/download/attachments/5047323/large-demo-data-1.8.0.sql.zip">large dataset</a>. We have not attempted to exhaustively capture every piece of information in the schema, but instead have focused on some core areas of information that are best able to showcase the Harvest. These include:
+<p>To construct our demo dataset, we have performed Extract Transform and Load (ETL) operations on the MySQL-based <a href="https://wiki.openmrs.org/download/attachments/5047323/large-demo-data-1.8.0.sql.zip">OpenMRS large dataset</a>. We have not attempted to exhaustively capture every piece of information in the schema, but instead have focused on some core areas of information that are best able to showcase the Harvest. These include:
 <ul>
     <li>Basic Patient information
     <li>Encounters</li>
@@ -151,9 +151,9 @@ pip install -r requirements.pip
 </ul>
 </p>
 <h3>Extract Transform and Load</h3>
-<p>To perform the ETL, we used <a href="http://dataexpress.research.chop.edu">DataExpress</a>, an open source ETL scripting environment our group has developed. For the purposes of the Harvest demo, there is no need to run the ETL script because all data has been packaged into a standalone SQLite database. However, you may want to take a look at the <code>openmrs_extract.scala</code> script in the <code>etl</code> directory to see the transformations performed on the data coming out of OpenMRS.</p>
-<h3>Demo Data Schema<h3>
-<p>Below is a summary of the data tables and their relationships</p>
+<p>To perform the ETL, we used <a href="http://dataexpress.research.chop.edu">DataExpress</a>, an open source ETL scripting environment our group has developed. Discussion of DataExpress is beyond the scope of this tutorial. For the purposes of the Harvest demo, you should not need to run the ETL script because we have pre-packaged all data into a standalone SQLite database. However, you may want to take a look at the <code>openmrs_extract.scala</code> script in the <code>etl</code> directory to see the transformations performed on the data coming out of OpenMRS.</p>
+<h3>Demo Data Schema</h3>
+<p>Below is a summary of the data tables in the demo. Foreign key relationships are noted near any columns that reference other data</p>
 <table class="table">
     <thead>
         <tr>
@@ -166,19 +166,29 @@ pip install -r requirements.pip
         <tr>
             <td><code>patient</code></td>
             <td>Basic patient information</td>
-            <td><code>id (PK)</code> <code>gender</code>  <code>birthdate</code> <code>birthdate_estimated</code></td>
+            <td><ul class="unstyled">
+                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                <li><code>gender</code> Patient's gender</li>               
+                <li><code>birthdate</code> Patient's birth date (can be an estimate)</li> 
+                <li><code>birthdate_estimated</code> Flag to indicate whethr the birth date is an estimate</li></td>
         </tr>
         <tr>
             <td><code>encounter</code></td>
             <td>Record of all patient encounters</td>
-            <td><code>id (PK)</code> <code>patient_id (FK)</code>  <code>encounter_datetime</code> <code>description</code></td>
+            <td><ul class="unstyled">
+                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li> 
+                <li><code>patient_id</code> <span class="label label-success">FOREIGN KEY</span></li>  
+                <li><code>encounter_datetime</code> Date of the encounter</li>            
+                <li><code>description</code> Type of encounter</li>
+                </ul>
+            </td>
         </tr>
         <tr>
             <td><code>vital_signs</code></td>
             <td>Vital signs recorded at an encounter</td>
             <td><ul class="unstyled">
-                    <li><code>id</code>Primary key</li> 
-                    <li><code>encounter_id</code> Foreign Key (<code>encounter</code>)</li>
+                    <li><code>id</code><span class="label label-info">PRIMARY KEY</span></li> 
+                    <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
                     <li><code>sbp</code> Systolic blood pressure </li>
                     <li><code>dbp</code> Diastolic blood pressure</li> 
                     <li><code>hr</code> Heart rate</li>
@@ -194,29 +204,29 @@ pip install -r requirements.pip
             <td><code>lab_result</code></td>
             <td>All lab measurments, organized by encounter</td>
             <td><ul class="unstyled">
-                    <li><code>id (PK)</code></li>
-                    <li><code>encounter_id</code><li>
-                    <li><code>hgb</code></li>
-                    <li><code>wbc</code></li>
-                    <li><code>rbc</code></li>
-                    <li><code>platelets</code></li>
-                    <li><code>mcv</code></li>
-                    <li><code>hct</code></li>
-                    <li><code>rdw</code></li>
-                    <li><code>mchc</code></li>
-                    <li><code>mch</code></li>
-                    <li><code>cr</code></li>
-                    <li><code>bun</code></li>
-                    <li><code>glu</code></li>
-                    <li><code>na</code></li>
-                    <li><code>k</code></li>
-                    <li><code>cl</code></li>
-                    <li><code>co2</code></li>
-                    <li><code>cd4</code></li>
-                    <li><code>cd4_percent</code></li>
-                    <li><code>cd8</code></li>
-                    <li><code>sgpt</code></li>
-                    <li><code>alc</code></li>
+                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span><li>
+                    <li><code>hgb</code> Hemoglobin</li>
+                    <li><code>wbc</code> White blood cell count</li>
+                    <li><code>rbc</code> Red blood cell count</li>
+                    <li><code>platelets</code> Platelet count</li>
+                    <li><code>mcv</code> Mean corpuscular volume</li>
+                    <li><code>hct</code> Hematocrit</li>
+                    <li><code>rdw</code> Red cell distribution width</li>
+                    <li><code>mchc</code> Mean Cell Hemoglobin Concentration </li>
+                    <li><code>mch</code> Mean corpuscular hemoglobin</li>
+                    <li><code>cr</code> Creatinine</li>
+                    <li><code>bun</code> Blood urea nitrogen</li>
+                    <li><code>glu</code> Glucose</li>
+                    <li><code>na</code> Sodium</li>
+                    <li><code>k</code> Potassium</li>
+                    <li><code>cl</code> Chloride</li>
+                    <li><code>co2</code> Carbon dioxide</li>
+                    <li><code>cd4</code> CD4 count</li>
+                    <li><code>cd4_percent</code> CD4 Percent</li>
+                    <li><code>cd8</code> CD8 count</li>
+                    <li><code>sgpt</code> Alanine transaminase</li>
+                    <li><code>alc</code> Total lymphocyte count</li>
                 </ul>
             </td>
         </tr>
@@ -224,86 +234,139 @@ pip install -r requirements.pip
             <td><code>systems_review</code></td>
             <td>Simple normal/abnormal calls for systems review</td>
             <td><ul class="unstyled">
-                    <li><code>id</code></li>
-                    <li><code>encounter_id</code></li>
-                    <li><code>heent</code></li>
-                    <li><code>chest</code></li>
-                    <li><code>cardiac</code></li>
-                    <li><code>abdominal</code></li>
-                    <li><code>musculoskeletal</code></li>
-                    <li><code>neurologic</code></li>
+                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span><li>
+                    <li><code>heent</code>Head, ears, eyes, nose and throat findings</li>
+                    <li><code>chest</code> Chest findings</li>
+                    <li><code>cardiac</code> Cardiac findings</li>
+                    <li><code>abdominal</code> Abdominal findings</li>
+                    <li><code>musculoskeletal</code> Musculoskeletal findings</li>
+                    <li><code>neurologic</code> Neurologic findings</li>
                 </ul>
             </td>
         </tr>
         <tr>
             <td><code>drug</code></td>
             <td>Canonical list of all drugs in the example data set</td>
-            <td><code>id</code> <code>name</code> <code>disease</code></td>
+            <td>
+                <ul class="unstyled">
+                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>name</code> Name of the drug</li>
+                    <li><code>disease</code> Indication for the drug</li>
+                </ul>
+            </td>
         </tr>
         <tr>
             <td><code>drug_synonym</code></td>
             <td>Synonyms for drugs in the <code>drug</code> table (used for searching)</td>
-            <td><code>id</code> <code>name</code> <code>drug_id</code></td>
+            <td>
+                <ul class="unstyled">
+                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                <li><code>name</code> Name of the synonym</li>
+                <li><code>drug_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+            </ul>
+            </td>
         </tr>
         <tr>
             <td><code>encounter_drug</code></td>
             <td>Indicates which drugs are associated with each encounter</td>
-            <td><code>id</code> <code>encounter_id</code> <code>drug_id</code></td>
+            <td><ul class="unstyled">
+                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li> 
+                <li><code>drug_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+            </ul>
+            </td>
+                
         </tr>
         <tr>
             <td><code>vaccine</code></td>
             <td>Canonical list of all vaccines in the example data set</td>
-            <td><code>id</code> <code>name</code></td>
+            <td><ul class="unstyled">
+                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>name</code> Name of the vaccine</li>
+                </ul>
+            </td>
         </tr>
         <tr>
             <td><code>vaccine_synonym</code></td>
             <td>Synonyms for vaccines in the <code>vaccine</code> table (used for searching)</td>
-            <td><code>id</code> <code>name</code> <code>vaccine_id</code></td>
+            <td><ul class="unstyled">
+                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                <li><code>name</code> Name of the synonym</li>
+                <li><code>vaccine_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+            </td>
         </tr>
         <tr>
             <td><code>encounter_vaccine</code></td>
             <td>Indicates which vaccines are associated with each encounter</td>
-            <td><code>id</code> <code>encounter_id</code> <code>drug_id</code>
+            <td><ul class="unstyled">
+                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                    <li><code>drug_id</code> Drug associated with the encounter</li>
+                </ul>
         </tr>
         <tr>
             <td><code>diagnosis</code></td>
             <td>Canonical list of all diagnoses in the example data set</td>
-            <td><code>id</code> <code>name</code></td>
+            <td><ul class="unstyled">
+                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>name</code> Name of the diagnosis</li>
+                </ul>
+            </td>
         </tr>
         <tr>
             <td><code>diagnosis_synonym</code></td>
             <td>Synonyms for diagnoses in the <code>diagnosis</code> table (used for searching)</td>
-            <td><code>id</code> <code>name</code> <code>diagnosis_id</code></td>
+            <td><ul class="unstyled">
+                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>name</code> Name of the synonym</li>
+                    <li><code>diagnosis_id</code> <span class="label label-success">FOREIGN KEY</span>
+                    </li>
+                </ul>
+            </td>
         </tr>
         <tr>
             <td><code>encounter_diagnosis</code></td>
             <td>Indicates which diagnoses are associated with each encounter</td>
-            <td><code>id</code> <code>encounter_id</code> <code>diagnosis_id</code>
+            <td><ul class="unstyled">
+                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li> 
+                    <li><code>diagnosis_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                </ul>
+            </td>
         </tr>
         <tr>
             <td><code>referral</code></td>
             <td>Canonical list of all referral types in the example data set</td>
-            <td><code>id</code> <code>name</code></td>
+            <td><ul class="unstyled">
+                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>name</code> Name of the referral</li>
+                </ul>
+            </td>
         </tr>
         <tr>
              <td><code>encounter_referral</code></td>
              <td>Indicates which referrals are associated with each encounter</td>
-             <td><code>id</code> <code>referral_id</code> <code>encounter_id</code></td>
+             <td><ul class="unstyled">
+                     <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                     <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li> 
+                     <li><code>referral_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                 </ul></td>
         </tr>
         <tr>
           <td><code>hiv_details</code></td>
           <td>Contains basic information about HIV stage, treatment plan, treatment adherence, etc...</td>
           <td><ul class="unstyled">
-                 <li><code>id</code></li>
-                 <li><code>encounter_id</code></li>
-                 <li><code>treat_adhere</code></li>
-                 <li><code>taking_antiretrovirals</code></li>
-                 <li><code>cdc_category</code></li>
-                 <li><code>stage_peds</code></li>
-                 <li><code>stage_adult_last</code></li>
-                 <li><code>plan</code></li>
-                 <li><code>stage_adult</code></li>
-                 <li><code>discordant_couple</code></li>
+                 <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                 <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                 <li><code>treat_adhere</code> Indicates whether or not a patient is adhering to their treatments </li>
+                 <li><code>taking_antiretrovirals</code> Indicates wheter or not the patient is taking antiretroviral drugs</li>
+                 <li><code>cdc_category</code> The CDC category of HIV</li>
+                 <li><code>stage_peds</code> WHO HIV Stage (pediatrics)</li>
+                 <li><code>stage_adult_last</code> Indicates whether or not the patient's WHO stage has changed since the last visit (adults)</li>
+                 <li><code>plan</code> Indicates whether any modifications should be made to the patient's treatment plan</li>
+                 <li><code>stage_adult</code> WHO HIV Stage (adults)</li>
+                 <li><code>discordant_couple</code> Indicates whether the patient is a member of a discordant couple</li>
               </ul>
           </td>
       </tr>
@@ -312,12 +375,12 @@ pip install -r requirements.pip
         <td>Contains info about Tuberculosis treatment</td>
         <td>
             <ul class="unstyled">
-                <li><code>id</code></li>
-                <li><code>encounter_id</code></li>
-                <li><code>pro_adhere</code></li>
-                <li><code>pro_plan</code></li>
-                <li><code>treat_plan</code></li>
-                <li><code>treat_adhere</code></li>
+                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                <li><code>pro_adhere</code> Indicates whether the patient is adhering to TB prophylaxis therapy</li>
+                <li><code>pro_plan</code> Indicates whether the patient will continue to their TB prophylaxis plan</li>
+                <li><code>treat_plan</code>Indicates whether the patient will continue to their TB treatment plan/li>
+                <li><code>treat_adhere</code>Indicates whether the patient is adhering to TB therapy</li>
             </ul>
         </td>
     </tr>
@@ -325,10 +388,10 @@ pip install -r requirements.pip
         <td><code>pcp_details</code></td>
         <td>Info on Pneumocystis plan and prophylaxis</td>
         <td><ul class="unstyled">
-                <li><code>id</code></li>
-                <li><code>encounter_id</code></li>
-                <li><code>pro_adhere</code></li>
-                <li><code>pro_plan</code></li>
+            <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+            <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+            <li><code>pro_adhere</code> Indicates whether the patient is adhering to PVP prophylaxis therapy</li>
+            <li><code>pro_plan</code> Indicates whether the patient will continue to their PCP prophylaxis plan</li>
             </ul>
         </td>
     <tr>
