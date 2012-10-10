@@ -62,13 +62,13 @@
 
         <p>Obtain the demo either by cloning the Git repository or download a packaged release.</p>
 
-        <h4>Clone<h4>
+        <h3>Clone<h3>
 
 <pre class="prettyprint linenums lang-bsh">
 git clone git://github.com/cbmi/harvest-openmrs.git
 </pre>
 
-        <h4>Download</h4>
+        <h3>Download</h3    >
 
         <ul>
             <li><a href=https://github.com/cbmi/harvest-openmrs/tarball>harvest-openmrs.tar.gz</a>
@@ -119,18 +119,45 @@ pip install -r requirements.pip
             </tbody>
         </table>
 
-        <h2 id=components-of-the-stack>Components of the Stack</h2>
-        <ul>
-            <li>Harvest Project file layout</li>
-            <li>Avocado</li>
-            <ul>
-                <li>Data Fields</li>
-                <li>Concepts</li>
-                <li>Formatters</li>
-            </ul>
-            <li>Serrano</li>
-            <li>Cilantro</li>
-        </ul>
+<h2 id=components-of-the-stack>Take a Look Around</h2>
+<h3>The Harvest File Layout</h3>
+<p>While it's certainly possible to use the components of Harvest as independent pieces, a Harvest project has a defined structure to provide consistency across installations.
+
+<p>Take note of the following important files and directories at the top level of your OpenMRS installation:</p>
+    <ul>
+       <dl>
+           <dt><code>openmrs/</code></dt>
+           <dd>All the OpenMRS demo-specific code needed to render the data and interfaces (more on this below)</dd>
+           <dt><code>bin/</code></dt>
+           <dd>Contains the important <code>manage.py</code> script that allows you to run various management tasks, including starting the Djgano development server.</dd>
+           <dt><code>requirements.txt</code></dt>
+           <dd>Contains all the information on dependencies required by the application. As described above, these can be installed using <a href="http://pypi.python.org/pypi/pip/1.1">pip</a>. 
+            <dt><code>server/</code></dt>
+            <dd>Contains folders with pre-built configurations for popular web server software</dd>
+            <dt><code>etl/</code></dt>
+            <dd>Holds the scripts and settings files for the Extract Transform and Load of the original OpenMRS schema</dd>
+       </dl>
+     </ul>
+
+<p>The more interesting files for the demo are contained in the <code>openmrs/</code> directory:
+<ul>
+    <dl>
+        <dt><code>conf/</code></dt>
+        <dd>This directory holds the configuration files that serve the Django web framework and Harvest. Django will look for all settings in <code>settings.py</code> by default. To allow greater flexibility for development and deployment, Harvest bootstraps additional settings from this file. First, <code>global_settings.py</code> is loaded to set up the static parts of the project. Then, Harvest will look for <code>local_settings.py</code>. This allows you to override any setting when moving from development to test to production without having to maintain large numbers of duplicated files. <code>conf/</code> also contains <code>urls.py</code> where you can place custom URL's for the application. In the case of the OpenMRS demo, this contains the URL designation for the patient detail page. See the <a href="https://docs.djangoproject.com/en/dev/topics/http/urls/">Django documentation</a> to understand the syntax in detail.</dd>
+        <dt><code>static/</code></dt>
+        <dd>Contains all the static resources used by the website, such as CSS, JavaScript, images, etc...</dd>
+        <dt><code>templates/</code></td>
+        <dd>Contains <a href="https://docs.djangoproject.com/en/dev/ref/templates/api/">Django templates</a> used by the application. Most of the web interface for Harvest is provided by the <a href="http://cbmi.github.com/cilantro/">Cilantro Client</a>, however each app can (and likely will) have custom components to be integrated. In the case of the OpenMRS demo data, the patient detail page template (<code>patient.html</code>) is a good example. This page is displayed when one clicks on an patient ID in the query results.
+      <dt><code>models.py</code></dt>
+      <dd>Contains the Django Models that represent database tables. Models can be defined here in one place, or to avoid huge files, broken up and added to subdirectories (e.g. <code>diagnoses/models.py</code>)if it is more convenient</dd>
+      <dt><code>formatters.py</code></dt>
+      <dd>Contains code for formatters (see below) used in the application, as with models, all formatters can either live in one file, or be placed into subdirectories when it makes sense for simplicity</dd>
+      <dt><code>translators.py</code></dt>
+      <dd>Contains code for translators (see below) used in the application. Just like formatters and models, these can either be here in the root of the project, or within subdirectories.</dd>
+      <dt><code>diagnoses</code>, <code>drugs</code>, <code>vaccines</code>...<dt>
+      <dd>For the OpenMRS demo, these folders encapsulate code related to each of these high level concepts. These standalone bundles could be dropped into other applications and provide the same functionality they do here. This allows for code re-use across Harvest projects that might share data models, formatters, and translators.</dd>
+</ul>
+
 <h2 id=running>Running the Development Server</h2>
 <li>Django development server running instructions</li>
 <h2 id=open-mrs-model>The OpenMRS Demo Data</h2>
