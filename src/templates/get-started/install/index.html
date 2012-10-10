@@ -726,16 +726,18 @@ OrderedDict([('Birthdate':[{'age': 37.0, 'est':False, 'time': 'years'}])])
 # the age value will be formatted as a number when you retrieve it.
 >> print age['Birthdate'][0]['age'] + 10
 47.0
-
-# Get a list of all the current Formatters registered
->> registry.choices
 </pre>
 
-<p>Formatters can be registered to the <code>registry</code> from <code>avocado.formatters</code> and then easily accessed and referenced from anywhere within your applications. We've already created and registered some formatters so let's explore how they interact with the <code>DataConcept</code>.</p>
-<p>Custom formatters can easily be created by overriding the default <code>Formatter</code> class and methods</p>
+<p>Custom formatters can easily be created by overriding the default <code>Formatter</code> class and methods. See below for an example of how to write your own custom formatter.</p>
 
 
 <p><strong><em>Translators</em></strong></p>
+<p>A <code>Translator</code> is used to construct query conditions on the data. Often times, questions you might have on the data do not map 1 to 1 to query conditions. In these scenarios, a <code>Translators</code> is used to construct an appropriate query from a user's input. Translators act as a bridge between the way a user wants to ask a question and the way the database is queried. Translators also validate the input they recieve so the queries it generates are logical and make sense in terms of how a databse is structured.</p>
+
+<p>For instance we could use a <code>Translator</code> in order to translate the value of a check box on a form labeled 'exclude estimated birthdates' so that when it is checked and we  query the database, only birthdates that have not been estimated will be returned by the query. </p>
+
+<p>
+</p>
 <h2 id=admin-screens>Admin Screens</h2>
 <ul>
     <li>Fields, Concepts, formatters, definintions, keywords</li>
