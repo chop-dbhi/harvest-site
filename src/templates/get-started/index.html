@@ -20,6 +20,25 @@
 {% block content %}
     <section id="content">
 
+
+
+        <h1>What is Harvest?</h1>
+        <p> Harvest is an <strong>open source framework</strong> for developing web applications for <strong>biomedical data discovery</strong>. Harvest grew out of our desire to create purpose-built data discovery applications for multiple projects while avoiding the pitfalls of trying to build a large, monolithic application that attempts to be all things to all people.</p>
+        <p>Harvest is not a "shrink-wrapped" piece of software in the sense that it can be installed and configured by the average end-user. Instead, it is designed to be installed and customized by software developers and informatics personnel. For some uses, a little bit of programming will be needed to develop custom components for your specific scenario. However, even out of the box, you should be able to adapt Harvest to a variety of scenarios with little trouble. Our goal is that as Harvest is used in more and more projects, additional components will be made available to the community that address common needs.</p>
+        <h1>Brief Technical Overview</h1>
+        <h2>Django</h2>
+        <p>Harvest relies heavily on the popular <a href="https://www.djangoproject.com/">Python Django web framework</a>. Knowledge of Django is important for really understanding Harvest. However, Django is renowned for its <a href="https://docs.djangoproject.com/">excellent documentation</a>, so it's possible to learn Harvest and Django at the same time.</p>
+        <h2>The Harvest Stack</h2>
+<h3>Avocado</h3>
+        <p>Avocado is without a doubt the most important part of the framework. It provides a <strong>the metadata abstraction layer</strong> that allows Harvest applications to hide the complexity of the underlying relational database models. The tutorials show how some of this works, but many of the technical details can be found in the standalone <a href ="http://cbmi.github.com/avocado/">Avocado documentation</a>.</p>
+<h3>Serrano</h3>
+        <p>Serrano is a <strong>REST API that exposes URL endpoints to enable clients to consume the data encapsulated by Avocado</strong>. Additionally, Serrano is responsible for managing persistence for Harvest applications. In addition to standard HTML, Serrano is able to provide alternate data representations and formats such as those required for Excel, SAS, and R. Serrano's API is <a href="http://cbmi.github.com/serrano/"><strong>fully documented</strong></a> to encourage the development of fit for purpose Harvest clients (e.g. native mobile applications) that provide some or all of the functionality provided by the standard Cilantro client (below) that ships with Harvest.</p>
+<h3>Cilantro</h3>
+<p>Cilantro is an <strong>HTML5/JavaScript client</strong> that generates and displays histograms, bar charts, and pie charts for suitable database fields in real time, allowing users to see a profile of specific data elements even before constructing formal queries. <strong>This is the default user interface for Harvest that is designed to work well for a majority of typical data discovery use cases.</strong> For more information on the technical details, see the <a href="http://cbmi.github.com/cilantro/">Cilantro developer docs</a></p>
+<h1>Want to Learn More?</h1>          
+        <p>The Harvest documentation is broken up into
+        sections, each gradually introducing the layers of Harvest and the various ways to
+        customize and specialize a Harvest instance for your purposes.</p>
         <nav id=get-started-navigation>
             <ul class=unstyled>
                 <li class="install-the-demo"><a href={% url page "get-started/install" %}>Install the Demo</a></li><!-- adding class "active" to A tag sets active state -->
@@ -28,13 +47,6 @@
                 <li class="now-what"><a href={% url page "get-started/now-what" %}>Now What?</a></li>
             </ul>
         </nav>
-
-        <h1>Introduction</h1>
-
-        <p>The <strong>Get Started</strong> section is broken up into <strong>four</strong>
-        sections, each gradually introducing the layers of Harvest and the various ways to
-        customize and specialize a Harvest instance for your purposes.</p>
-
         <section class="get-started-info">
 
             <section class=gray>
