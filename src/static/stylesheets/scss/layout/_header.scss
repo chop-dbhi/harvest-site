@@ -8,6 +8,26 @@ header {
 	
 	.harvest-logo {
 	    margin: 10px 0;
+	    span {
+            @include transition((color, opacity), 0.2s);
+	        font-family: Georgia, "Times New Roman", Times, serif;
+    	    text-shadow: none;
+    	    vertical-align: middle;
+    	    position: relative;
+    	    top: 9px;
+    	    font-size: 43px;
+    	    opacity: .15;
+    	    color: #fff;
+    	}
+    	
+    	
+    	&:hover {
+    	    span {
+                opacity: 1;
+                color: #ee9934;
+    	    }
+    	    text-decoration: none;
+    	}
 	}
 	
 	.inner {
