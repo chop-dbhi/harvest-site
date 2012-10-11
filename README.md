@@ -1,4 +1,4 @@
-Bada$$ Django Template
+Django Template
 ======================
 - clean project structure
     - separate ``src`` directory for Django code
