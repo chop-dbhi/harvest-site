@@ -18,14 +18,15 @@
 
         <nav id=get-started-navigation>
             <ul class=unstyled>
-                <li class="explore-the-demo"><a href={% url page "get-started/explore" %}>Explore the Demo</a></li><!-- adding class "active" to A tag sets active state -->
+                <li class="install-the-demo"><a href={% url page "get-started/install" %}>Install the Demo</a></li><!-- adding class "active" to A tag sets active state -->
                 <li class="use-your-data"><a href={% url page "get-started/your-data" %}>Use Your Data</a></li>
                 <li class="deploy"><a class=active href={% url page "get-started/deploy" %}>Deploy</a></li>
                 <li class="now-what"><a href={% url page "get-started/now-what" %}>Now What?</a></li>
             </ul>
         </nav>
 
-        <h1>Coming soon...</h1>
+<p>There are lots of details to think about when moving from your development environment into production. While we'd love to include a recipe here, production deployment environments can vary quite a bit. Implementing a production instance of Harvest isn't to be taken lightly. The CBMi team maintains multiple production instances and we're happy to help you set up your own instance of Harvest and pass on the lessons we've learned.  From Django models to Harvest Concepts, sparse data to complete CRFs, we're here to help you get the most out of your data and make something great happen and put you in touch with others using Harvest for their data needs. Contact us at cbmisupport@email.chop.edu</p>
 
+<p>If you do create a production instance of Harvest we'd appreciate a quick mention.  Include a link back to Harvest (<a href="http://harvest.research.chop.edu">harvest.research.chop.edu</a>) or a mention of our upcoming publication.</p>
     </section>
 {% endblock %}
