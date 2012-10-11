@@ -152,33 +152,27 @@ pip install -r requirements.pip
 
 <h2 id=running>Running the Development Server</h2>
 <p>In order to view your demo web application on your development server, you need to run the Django web server.</p>
-<table>
-    <tbody>
-        <tr>
-            <th>Unix</th>
-            <td>
-<pre class="prettyprint linenums lang-bsh">
+<div class=row-fluid>
+    <div class=span6>
+        <h4>Unix</h4>
+        <pre class="prettyprint linenums lang-bsh">
 cd harvest-openmrs-env
 source bin/activate
 cd harvest-openmrs
 python bin/manage.py runserver
 </pre>
-            </td>
-        </tr>
-
-        <tr>
-            <th>Windows</th>
-            <td>
+    </div>
+    <div class=span6>
+        <h4>Windows</h4>
 <pre class="prettyprint linenums lang-bsh">
 chdir harvest-openmrs-env
 ./Scripts/activate.bat
 chdir harvest-openmrs
 python bin/manage.py runserver
 </pre>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    </div>
+</div>
+
 <p>Once the development server is running, you can visit 'http://localhost:8000' in your web browser to view the demo page.</p>
 <h2 id=open-mrs-model>The OpenMRS Demo Data</h2>
 <h3>Overview</h3>
@@ -217,7 +211,7 @@ python bin/manage.py runserver
                 <li><code>id</code> <span class="badge badge-success">PK</span></li>
                 <li><code>gender</code> Patient's gender</li>               
                 <li><code>birthdate</code> Patient's birth date (can be an estimate)</li> 
-                <li><code>birthdate_estimated</code> Flag to indicate whethr the birth date is an estimate</li></td>
+                <li><code>birthdate_estimated</code> Flag to indicate whether the birth date is an estimate</li></td>
         </tr>
         <tr>
             <td><code>encounter</code></td>
@@ -260,7 +254,7 @@ python bin/manage.py runserver
                     <li><code>mcv</code> Mean corpuscular volume</li>
                     <li><code>hct</code> Hematocrit</li>
                     <li><code>rdw</code> Red cell distribution width</li>
-                    <li><code>mchc</code> Mean Cell Hemoglobin Concentration </li>
+                    <li><code>mchc</code> Mean cell hemoglobin concentration </li>
                     <li><code>mch</code> Mean corpuscular hemoglobin</li>
                     <li><code>cr</code> Creatinine</li>
                     <li><code>bun</code> Blood urea nitrogen</li>
@@ -407,7 +401,7 @@ python bin/manage.py runserver
                  <li><code>id</code> <span class="badge badge-success">PK</span></li>
                  <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                  <li><code>treat_adhere</code> Indicates whether or not a patient is adhering to their treatments </li>
-                 <li><code>taking_antiretrovirals</code> Indicates wheter or not the patient is taking antiretroviral drugs</li>
+                 <li><code>taking_antiretrovirals</code> Indicates whether or not the patient is taking antiretroviral drugs</li>
                  <li><code>cdc_category</code> The CDC category of HIV</li>
                  <li><code>stage_peds</code> WHO HIV Stage (pediatrics)</li>
                  <li><code>stage_adult_last</code> Indicates whether or not the patient's WHO stage has changed since the last visit (adults)</li>
@@ -419,26 +413,26 @@ python bin/manage.py runserver
       </tr>
       <tr>
         <td><code>tb_details</code></td>
-        <td>Contains info about Tuberculosis treatment</td>
+        <td>Contains information about Tuberculosis treatment</td>
         <td>
             <ul class="unstyled">
                 <li><code>id</code> <span class="badge badge-success">PK</span></li>
                 <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                 <li><code>pro_adhere</code> Indicates whether the patient is adhering to TB prophylaxis therapy</li>
-                <li><code>pro_plan</code> Indicates whether the patient will continue to their TB prophylaxis plan</li>
-                <li><code>treat_plan</code>Indicates whether the patient will continue to their TB treatment plan/li>
+                <li><code>pro_plan</code> Indicates whether the patient will continue on their TB prophylaxis plan</li>
+                <li><code>treat_plan</code>Indicates whether the patient will continue on their TB treatment plan</li>
                 <li><code>treat_adhere</code>Indicates whether the patient is adhering to TB therapy</li>
             </ul>
         </td>
     </tr>
     <tr>
         <td><code>pcp_details</code></td>
-        <td>Info on Pneumocystis plan and prophylaxis</td>
+        <td>Contains information about Pneumocystis plan and prophylaxis</td>
         <td><ul class="unstyled">
             <li><code>id</code> <span class="badge badge-success">PK</span></li>
             <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
-            <li><code>pro_adhere</code> Indicates whether the patient is adhering to PVP prophylaxis therapy</li>
-            <li><code>pro_plan</code> Indicates whether the patient will continue to their PCP prophylaxis plan</li>
+            <li><code>pro_adhere</code> Indicates whether the patient is adhering on PCP prophylaxis therapy</li>
+            <li><code>pro_plan</code> Indicates whether the patient will continue on their PCP prophylaxis plan</li>
             </ul>
         </td>
     <tr>
