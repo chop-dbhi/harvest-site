@@ -83,43 +83,33 @@ git clone git://github.com/cbmi/harvest-openmrs.git
 tar zxf harvest-openmrs.tar.gz
 </pre>
 
-        <h2 id=setup-environment>Setup Environment</h2>
+        <h2 id=setup-environment>Set up Your Environment</h2>
 
         <p>Follow the steps below to create a local environment for the demo using
         <code>virtualenv</code> and install it's dependencies. <em>Note: virtualenv is used
         to create a local Python environment without polluting the system Python
         site-packages.</em></p>
-
-        <table>
-            <tbody>
-                <tr>
-                    <th>Unix</th>
-                    <td>
-
-<pre class="prettyprint linenums lang-bsh">
+<div class=row-fluid>
+    <div class=span6><h4>Unix</h4> 
+        <pre class="prettyprint linenums lang-bsh">
 virtualenv harvest-openmrs-env
 mv harvest-openmrs harvest-openmrs-env
 cd harvest-openmrs-env
 source bin/activate
 pip install -r requirements.pip
 </pre>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th>Windows</th>
-                    <td>
-<pre class="prettyprint linenums lang-bsh">
+</div>
+    <div class=span6><h4>Windows</h4>
+        <pre class="prettyprint linenums lang-bsh">
 virtualenv harvest-openmrs-env
 mv harvest-openmrs harvest-openmrs-env
 chdir harvest-openmrs-env
 ./Scripts/activate.bat
 pip install -r requirements.pip
 </pre>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    </div>
+</div>
+
 
 <h2 id=components-of-the-stack>Take a Look Around</h2>
 <h3>The Harvest File Layout</h3>
@@ -131,7 +121,7 @@ pip install -r requirements.pip
            <dt><code>openmrs/</code></dt>
            <dd>All the OpenMRS demo-specific code needed to render the data and interfaces (more on this below)</dd>
            <dt><code>bin/</code></dt>
-           <dd>Contains the important <code>manage.py</code> script that allows you to run various management tasks, including starting the Djgano development server.</dd>
+           <dd>Contains the important <code>manage.py</code> script that allows you to run various management tasks, including starting the Django development server.</dd>
            <dt><code>requirements.txt</code></dt>
            <dd>Contains all the information on dependencies required by the application. As described above, these can be installed using <a href="http://pypi.python.org/pypi/pip/1.1">pip</a>. 
             <dt><code>server/</code></dt>
@@ -149,9 +139,9 @@ pip install -r requirements.pip
         <dt><code>static/</code></dt>
         <dd>Contains all the static resources used by the website, such as CSS, JavaScript, images, etc...</dd>
         <dt><code>templates/</code></td>
-        <dd>Contains <a href="https://docs.djangoproject.com/en/dev/ref/templates/api/">Django templates</a> used by the application. Most of the web interface for Harvest is provided by the <a href="http://cbmi.github.com/cilantro/">Cilantro Client</a>, however each app can (and likely will) have custom components to be integrated. In the case of the OpenMRS demo data, the patient detail page template (<code>patient.html</code>) is a good example. This page is displayed when one clicks on an patient ID in the query results.
+        <dd>Contains <a href="https://docs.djangoproject.com/en/dev/ref/templates/api/">Django templates</a> used by the application. Most of the web interface for Harvest is provided by the <a href="http://cbmi.github.com/cilantro/">Cilantro Client</a>, however each app can (and likely will) have custom components to be integrated. In the case of the OpenMRS demo data, the patient detail page template (<code>patient.html</code>) is a good example. This page is displayed when one clicks on a patient ID in the query results.
       <dt><code>models.py</code></dt>
-      <dd>Contains the Django Models that represent database tables. Models can be defined here in one place, or to avoid huge files, broken up and added to subdirectories (e.g. <code>diagnoses/models.py</code>)if it is more convenient</dd>
+      <dd>Contains the Django Models that represent database tables. Models can be defined here in one place, or to avoid huge files, broken up and added to subdirectories (e.g. <code>diagnoses/models.py</code>) if it is more convenient</dd>
       <dt><code>formatters.py</code></dt>
       <dd>Contains code for formatters (see below) used in the application, as with models, all formatters can either live in one file, or be placed into subdirectories when it makes sense for simplicity</dd>
       <dt><code>translators.py</code></dt>
@@ -194,7 +184,7 @@ python bin/manage.py runserver
 <h3>Overview</h3>
 <p>It is difficult to find large de-identified medical record sets that can be freely shared without a data use agreement. Fortunately, the Harvest demo application is able to use a publicly available de-identified dataset from <a href="http://www.openmrs.org">OpenMRS</a>. <a href="http://www.openmrs.org">OpenMRS</a> was created in 2004 as an open source medical record system for use in resource constrained environments such as those found in developing countries.</p>
 <h3>Data Categories</h3>
-<p>To construct our demo dataset, we have performed Extract Transform and Load (ETL) operations on the MySQL-based <a href="https://wiki.openmrs.org/download/attachments/5047323/large-demo-data-1.8.0.sql.zip">OpenMRS large dataset</a>. We have not attempted to exhaustively capture every piece of information in the schema, but instead have focused on some core areas of information that are best able to showcase the Harvest. These include:
+<p>To construct our demo dataset, we have performed Extract Transform and Load (ETL) operations on the MySQL-based <a href="https://wiki.openmrs.org/download/attachments/5047323/large-demo-data-1.8.0.sql.zip">OpenMRS large dataset</a>. We have not attempted to exhaustively capture every piece of information in the schema, but instead have focused on some core areas of information that are best able to showcase Harvest. These include:
 <ul>
     <li>Basic Patient information
     <li>Encounters</li>
@@ -224,7 +214,7 @@ python bin/manage.py runserver
             <td><code>patient</code></td>
             <td>Basic patient information</td>
             <td><ul class="unstyled">
-                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                <li><code>id</code> <span class="badge badge-success">PK</span></li>
                 <li><code>gender</code> Patient's gender</li>               
                 <li><code>birthdate</code> Patient's birth date (can be an estimate)</li> 
                 <li><code>birthdate_estimated</code> Flag to indicate whethr the birth date is an estimate</li></td>
@@ -233,8 +223,8 @@ python bin/manage.py runserver
             <td><code>encounter</code></td>
             <td>Record of all patient encounters</td>
             <td><ul class="unstyled">
-                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li> 
-                <li><code>patient_id</code> <span class="label label-success">FOREIGN KEY</span></li>  
+                <li><code>id</code> <span class="badge badge-success">PK</span></li> 
+                <li><code>patient_id</code> <span class="badge badge-inverse">FK</span></li>  
                 <li><code>encounter_datetime</code> Date of the encounter</li>            
                 <li><code>description</code> Type of encounter</li>
                 </ul>
@@ -244,8 +234,8 @@ python bin/manage.py runserver
             <td><code>vital_signs</code></td>
             <td>Vital signs recorded at an encounter</td>
             <td><ul class="unstyled">
-                    <li><code>id</code><span class="label label-info">PRIMARY KEY</span></li> 
-                    <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                    <li><code>id</code><span class="badge badge-success">PK</span></li> 
+                    <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                     <li><code>sbp</code> Systolic blood pressure </li>
                     <li><code>dbp</code> Diastolic blood pressure</li> 
                     <li><code>hr</code> Heart rate</li>
@@ -261,8 +251,8 @@ python bin/manage.py runserver
             <td><code>lab_result</code></td>
             <td>All lab measurments, organized by encounter</td>
             <td><ul class="unstyled">
-                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
-                    <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span><li>
+                    <li><code>id</code> <span class="badge badge-success">PK</span></li>
+                    <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span><li>
                     <li><code>hgb</code> Hemoglobin</li>
                     <li><code>wbc</code> White blood cell count</li>
                     <li><code>rbc</code> Red blood cell count</li>
@@ -291,8 +281,8 @@ python bin/manage.py runserver
             <td><code>systems_review</code></td>
             <td>Simple normal/abnormal calls for systems review</td>
             <td><ul class="unstyled">
-                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
-                <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span><li>
+                <li><code>id</code> <span class="badge badge-success">PK</span></li>
+                <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span><li>
                     <li><code>heent</code>Head, ears, eyes, nose and throat findings</li>
                     <li><code>chest</code> Chest findings</li>
                     <li><code>cardiac</code> Cardiac findings</li>
@@ -307,7 +297,7 @@ python bin/manage.py runserver
             <td>Canonical list of all drugs in the example data set</td>
             <td>
                 <ul class="unstyled">
-                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>id</code> <span class="badge badge-success">PK</span></li>
                     <li><code>name</code> Name of the drug</li>
                     <li><code>disease</code> Indication for the drug</li>
                 </ul>
@@ -318,9 +308,9 @@ python bin/manage.py runserver
             <td>Synonyms for drugs in the <code>drug</code> table (used for searching)</td>
             <td>
                 <ul class="unstyled">
-                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                <li><code>id</code> <span class="badge badge-success">PK</span></li>
                 <li><code>name</code> Name of the synonym</li>
-                <li><code>drug_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                <li><code>drug_id</code> <span class="badge badge-inverse">FK</span></li>
             </ul>
             </td>
         </tr>
@@ -328,9 +318,9 @@ python bin/manage.py runserver
             <td><code>encounter_drug</code></td>
             <td>Indicates which drugs are associated with each encounter</td>
             <td><ul class="unstyled">
-                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
-                <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li> 
-                <li><code>drug_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                <li><code>id</code> <span class="badge badge-success">PK</span></li>
+                <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li> 
+                <li><code>drug_id</code> <span class="badge badge-inverse">FK</span></li>
             </ul>
             </td>
                 
@@ -339,7 +329,7 @@ python bin/manage.py runserver
             <td><code>vaccine</code></td>
             <td>Canonical list of all vaccines in the example data set</td>
             <td><ul class="unstyled">
-                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>id</code> <span class="badge badge-success">PK</span></li>
                     <li><code>name</code> Name of the vaccine</li>
                 </ul>
             </td>
@@ -348,17 +338,17 @@ python bin/manage.py runserver
             <td><code>vaccine_synonym</code></td>
             <td>Synonyms for vaccines in the <code>vaccine</code> table (used for searching)</td>
             <td><ul class="unstyled">
-                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                <li><code>id</code> <span class="badge badge-success">PK</span></li>
                 <li><code>name</code> Name of the synonym</li>
-                <li><code>vaccine_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                <li><code>vaccine_id</code> <span class="badge badge-inverse">FK</span></li>
             </td>
         </tr>
         <tr>
             <td><code>encounter_vaccine</code></td>
             <td>Indicates which vaccines are associated with each encounter</td>
             <td><ul class="unstyled">
-                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
-                    <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                    <li><code>id</code> <span class="badge badge-success">PK</span></li>
+                    <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                     <li><code>drug_id</code> Drug associated with the encounter</li>
                 </ul>
         </tr>
@@ -366,7 +356,7 @@ python bin/manage.py runserver
             <td><code>diagnosis</code></td>
             <td>Canonical list of all diagnoses in the example data set</td>
             <td><ul class="unstyled">
-                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>id</code> <span class="badge badge-success">PK</span></li>
                     <li><code>name</code> Name of the diagnosis</li>
                 </ul>
             </td>
@@ -375,9 +365,9 @@ python bin/manage.py runserver
             <td><code>diagnosis_synonym</code></td>
             <td>Synonyms for diagnoses in the <code>diagnosis</code> table (used for searching)</td>
             <td><ul class="unstyled">
-                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>id</code> <span class="badge badge-success">PK</span></li>
                     <li><code>name</code> Name of the synonym</li>
-                    <li><code>diagnosis_id</code> <span class="label label-success">FOREIGN KEY</span>
+                    <li><code>diagnosis_id</code> <span class="badge badge-inverse">FK</span>
                     </li>
                 </ul>
             </td>
@@ -386,9 +376,9 @@ python bin/manage.py runserver
             <td><code>encounter_diagnosis</code></td>
             <td>Indicates which diagnoses are associated with each encounter</td>
             <td><ul class="unstyled">
-                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
-                    <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li> 
-                    <li><code>diagnosis_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                    <li><code>id</code> <span class="badge badge-success">PK</span></li>
+                    <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li> 
+                    <li><code>diagnosis_id</code> <span class="badge badge-inverse">FK</span></li>
                 </ul>
             </td>
         </tr>
@@ -396,7 +386,7 @@ python bin/manage.py runserver
             <td><code>referral</code></td>
             <td>Canonical list of all referral types in the example data set</td>
             <td><ul class="unstyled">
-                    <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
+                    <li><code>id</code> <span class="badge badge-success">PK</span></li>
                     <li><code>name</code> Name of the referral</li>
                 </ul>
             </td>
@@ -405,17 +395,17 @@ python bin/manage.py runserver
              <td><code>encounter_referral</code></td>
              <td>Indicates which referrals are associated with each encounter</td>
              <td><ul class="unstyled">
-                     <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
-                     <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li> 
-                     <li><code>referral_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                     <li><code>id</code> <span class="badge badge-success">PK</span></li>
+                     <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li> 
+                     <li><code>referral_id</code> <span class="badge badge-inverse">FK</span></li>
                  </ul></td>
         </tr>
         <tr>
           <td><code>hiv_details</code></td>
           <td>Contains basic information about HIV stage, treatment plan, treatment adherence, etc...</td>
           <td><ul class="unstyled">
-                 <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
-                 <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                 <li><code>id</code> <span class="badge badge-success">PK</span></li>
+                 <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                  <li><code>treat_adhere</code> Indicates whether or not a patient is adhering to their treatments </li>
                  <li><code>taking_antiretrovirals</code> Indicates wheter or not the patient is taking antiretroviral drugs</li>
                  <li><code>cdc_category</code> The CDC category of HIV</li>
@@ -432,8 +422,8 @@ python bin/manage.py runserver
         <td>Contains info about Tuberculosis treatment</td>
         <td>
             <ul class="unstyled">
-                <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
-                <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+                <li><code>id</code> <span class="badge badge-success">PK</span></li>
+                <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                 <li><code>pro_adhere</code> Indicates whether the patient is adhering to TB prophylaxis therapy</li>
                 <li><code>pro_plan</code> Indicates whether the patient will continue to their TB prophylaxis plan</li>
                 <li><code>treat_plan</code>Indicates whether the patient will continue to their TB treatment plan/li>
@@ -445,8 +435,8 @@ python bin/manage.py runserver
         <td><code>pcp_details</code></td>
         <td>Info on Pneumocystis plan and prophylaxis</td>
         <td><ul class="unstyled">
-            <li><code>id</code> <span class="label label-info">PRIMARY KEY</span></li>
-            <li><code>encounter_id</code> <span class="label label-success">FOREIGN KEY</span></li>
+            <li><code>id</code> <span class="badge badge-success">PK</span></li>
+            <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
             <li><code>pro_adhere</code> Indicates whether the patient is adhering to PVP prophylaxis therapy</li>
             <li><code>pro_plan</code> Indicates whether the patient will continue to their PCP prophylaxis plan</li>
             </ul>
