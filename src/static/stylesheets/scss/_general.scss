@@ -30,3 +30,79 @@ p {
     font-size: 14px;
     line-height: 20px;
 }
+
+#get-started-navigation {
+    text-align: center;
+
+    ul {
+        @include inline-block;
+        margin-bottom: 20px;
+    }
+
+    ul li {
+        margin: 0;
+        display: inline;
+        margin-left: -35px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        a {
+            @include inline-block;
+	        background: url('../../images/chart_nav_sprite.png') no-repeat transparent;
+	        height: 35px;
+        	width: 180px;
+            line-height: 35px;
+
+            color: #fff;
+            text-shadow: 0 1px 0 #000;
+            font-size: 18px;
+            text-decoration: none;
+            position: relative;
+            text-align: center;
+            padding: 0 20px 0 10px;
+        }
+        
+        &.introduction {
+            a {
+                z-index: 11;
+                background-position: -430px -46px;
+                &:hover, &:active, &.active {
+                    background-position: -430px 0;
+                }
+            }
+        }
+        
+        &.install-the-demo {
+            a {
+                z-index: 10;
+                background-position: 0 -46px;
+                &:hover, &:active, &.active {
+                    background-position: 0 0;
+                }
+            }
+        }
+
+        &.use-your-data {
+            a {
+                z-index: 8;
+                background-position: -215px -46px;
+                &:hover, &:active, &.active {
+                    background-position: -215px 0;
+                }
+            }
+        }
+
+        &.now-what {
+            a {
+                z-index: 4;
+                background-position: -645px -46px;
+                &:hover, &:active, &.active {
+                    background-position: -645px 0;
+                }
+            }
+        }
+
+    }
+}

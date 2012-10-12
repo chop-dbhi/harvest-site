@@ -13,6 +13,8 @@ def active(context, pattern, name='active', exact=True):
 
         <a class="{% active url_stream %}" href="{{ url_stream }}">stream</a>
     """
+    if type(exact) is not bool and exact.lower() in ('false', '0'):
+        exact = False
     if exact:
         pattern = '^{}$'.format(pattern)
     if re.match(pattern, context['request'].path):

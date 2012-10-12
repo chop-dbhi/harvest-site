@@ -16,14 +16,7 @@
 {% block content %}
     <section id="content">
 
-        <nav id=get-started-navigation>
-            <ul class=unstyled>
-                <li class="install-the-demo"><a href={% url page "get-started/install" %}>Install the Demo</a></li><!-- adding class "active" to A tag sets active state -->
-                <li class="use-your-data"><a class=active href={% url page "get-started/your-data" %}>Use Your Data</a></li>
-                <li class="deploy"><a href={% url page "get-started/deploy" %}>Deploy</a></li>
-                <li class="now-what"><a href={% url page "get-started/now-what" %}>Now What?</a></li>
-            </ul>
-        </nav>
+{% include "snippets/get_started_nav.html"  %}
         
         <h1>Outline</h1>
 
