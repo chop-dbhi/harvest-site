@@ -21,6 +21,14 @@
     &:first-child {
         margin-top: 0;
     }
+    
+    h2 a {
+        text-decoration:none;
+        color: #ee9934;
+        &:hover, &:active {
+            text-decoration: underline;
+        }
+    }
 
     &.gray { background:#e9e9e9; }
     &.blue { background:#dff1f8; }
