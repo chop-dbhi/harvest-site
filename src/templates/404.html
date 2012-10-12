@@ -1,5 +1,22 @@
 {% extends "base.html" %}
-
+{% block header %}
+    <section id="page-title">
+        <img class="harvest-box" src="{{ STATIC_URL }}images/box-demo.png" alt="Demo">
+        <hgroup>
+            <h1>Page Not Found</h1>
+            <h2>You're looking for a page that doesn't exist!</h2>
+        </hgroup>
+    </section>
+{% endblock %}
 {% block content %}
-    <h1>You seemed to have lost your way...</h1>
+<section id="content">
+    <h4>You tried to access a page that doesn't seem to exist. Here's a quick list of some pages that might help you get back on track:</h4>
+    <ul>
+        <li><a href={% url index %} title="">Home</a>
+        <li><a href={% url page "demo" %} title="">The Demo</a>
+        <li><a href={% url page "get-started" %} title="">Get Started</a>
+        <li><a href={% url page "download" %} title="">Download</a>
+    </ul>
+<sectino id="content">
+    
 {% endblock %}
