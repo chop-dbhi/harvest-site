@@ -35,6 +35,27 @@ Dependencies
 ------------
 - Python 2.7 (because that's how we roll)
 
+For stylesheet development, the [Sass](http://sass-lang.com) CSS preprocessor is used, specifically using the SCSS syntax.
+
+For script development, [CoffeeScript](http://coffeescript.org) is used to ensure consistently generated JavaScript.
+
+All scripts are written as modules using the [AMD API](http://requirejs.org/docs/whyamd.html). For distribution, all scripts are _uglified_ and some are concatenated using the [RequireJS optimizer](http://requirejs.org/docs/optimization.html).
+
+If doing SCSS development, the following are required to compile the SCSS files:
+
+- [Ruby](http://www.ruby-lang.org)
+- [RubyGems](http://rubygems.org)
+- Sass - `gem install sass`
+
+If doing CoffeeScript development, the following dependencies are required to compile CoffeeScript files and run the optimizer:
+
+- [Node](http://nodejs.org)
+- [npm](https://npmjs.org)
+- CoffeeScript - `npm install -g coffee-script`
+- UglifyJS - `npm install -g uglify-js`
+
+**Note, all compiled CSS and JavaScript files must be added to the repo's .gitignore file to prevent having to deal with merging these files over time.**
+
 Fabfile Commands
 ----------------
 - ``mm_on`` - turns on maintenance mode
