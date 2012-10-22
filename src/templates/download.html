@@ -16,62 +16,65 @@
 {% block content %}
     <section id=content>
 
-        <h2 id=download-release>Download Release</h2>
+        <h2>Prerequisites</h2>
 
-        <p>Current tagged release: <strong>1.0</strong></p>
-
-        <ul>
-            <li><a href=#>harvest-template.tar.gz</a>
-            <li><a href=#>harvest-template.zip</a> (use for Windows)
-        </ul>
-
-        <h2 id=clone-from-github>Clone from GitHub <span class="label notice">recommended</span></h2>
-
-        <p>Keep up with bug fixes and new features incrementally by starting your
-        project as a cloned repository from the Harvest git repository. Why?</p>
-
-        <ul>
-            <li>Any upstream changes we make for various bug fixes and new features can be
-            easily applied to your Harvest build with minimal or no effort
-            <li>You start off immediately versioning your code which is a best (necessary)
-            practice for software development
-            <li>This is not only for bleeding edge usage of Harvest. Using this method, you
-            can choose which version (old or new) of Harvest you want to use.
-        </ul>
-
-        <p>Follow these simple steps:</p>
-
-        <ol>
-            <li>Create a new empty project
+        <p><strong>Harvest requires Python 2.7.</strong> Check to see which
+        version of Python you have:</p>
 
 <pre class="prettyprint linenums lang-bsh">
-git init my-harvest-project
-cd my-harvest-project
+python --version
 </pre>
-
-            <li>Add the <strong>upstream</strong> repository and fetch it
+        
+        <p>In order to install the Harvest package, Pip or setuptools must
+        be installed. Check for either command.</p>
 
 <pre class="prettyprint linenums lang-bsh">
-git remote add upstream git://github.com/cbmi/harvest-template.git
-git fetch upstream
+which pip easy_install
 </pre>
-
-            <li>Merge the lastest version into your local repository. If you prefer
-            a tagged release (the master branch is very stable), you can replace
-            <code>master</code> with the lastest tag.
+        <p>If <strong>nothing prints out</strong>, then do the following to
+        get Pip (the preferred installer). Note, you may have to do
+        <code>sudo python</code> if you are installing it globally on your
+        system.</p>
 
 <pre class="prettyprint linenums lang-bsh">
-git merge upstream/master
+curl http://python-distribute.org/distribute_setup.py | python
+curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
 </pre>
 
-            <li>Add the <strong>origin</strong> server (where you want to push your changes to)
+        <h2>Install</h2>
+
+        <p>The Harvest package is availble on <a href="http://pypi.python.org/pypi/harvest">PyPi</a>
+        and can be installed using Pip or easy_install. Again, you may need to prefix this
+        with <code>sudo</code> if this is being installed globally on your system.</p>
+
+        <div class=row-fluid>
+            <div class=span6>
+            <strong>Pip</strong>
+<pre class="prettyprint linenums lang-bsh">
+pip install harvest
+</pre>
+            </div>
+            <div class=span6>
+            <strong>easy_install</strong>
+<pre class="prettyprint linenums lang-bsh">
+easy_install harvest
+</pre>
+            </div>
+        </div>
+
+        <h2>Setup A Project</h2>
+
+        <p>Harvest comes with a command-line tool that sets up new projects
+        with one command.</p>
 
 <pre class="prettyprint linenums lang-bsh">
-git remote add origin YOUR_REMOTE_URL
-git push -u origin master
+harvest init myproject
 </pre>
 
-        </ol>
+        <p>For full details on the available commands and options run <code>harvest --help</code>
+        or for help with a specific command, run <code>harvest [command] --help</code>. The
+        command documentation is also available on the
+        <a href="http://cbmi.github.com/harvest">Harvest Github pages</a>.</p>
 
     </section>
 {% endblock %}
