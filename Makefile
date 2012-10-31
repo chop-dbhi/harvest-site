@@ -50,16 +50,10 @@ unwatch:
 		rm ${WATCH_FILE}; \
 	fi;
 
-optimize: r.js
+optimize:
 	@echo 'Optimizing JavaScript...'
 	@rm -rf ${JAVASCRIPT_MIN_DIR}
 	@mkdir -p ${JAVASCRIPT_MIN_DIR}
 	@${REQUIRE_OPTIMIZE} > /dev/null
-
-secret-key:
-	@echo Generating unique secret key...
-	@echo Copy and paste the below setting into your local_settings.py file:
-	@echo
-	@echo 'SECRET_KEY = \c'; python ./bin/secret_key.py
 
 .PHONY: all sass coffee watch unwatch build optimize

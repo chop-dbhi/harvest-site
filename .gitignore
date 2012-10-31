@@ -1,11 +1,12 @@
 .DS_Store
 
-*.py[co]
-*.sw[po]
+*.py?
+*.sw?
 dist
 sdist
 build
 pip-log.txt
+build.txt
 MANIFEST
 
 .watch-pid

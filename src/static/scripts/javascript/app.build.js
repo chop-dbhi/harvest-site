@@ -15,19 +15,5 @@
 
     optimizeCss: 'none',
 
-    // a reference here for any scripts that need to include cilantro
-    // modules
-    paths: {
-        'cilantro/main': 'empty:'
-    },
-    
-    // if the project requires any custom javascript modules, they can be
-    // listed here. below shows an example for a 'main' module. if this is
-    // defined and depends on the 'cilantro/main' module, ensure this is
-    // excluded during the optimization step.
-    
-    // modules: [{
-    //     name: 'main',
-    //     exclude: ['cilantro/main']
-    // }]
+    modules: []
 })
