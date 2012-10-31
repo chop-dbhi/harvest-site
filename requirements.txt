@@ -5,15 +5,5 @@
 #     pip install -U -r requirements.pip
 
 # Core requirements
-django>=1.4
-
-# Database Drivers, the Python stdlib has support for SQLite
-# psycopg2
-# cx_oracle
-# mysql-python
-
-# Site-wide authentication
-# django-siteauth
-
-# Application registration and moderation
-# django-registration2
+django>=1.4.2
+uWSGI
