@@ -13,6 +13,7 @@ MANIFEST
 .sass-cache
 
 # ignore local settings file intended for environment-specific settings
+settings
 local_settings.py
 
 # all Sass files will be compiled into this directory
