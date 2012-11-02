@@ -147,7 +147,7 @@ def reload_supervisor():
 @host_context
 def reload_wsgi():
     "Gets the PID for the wsgi process and sends a HUP signal."
-    pid = sudo('supervisorctl pid harvest-site-{host}'.format(host=env.host))
+    pid = run('supervisorctl pid harvest-site-{host}'.format(host=env.host))
     try:
         int(pid)
         sudo('kill -HUP {}'.format(pid))
@@ -163,8 +163,10 @@ def deploy(commit, force=False):
     merge_commit(commit)
     install_deps(force)
     #syncdb_migrate()
-    make()
-    reload_nginx()
+    # Production runs Apache..
+    if env.host != 'production':
+        make()
+        reload_nginx()
     reload_supervisor()
     reload_wsgi()
     mm_off()

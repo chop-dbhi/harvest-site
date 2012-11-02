@@ -1,0 +1,14 @@
+{
+    "_": {
+        "repo_url": "git://github.com/cbmi/harvest-site.git",
+        "supervisor_conf_dir": "/etc/supervisor.d",
+        "nginx_conf_dir": "/etc/nginx/conf.d",
+        "path": "/home/devuser/webapps/harvest-site-env/harvest-site"
+    },
+    "development": {
+        "host_string": "rescows02.research.chop.edu"
+    },
+    "production": {
+        "host_string": "tiu.research.chop.edu"
+    }
+}
