@@ -21,7 +21,7 @@ WATCH_COFFEE = `which coffee` -w -b -o ${JAVASCRIPT_SRC_DIR} -c ${COFFEE_DIR}
 
 REQUIRE_OPTIMIZE = `which node` ./bin/r.js -o ${JAVASCRIPT_DIR}/app.build.js
 
-all: watch collect
+all: build collect
 
 build: sass coffee optimize
 
