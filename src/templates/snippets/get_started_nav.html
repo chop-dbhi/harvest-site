@@ -1,12 +1,12 @@
-{% url page "get-started" as get_started %}
-{% url page "get-started/install" as install %}
-{% url page "get-started/your-data" as your_data %}
-{% url page "get-started/now-what" as now_what %}
+{% load url from future %}
 
-
+{% url "page" "get-started" as get_started %}
+{% url "page" "get-started/install" as install %}
+{% url "page" "get-started/your-data" as your_data %}
+{% url "page" "get-started/now-what" as now_what %}
 
 <nav id=get-started-navigation>
-<!-- adding class "active" to A tag sets active state -->
+    <!-- adding class "active" to A tag sets active state -->
     <ul class="unstyled">
         <li class="introduction"><a class="{% active get_started %}" href="{{ get_started }}">Intro</a></li>
         <li class="install-the-demo"><a class="{% active install %}" href="{{ install }}">Install the Demo</a></li>

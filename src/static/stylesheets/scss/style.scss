@@ -27,15 +27,11 @@
 
 .pagewrap-wide {
     @include box-shadow(0 1px 10px hsla(0, 0, 0, 0.5));
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
     margin: 0 auto;
     max-width: 960px;
     background-color: #f9f9f9;
     position: relative;
     bottom: 80px;
     margin-bottom: -80px;
-}
-
-ul, li, p {
-    color: black;
 }

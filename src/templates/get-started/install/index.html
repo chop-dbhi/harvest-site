@@ -15,161 +15,186 @@
 
 {% block content %}
     <section id="content">
+        {% include "snippets/get_started_nav.html"  %}
 
-{% include "snippets/get_started_nav.html"  %}
-
-<div class=page-header>
-        <h1>Outline</h1>
-</div>        
-        <div class="alert alert-info">
-            <span class="label label-info">Tip</span>
-            <p>If you haven't yet played with the <a href="{% url page "demo" %}">live OpenMRS demo</a> on our website, you will probably want to do that 
-                first before trying out a local installation.</p>
+        <div class="alert alert-info alert-block">
+            <span class="label label-info">Tip</span> If you haven't yet played with the <a href="{% url page "demo" %}">live OpenMRS demo</a> on our website, give it try before installing a local copy.
         </div>
+
+        <h2>Outline</h2>
 
         <ul>
             <li><a href=#setup-local-instance>Set up a local instance</a> of Harvest using the OpenMRS demo data</li>
             <li><a href=#look-around>Take a Look Around</a>: Understand the basic Harvest directory structure</a></li>
             <li><a href=#running>Running the Development Server</a> for the first time</li>
-            <li><a href=#open-mrs-model>Understanding the OpenMRS Demo schema</li>
+            <li><a href=#open-mrs-model>The OpenMRS Demo Data</li>
+            <li><a href=#harvest-basics>Harvest Basics</a></li>
             <!-- <li>Take a tour of the admin screens</li> -->
-            <li><a href=#making-customizations>Making customizations</a></li>
-        </ul>
-<div class=page-header>
-    <h1 id=setup-local-instance>Set up a Local Instance</h1>
-</div>
-<h3 id=dependencies>Dependencies</h3>
-
-        <ul>
-            <li><a href=http://www.python.org/download/>Python 2.6+</a>
-            <li><a href=http://pypi.python.org/pypi/setuptools>setuptools</a>
-            <li><a href=http://pypi.python.org/pypi/virtualenv>virtualenv</a>
-            <li><a href=http://git-scm.com/>Git</a> <em>(if cloning the repository)</em>
+            <li><a href=#formatter-example>"Age" Formatter Example</a></li>
         </ul>
 
+        <hr>
 
-<h3 id=get-it>Get It</h3>
+        <h2 id=setup-local-instance>Set up a Local Instance</h2>
 
-        <p>Obtain the demo either by cloning the Git repository or download a packaged release.</p>
-        <h4>Clone<h4>
-<pre class="prettyprint linenums lang-bsh">
-git clone git://github.com/cbmi/harvest-openmrs.git
-</pre>
+        <h3>Prerequisites</h3>
 
-        <h4>Download</h4>
-
-        <ul>
-            <li><a href=https://github.com/cbmi/harvest-openmrs/tarball>harvest-openmrs.tar.gz</a>
-            <li><a href=https://github.com/cbmi/harvest-openmrs/zipball>harvest-openmrs.zip</a> (use for Windows)
-        </ul>
-
-        <p>Unzip or untar the package. For the tarball:</p>
+        <p><strong>Harvest requires Python 2.7.</strong> Check to see which
+        version of Python you have:</p>
 
 <pre class="prettyprint linenums lang-bsh">
-tar zxf harvest-openmrs.tar.gz
+python --version
+</pre>
+        
+        <p>In order to install the Harvest package, Pip or setuptools must
+        be installed. Check for either command.</p>
+
+<pre class="prettyprint linenums lang-bsh">
+which pip easy_install
+</pre>
+        <p>If <strong>nothing prints out</strong>, then do the following to
+        get Pip (the preferred installer). Note, you may have to do
+        <code>sudo python</code> if you are installing it globally on your
+        system.</p>
+
+<pre class="prettyprint linenums lang-bsh">
+curl http://python-distribute.org/distribute_setup.py | python
+curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
 </pre>
 
-        <h3 id=setup-environment>Set up Your Environment</h3>
+        <h3>Install</h3>
 
-        <p>Follow the steps below to create a local environment for the demo using
-        <code>virtualenv</code> and install it's dependencies. <em>Note: virtualenv is used
-        to create a local Python environment without polluting the system Python
-        site-packages.</em></p>
-<div class=row-fluid>
-    <div class=span6><h4>Unix</h4> 
-        <pre class="prettyprint linenums lang-bsh">
-virtualenv harvest-openmrs-env
-mv harvest-openmrs harvest-openmrs-env
-cd harvest-openmrs-env
-source bin/activate
-pip install -r requirements.pip
+        <p>The Harvest package is availble on <a href="http://pypi.python.org/pypi/harvest">PyPi</a>
+        and can be installed using Pip or easy_install. Again, you may need to prefix this
+        with <code>sudo</code> if this is being installed globally on your system.</p>
+
+        <div class=row-fluid>
+            <div class=span6>
+            <strong>Pip</strong>
+<pre class="prettyprint linenums lang-bsh">
+pip install harvest
 </pre>
-</div>
-    <div class=span6><h4>Windows</h4>
-        <pre class="prettyprint linenums lang-bsh">
-virtualenv harvest-openmrs-env
-mv harvest-openmrs harvest-openmrs-env
-chdir harvest-openmrs-env
-./Scripts/activate.bat
-pip install -r requirements.pip
+            </div>
+            <div class=span6>
+            <strong>easy_install</strong>
+<pre class="prettyprint linenums lang-bsh">
+easy_install harvest
 </pre>
-    </div>
-</div>
+            </div>
+        </div>
 
-<div class="page-header">
-    <h1 id=look-around>Take a Look Around</h1>
-</div>
-<h3>The Harvest File Layout</h3>
-<p>While it's certainly possible to use the components of Harvest as independent pieces, a Harvest project has a defined structure to provide consistency across installations.
+        <h3>Install the Demo</h3>
 
-<p>Take note of the following important files and directories at the top level of your OpenMRS installation:</p>
-    <ul>
+        <p>The demo can also be installed with one line.</p>
+
+<pre class="prettyprint linenums lang-bsh">
+harvest init-demo openmrs
+</pre>
+
+        <p>For full details on the available commands and options run <code>harvest --help</code>
+        or for help with a specific command, run <code>harvest [command] --help</code>. The
+        command documentation is also available on the
+        <a href="http://cbmi.github.com/harvest">Harvest Github pages</a>.</p>
+
+        <hr>
+
+        <h2 id=look-around>Take a Look Around</h2>
+
+        <h3>The Harvest File Layout</h3>
+        <p>While it's certainly possible to use the components of Harvest as independent pieces, a Harvest project has a defined structure to provide consistency across installations.
+
+        <p>Take note of the following important files and directories at the top level of your OpenMRS installation:</p>
+
        <dl>
-           <dt><code>openmrs/</code></dt>
-           <dd>All the OpenMRS demo-specific code needed to render the data and interfaces (more on this below)</dd>
-           <dt><code>bin/</code></dt>
-           <dd>Contains the important <code>manage.py</code> script that allows you to run various management tasks, including starting the Django development server.</dd>
            <dt><code>requirements.txt</code></dt>
            <dd>Contains all the information on dependencies required by the application. As described above, these can be installed using <a href="http://pypi.python.org/pypi/pip/1.1">pip</a>. 
+
+           <dt><code>bin/</code></dt>
+           <dd>Contains the important <code>manage.py</code> script that allows you to run various management tasks, including starting the Django development server.</dd>
+
             <dt><code>server/</code></dt>
             <dd>Contains folders with pre-built configurations for popular web server software</dd>
+
             <dt><code>etl/</code></dt>
             <dd>Holds the scripts and settings files for the Extract Transform and Load of the original OpenMRS schema</dd>
-       </dl>
-     </ul>
 
-<p>The more interesting files for the demo are contained in the <code>openmrs/</code> directory:
-<ul>
-    <dl>
-        <dt><code>conf/</code></dt>
-        <dd>This directory holds the configuration files that serve the Django web framework and Harvest. Django will look for all settings in <code>settings.py</code> by default. To allow greater flexibility for development and deployment, Harvest bootstraps additional settings from this file. First, <code>global_settings.py</code> is loaded to set up the static parts of the project. Then, Harvest will look for <code>local_settings.py</code>. This allows you to override any setting when moving from development to test to production without having to maintain large numbers of duplicated files. <code>conf/</code> also contains <code>urls.py</code> where you can place custom URL's for the application. In the case of the OpenMRS demo, this contains the URL designation for the patient detail page. See the <a href="https://docs.djangoproject.com/en/dev/topics/http/urls/">Django documentation</a> to understand the syntax in detail.</dd>
+           <dt><code>openmrs/</code></dt>
+           <dd>All the OpenMRS demo-specific code needed to render the data and interfaces (more on this below)</dd>
+        </dl>
+
+        <hr>
+
+        <h3>The <code>openmrs/</code> Directory</h3>
+
+        <p>The more interesting files for the demo are contained in the <code>openmrs/</code> directory:</p>
+
+        <dl>
+            <dt><code>conf/</code></dt>
+            <dd>This directory holds the configuration files that serve the Django web framework and Harvest. Django will look for all settings in <code>settings.py</code> by default. To allow greater flexibility for development and deployment, Harvest bootstraps additional settings from this file. First, <code>global_settings.py</code> is loaded to set up the static parts of the project. Then, Harvest will look for <code>local_settings.py</code>. This allows you to override any setting when moving from development to test to production without having to maintain large numbers of duplicated files. <code>conf/</code> also contains <code>urls.py</code> where you can place custom URL's for the application. In the case of the OpenMRS demo, this contains the URL designation for the patient detail page. See the <a href="https://docs.djangoproject.com/en/dev/topics/http/urls/">Django documentation</a> to understand the syntax in detail.</dd>
+
         <dt><code>static/</code></dt>
         <dd>Contains all the static resources used by the website, such as CSS, JavaScript, images, etc...</dd>
+
         <dt><code>templates/</code></td>
         <dd>Contains <a href="https://docs.djangoproject.com/en/dev/ref/templates/api/">Django templates</a> used by the application. Most of the web interface for Harvest is provided by the <a href="http://cbmi.github.com/cilantro/">Cilantro Client</a>, however each app can (and likely will) have custom components to be integrated. In the case of the OpenMRS demo data, the patient detail page template (<code>patient.html</code>) is a good example. This page is displayed when one clicks on a patient ID in the query results.
+
       <dt><code>models.py</code></dt>
       <dd>Contains the Django Models that represent database tables. Models can be defined here in one place, or to avoid huge files, broken up and added to subdirectories (e.g. <code>diagnoses/models.py</code>) if it is more convenient</dd>
+
       <dt><code>formatters.py</code></dt>
       <dd>Contains code for formatters (see below) used in the application, as with models, all formatters can either live in one file, or be placed into subdirectories when it makes sense for simplicity</dd>
+
       <dt><code>translators.py</code></dt>
       <dd>Contains code for translators (see below) used in the application. Just like formatters and models, these can either be here in the root of the project, or within subdirectories.</dd>
+
       <dt><code>diagnoses</code>, <code>drugs</code>, <code>vaccines</code>...<dt>
       <dd>For the OpenMRS demo, these folders encapsulate code related to each of these high level concepts. These standalone bundles could be dropped into other applications and provide the same functionality they do here. This allows for code re-use across Harvest projects that might share data models, formatters, and translators.</dd>
-</ul>
-<div class="page-header">
-    <h1 id=running>Running the Development Server</h1>
-</div>
 
-<p>In order to view your demo web application on your development server, you need to run the Django web server.</p>
+        <hr>
+
+        <h2 id=running>Running the Development Server</h2>
+
+        <p>In order to view your demo web application on your development server,
+        you need to run the Django web server. If you have been following this
+        page then the server is already running, otherwise follow the steps above
+        to <a href=#setup-local-instance>install a local instance</a> of the demo.
+        The last few lines will tell you how start the server, here they are
+        as a reminder.</p>
+
 <div class=row-fluid>
     <div class=span6>
         <h4>Unix</h4>
         <pre class="prettyprint linenums lang-bsh">
-cd harvest-openmrs-env
+cd openmrs-env
 source bin/activate
-cd harvest-openmrs
+cd openmrs
 python bin/manage.py runserver
 </pre>
     </div>
     <div class=span6>
         <h4>Windows</h4>
 <pre class="prettyprint linenums lang-bsh">
-chdir harvest-openmrs-env
+chdir openmrs-env
 ./Scripts/activate.bat
-chdir harvest-openmrs
+chdir openmrs
 python bin/manage.py runserver
 </pre>
     </div>
 </div>
 
-<p>Once the development server is running, you can visit 'http://localhost:8000' in your web browser to view the demo page.</p>
-<div class=page-header>
-    <h1 id=open-mrs-model>The OpenMRS Demo Data</h1>
-</div>
-<h3>Overview</h3>
-<p>It is difficult to find large de-identified medical record sets that can be freely shared without a data use agreement. Fortunately, the Harvest demo application is able to use a publicly available de-identified dataset from <a href="http://www.openmrs.org">OpenMRS</a>. <a href="http://www.openmrs.org">OpenMRS</a> was created in 2004 as an open source medical record system for use in resource constrained environments such as those found in developing countries.</p>
-<h3>Data Categories</h3>
-<p>To construct our demo dataset, we have performed Extract Transform and Load (ETL) operations on the MySQL-based <a href="https://wiki.openmrs.org/download/attachments/5047323/large-demo-data-1.8.0.sql.zip">OpenMRS large dataset</a>. We have not attempted to exhaustively capture every piece of information in the schema, but instead have focused on some core areas of information that are best able to showcase Harvest. These include:
+        <p>Once the development server is running, you can visit <a href="http://localhost:8000">http://localhost:8000</a> in your web browser to view the demo page.</p>
+
+        <hr>
+
+        <h2 id=open-mrs-model>The OpenMRS Demo Data</h2>
+
+        <h3>Overview</h3>
+
+        <p>It is difficult to find large de-identified medical record sets that can be freely shared without a data use agreement. Fortunately, the Harvest demo application is able to use a publicly available de-identified dataset from <a href="http://www.openmrs.org">OpenMRS</a>. OpenMRS was created in 2004 as an open source medical record system for use in resource constrained environments such as those found in developing countries.</p>
+
+        <h3>Data Categories</h3>
+        <p>To construct our demo dataset, we have performed Extract Transform and Load (ETL) operations on the MySQL-based <a href="https://wiki.openmrs.org/download/attachments/5047323/large-demo-data-1.8.0.sql.zip">OpenMRS large dataset</a>. We have not attempted to exhaustively capture every piece of information in the schema, but instead have focused on some core areas of information that are best able to showcase Harvest. These include:
+
 <ul>
     <li>Basic Patient information
     <li>Encounters</li>
@@ -429,112 +454,122 @@ python bin/manage.py runserver
     <tr>
 </tbody>
 </table>
-<div class="page-header">
-    <h1 id=harvest-basics>Harvest Basics</h1>
-</div>
-<p>Now were going to dive into some of the basic components of Harvest using code examples. If you would like to follow along, start your django shell. </p>
+
+    <hr>
+
+    <h2 id=harvest-basics>Harvest Basics</h2>
+
+    <p>Now were going to dive into some of the basic components of Harvest using
+    code examples. To follow along, ensure you are in the project directory, the
+    Python environment is active, and you run the shell command as shown below.</p>
 
 <div class=row-fluid>
-    <div class=span6><h4>Unix</h4>
-<pre class="prettyprint linenums lang-bsh">
-cd harvest-openmrs-env
+    <div class=span6>
+        <h4>Unix</h4>
+        <pre class="prettyprint linenums lang-bsh">
+cd openmrs-env
 source bin/activate
-cd harvest-openmrs
-python bin/manage.py shell
+cd openmrs
+python bin/manage.py runserver
 </pre>
     </div>
     <div class=span6>
-            <h4>Windows</h4>
+        <h4>Windows</h4>
 <pre class="prettyprint linenums lang-bsh">
-chdir harvest-openmrs-env
+chdir openmrs-env
 ./Scripts/activate.bat
-chdir harvest-openmrs
-python bin/manage.py shell
+chdir openmrs
+python bin/manage.py runserver
 </pre>
     </div>
 </div>
 
+    <h3>Fields</h3>
 
-<h3>Fields</h3>
+    <p>A <em>field</em> in Harvest is called a <code>DataField</code> and corresponds to single Django model field. A Harvest field allows you to associate more metadata with each field to enhance the meaning of the field. This makes the field easier to explore for someone who is unfamiliar with your data fields and consequently your data models. A few metadata fields that Harvest provides need to be defined for each field. These include:</p>
 
-<p>A Field in Harvest is called a <code>DataField</code> and corresponds to single Django model field. A Harvest field allows you to associate more metadata with each field to enhance the meaning of the field. This makes the field easier to explore for someone who is unfamiliar with your data fields and consequently your data models. A few metadata fields that Harvest provides need to be defined for each field. These include:</p>
-    <ul>
     <dl>
         <dt>Name</dt>
-        <dd>- A verbose, easy to  understand name of the field.</dd>
-        <dt>Name Plural</dt>
-        <dd>- The plural form of the <strong>Name</strong>. If this is undefined and the value for <strong>Name</strong> does not end with 's', an 's' will be appended for the defualt value. </dd>
-        <dt>Description</dt>
-        <dd>- A description of the field that can serve as a definition. This field should be used to make it clear what the associated Django field's purpose and meaning are. </dd>
-        <dt>Keywords</dt>
-        <dd>- Any other words that can be used to describe the field, or could be used to search for the field. </dd>
-        <dt>Unit</dt>
-        <dd>- The unit that the field is collected using, given that the field is a numeric value.</dd>
-        <dt>Unit Plural</dt>
-        <dd>- The plural form of <strong>Unit</strong>. If this is undefined and the value for <strong>Unit</strong> does not end with 's', an 's' will be appended by defualt. </dd>
-    </dl>
-</ul>
-<p>We can also programatically access these fields but first we need to retrieve our <code>DataField</code>. A <code>DataField</code> can be retrieved using the application name, model name, and field name that uniquely identify it. As an example, lets fetch the <code>DataField</code> instance for the white blood cell count field called 'wbc' in the 'LabResult' model for our 'openmrs' application.</p>
+        <dd>A verbose, easy to  understand name of the field.</dd>
 
-<pre class="prettyprint lang-python">
->> from avocado.models import DataField
+        <dt>Name Plural</dt>
+        <dd>The plural form of the <strong>Name</strong>. If this is undefined and the value for <strong>Name</strong> does not end with 's', an 's' will be appended for the defualt value. </dd>
+
+        <dt>Description</dt>
+        <dd>A description of the field that can serve as a definition. This field should be used to make it clear what the associated Django field's purpose and meaning are. </dd>
+
+        <dt>Keywords</dt>
+        <dd>Any other words that can be used to describe the field, or could be used to search for the field. </dd>
+
+        <dt>Unit</dt>
+        <dd>The unit that the field is collected using, given that the field is a numeric value.</dd>
+
+        <dt>Unit Plural</dt>
+        <dd>The plural form of <strong>Unit</strong>. If this is undefined and the value for <strong>Unit</strong> does not end with 's', an 's' will be appended by defualt. </dd>
+
+    </dl>
+
+    <p>We can also programatically access these fields but first we need to retrieve our <code>DataField</code>. A <code>DataField</code> can be retrieved using the application name, model name, and field name that uniquely identify it. As an example, lets fetch the <code>DataField</code> instance for the white blood cell count field called 'wbc' in the 'LabResult' model for our 'openmrs' application.</p>
+
+<pre class="prettyprint linenums lang-python">
+&gt;&gt;&gt; from avocado.models import DataField
 
 # Get the white blood cell count in the 'wbc' field associated with the model 'LabResult'
 # in the Application 'openmrs'
->> wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+&gt;&gt;&gt; wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
 
 # Now we can access the defined metadata for the DataField.
->> wbc_field.name
+&gt;&gt;&gt; wbc_field.name
 u'White Blood Cells (WBC)'
 
->> wbc_field.name_plural
+&gt;&gt;&gt; wbc_field.name_plural
 u''
 
->> wbc_field.description
+&gt;&gt;&gt; wbc_field.description
 u'Blood test to measure the number of white blood cells.'
 
->> wbc_field.keywords
+&gt;&gt;&gt; wbc_field.keywords
 u''
 
->> wbc_field.unit
+&gt;&gt;&gt; wbc_field.unit
 u''
 
->> wbc_field.unit_plural
+&gt;&gt;&gt; wbc_field.unit_plural
 u''
 </pre>
 
 <p>Harvest fields also come pre-packaged with a number of properties that make exploring your data a walk in the park <span class=muted>(or field!)</span>. For example, using Harvest allows you to easily access and gain information about the underlying data stored in your Django database.</p> 
 
-<pre class="prettyprint lang-python">
->> from avocado.models import DataField
+<pre class="prettyprint linenums lang-python">
+&gt;&gt;&gt; from avocado.models import DataField
 
->> wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+&gt;&gt;&gt; wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
 
 # Using the 'size' property on a Harvest field, you can retrieve the number of 
 # distinct values stored in the associated Django field.
 # Prints 174, the number of distinct values in the the white blood cell count
 # field.
->> print wbc_field.size
+&gt;&gt;&gt; print wbc_field.size
 174
 
 # Using the 'values' property on a Harvest field, you can retrieve a list of the 
 # distinct values stored in the Django field.
 # Prints a list of the unique values in the white blood cell count field.
 # There should be 175 elements in this list because it also accounts for None.
->> print wbc_field.values
+&gt;&gt;&gt; print wbc_field.values
 (2.5, 2.6, 2.7, 2.9, 3.1, 3.5, 3.7, 3.8, 3.9, 4.0, ...)
 
 # Using the 'labels' property on a Harvest field, you can retrieve a list of the
 # labels for the distinct values in the Django field. In most cases this will simply
 # return a unicode version of the 'values' property.
 # There should be 175 unicode elements in this list.
->> print wbc_field.labels
+&gt;&gt;&gt; print wbc_field.labels
 [u'2.5', u'2.6', u'2.7', u'2.9', u'3.1', u'3.5', u'3.7', u'3.8', u'3.9', u'4.0', ...]
 
 # Using the 'choices' property on a Harvest field, you can retrieve a list of tuples
 # containing the values and the labels.
 # There should be 175 tuples in this list.
->> print wbc_field.choices
+&gt;&gt;&gt; print wbc_field.choices
 [(2.5, u'2.5'),
  (2.6, u'2.6'),
  (2.7, u'2.7'),
@@ -550,58 +585,58 @@ u''
 # Calling the 'values_list' property on the harvest field instance, you can retrieve
 # a `ValuesQuerySet` of distinct values for the field. This is most useful when you want
 # to perform other query operations on the values.
->> print wbc_field.values_list
+&gt;&gt;&gt; print wbc_field.values_list
 [2.5, 2.6, 2.7, 2.9, 3.1, 3.5, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.4, 4.6, 4.7, 4.8, 4.9, 5.1, 
 5.7, 6.0, '...(remaining elements truncated)...']
 </pre>
 
 <p>Harvest fields also come with aggregator methods that allow you to further explore your numerical data.</p>
 
-<pre class="prettyprint lang-python">
->> from avocado.models import DataField
+<pre class="prettyprint linenums lang-python">
+&gt;&gt;&gt; from avocado.models import DataField
 
->> wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+&gt;&gt;&gt; wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
 
 # Calling the aggregator 'count' method on a harvest field will return the number 
 # of total values for the field.
->> print wbc_field.count()
+&gt;&gt;&gt; print wbc_field.count()
 [{'count': 1617}]
 
 # The aggregator method 'max' will return the maximum value stored in the field.
->> print wbc_field.max()
+&gt;&gt;&gt; print wbc_field.max()
 [{'max': 117000.0}]
 
 # The aggregator method 'min' will return the minimum value stored in the field.
->> print wbc_field.min()
+&gt;&gt;&gt; print wbc_field.min()
 [{'min': 2.5}]
 
 # The aggregator method 'avg' will return the average of all the values in the 
 # field.
->> print wbc_field.avg()
+&gt;&gt;&gt; print wbc_field.avg()
 [{'avg': 5441.65924551639}]
 
 # The aggregator method 'sum' will return the summation of all the values in the
 # field.
->> print wbc_field.sum()
+&gt;&gt;&gt; print wbc_field.sum()
 [{'sum': 8799163.0}]
 </pre>
 
 <p>Harvest aggregators can also group by specified fields and be chained together.</p>
 
-<pre class='prettyprint lang-python'>
->> from avocado.models import DataField
+<pre class="prettyprint linenums lang-python">
+&gt;&gt;&gt; from avocado.models import DataField
 
->> wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
+&gt;&gt;&gt; wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
 
 # In order to group by a specific field, pass the field as an argument.
 # We want to group by gender so we pass 'encounter__patient__gender' as an argument.
->> print wbc_field.avg('encounter__patient__gender')
+&gt;&gt;&gt; print wbc_field.avg('encounter__patient__gender')
 [{'values':[u'F'], 'avg': 5264.52551210428}, {'values': [u'M'], 'avg': 5792.01215469613}]
 
 # Aggregators can be chained together.
 # We want to get avg, min and max values for the white blood cell count
 # so we chain them together.
->> print wbc_field.avg().min().max()
+&gt;&gt;&gt; print wbc_field.avg().min().max()
 [{'max': 117000.0, 'avg': 5441.65924551639, 'min': 2.5}]
 
 # Now we want to get the max, min, and avg grouped by gender.
@@ -609,7 +644,7 @@ u''
 # call the 'groupby' method first and then call the aggregators.
 # All aggregators must group by the same field in order to work
 # properly.
->> print wbc_field.groupby('encounter__patient__gender').avg().min().max()
+&gt;&gt;&gt; print wbc_field.groupby('encounter__patient__gender').avg().min().max()
 [{'values': [u'F'], 'max': 67000.0, 'avg': 5264.52551210428, 'min': 2.5},
  {'values': [u'M'], 'max': 117000.0, 'avg':5792.01215469613, 'min': 3.1}]
 </pre>
@@ -619,32 +654,32 @@ u''
 
 <p>Here is an example of a <code>DataConcept</code> that is composed of the two <code>DataField</code>s 'birthdate' and 'birthdate_estimated'.</p>
 
-<pre class='prettyprint lang-python'>
->> from avocado.models import DataField, DataConcept, DataConceptField
+<pre class="prettyprint linenums lang-python">
+&gt;&gt;&gt; from avocado.models import DataField, DataConcept, DataConceptField
 
 # Get the Datafields for the fields
->> birthdate = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate')
->> estimated = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate_estimated')
+&gt;&gt;&gt; birthdate = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate')
+&gt;&gt;&gt; estimated = DataField.objects.get_by_natural_key('openmrs', 'patient', 'birthdate_estimated')
 
 # Create the DataConcept
->> bday_concept = DataConcept(name="My_Birthdate")
->> bday_concept.save()
+&gt;&gt;&gt; bday_concept = DataConcept(name="My_Birthdate")
+&gt;&gt;&gt; bday_concept.save()
 
 # Add the DataFields to the DataConcept
->> DataConceptField(concept=bday_concept, field=birthdate, order=1).save()
->> DataConceptField(concept=bday_concept, field=estimated, order=2).save()
+&gt;&gt;&gt; DataConceptField(concept=bday_concept, field=birthdate, order=1).save()
+&gt;&gt;&gt; DataConceptField(concept=bday_concept, field=estimated, order=2).save()
 </pre>
 
 <p>Existing DataConcepts can be fetched through the typical objects query interface.</p>
 
-<pre class='prettyprint lang-python'>
->> from avocado.models import DataConcept
+<pre class="prettyprint linenums lang-python">
+&gt;&gt;&gt; from avocado.models import DataConcept
 
 # Get the existing birthdate DataConcept
->> birthdate_concept = DataConcept.objects.get(name="my_birthdate")
+&gt;&gt;&gt; birthdate_concept = DataConcept.objects.get(name="my_birthdate")
 
 # Get all existing concepts
->> concepts = DataConcept.objects.all()
+&gt;&gt;&gt; concepts = DataConcept.objects.all()
 </pre>
 
 <h3>Formatters</h3>
@@ -654,16 +689,16 @@ u''
 
 <p>As an example, we can use the formatter associated with a 'Birthdate' <code>DataConcept</code> in order to format data for a template.</p>
 
-<pre class='prettyprint lang-python'>
->> from avocado.models import DataConcept
->> from datetime import date 
+<pre class="prettyprint linenums lang-python">
+&gt;&gt;&gt; from avocado.models import DataConcept
+&gt;&gt;&gt; from datetime import date 
 
 # Get the Birthdate DataConcept 
->> bday_concept = DataConcept.objects.get(name="Birthdate")
+&gt;&gt;&gt; bday_concept = DataConcept.objects.get(name="Birthdate")
 
 # See the name of the formatter assigned to the
 # DataConcept
->> bday_concept.formatter_name
+&gt;&gt;&gt; bday_concept.formatter_name
 u'Age'
 
 # Now that we know the concept has a formatter associated with it,
@@ -676,25 +711,25 @@ u'Age'
 # will give us the birthdate concept formatted for an html element. The preferred_formats
 # argument is a list because the formatter will attempt to render the values in the first format
 # and if that fails, will return the values in the second format and so on.
->> age = bday_concept.format([date(1975, 10, 23), False], preferred_formats=['html'])
->> print age
+&gt;&gt;&gt; age = bday_concept.format([date(1975, 10, 23), False], preferred_formats=['html'])
+&gt;&gt;&gt; print age
 OrderedDict([(u'Birthdate', '37.0 years old')])
 
 # Access the 'Birthdate' value
->> print['Birthdate']
+&gt;&gt;&gt; print['Birthdate']
 '37.0 years old'
 
 
 # We want to get how old the patient will be in 10 years, so first we need to format
 # the Birthdate so that it returns the age as a number 
->> age = bday_concept.format([date(1975, 10, 13), False], preferred_formats=['number'])
->> print age
+&gt;&gt;&gt; age = bday_concept.format([date(1975, 10, 13), False], preferred_formats=['number'])
+&gt;&gt;&gt; print age
 OrderedDict([('Birthdate':[{'age': 37.0, 'est':False, 'time': 'years'}])])
 
 # Access the age value and add 10 in order to get the patients age in 10 years.
 # This calculation is able to easily be performed because the formatter ensures
 # the age value will be formatted as a number when you retrieve it.
->> print age['Birthdate'][0]['age'] + 10
+&gt;&gt;&gt; print age['Birthdate'][0]['age'] + 10
 47.0
 </pre>
 
@@ -709,21 +744,27 @@ OrderedDict([('Birthdate':[{'age': 37.0, 'est':False, 'time': 'years'}])])
 <p>
 </p>
 <!--
+<hr>
 <h2 id=admin-screens>Admin Screens</h2>
 <ul>
     <li>Fields, Concepts, formatters, definintions, keywords</li>
     <li>Default Django admin screens; Future work: custom admins</li>
 </ul>
 -->
-<div class="page-header">
-<h1 id=making-customizations>Making Customizations</h1>
-</div>
+<hr>
+
+<h2 id=formatter-example>"Age" Formatter Example</h2>
+
 <p>Below you'll see an example of how to make a custom formatter for displaying age:</p>
 
-<pre class='prettyprint linenums lang-python'>
+<pre class="prettyprint linenums lang-python">
 from avocado.formatters import registry
 from serrano.formatters import HTMLFormatter
 from datetime import date, time, datetime
+
+DAY_SECONDS = 60 * 60 * 24
+MONTH_SECONDS = DAY_SECONDS * 30.4368
+YEAR_SECONDS = DAY_SECONDS * 365.242
 
 class AgeFormatter(HTMLFormatter)
     
@@ -732,59 +773,64 @@ class AgeFormatter(HTMLFormatter)
         dob = values['birthdate']
         est = values['birthdate_estimated']
 
-        today = date.today()
+        # Difference in seconds from the date of birth to today
+        diff_seconds = (date.today() - dob).total_seconds()
 
         # Check to make sure that the date of birth is specified.
         if not dob: 
             return "Current Age not available"
 
         # Calculate the patient's age based on birthdate
-        age = ((today - dob).total_seconds())/60/60/24/365.242
-        age = round(age,1)
-        time = "years"
+        age = round(diff_seconds / YEAR_SECONDS, 1)
+        unit = "years"
 
         # Check to see if patient is less than a year old
-        if age < 1.0:
+        if age &lt; 1.0:
             # Recalculate the age in months
-            age = ((today - dob).total_seconds())/60/60/24/30.4368
-            age = round(age, 1)
-            time = "months"
+            age = round(diff_seconds / MONTH_SECONDS, 1)
+            unit = "months"
             
             # Check to see if the patient is less than 1 month old
-            if age < 1.0:
+            if age &lt; 1.0:
                 # Recalculate the age in days
-                age = ((today - dob).total_seconds()/60/60/24
-                age = round(age, 1)
-                time = "days"
+                age = round(diff_seconds / DAY_SECONDS, 1)
+                unit = "days"
                 
                 # Check to see if the patient is 1 day old
                 if age == 1.0:
-                    time = "day"
+                    unit = "day"
 
             # Check to see if the patient is exactly 1 month old
             elif age == 1.0:
-                time = "month"
+                unit = "month"
 
         # Check to see if patient is exaclty one year old
         elif age == 1.0:
-            time = "year"
+            unit = "year"
       
         if est:
-            # If the birthdate was estimted return the age, the time measurement along with estimated.
-            return "{} {} old <em class="muted">(estimated)</em>".format(age, time)
+            # If the birthdate was estimted return the age, the unit along with
+            # estimated. Since this is an HTML formatter, we can put HTML in
+            # this and it will rendered by the browser in the output
+            return "{} {} old &lt;em class="muted"&gt;(estimated)&lt;/em&gt;".format(age, unit)
         else:
-            # If the birthdate was not estimated, return the age and the time measurement.
-            return "{} {} old".format(age, time)
+            # If the birthdate was not estimated, return the age and the unit
+            return "{} {} old".format(age, unit)
 
-    # Set the process_multiple flag to True so that birthdate and birthdate_estimated
-    # will be processed together
+    # Set the process_multiple flag to True so that birthdate and
+    # birthdate_estimated will be processed together
     to_html.process_multiple = True
+
 
 # Register the AgeFormatter
 registry.register(AgeFormatter, "AgeFormatter")
 </pre>
 
-{% include "snippets/get_started_nav.html"  %}
+        <p>Now that you understand some of basic and common concepts of Harvest
+        you can choose to continue to hack away at the demo code base or start
+        setting up a new project for <em>your data</em>.</p>
+
+        {% include "snippets/get_started_nav.html"  %}
 
     </section>
 {% endblock %}

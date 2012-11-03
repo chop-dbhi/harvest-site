@@ -22,11 +22,14 @@
         margin-top: 0;
     }
     
-    h2 a {
-        text-decoration:none;
-        color: #ee9934;
-        &:hover, &:active {
-            text-decoration: underline;
+    h2 {
+        margin: 0;
+
+        a {
+            text-decoration: none;
+            &:hover, &:active {
+                text-decoration: underline;
+            }
         }
     }
 

@@ -16,11 +16,27 @@
 {% block content %}
     <section id="content">
 
-{% include "snippets/get_started_nav.html"  %}
+        {% include "snippets/get_started_nav.html"  %}
 
-<p>There are lots of details to think about when moving from your development environment into production. While we'd love to include a recipe here, production deployment environments can vary quite a bit. Implementing a production instance of Harvest isn't to be taken lightly. The CBMi team maintains multiple production instances and we're happy to help you set up your own instance of Harvest and pass on the lessons we've learned.  From Django models to Harvest Concepts, sparse data to complete CRFs, we're here to help you get the most out of your data and make something great happen and put you in touch with others using Harvest for their data needs. Contact us at cbmisupport@email.chop.edu</p>
+        <h2>We Are Here To Help</h2>
 
-<p>If you do create a production instance of Harvest we'd appreciate a quick mention.  Include a link back to Harvest (<a href="http://harvest.research.chop.edu">harvest.research.chop.edu</a>) or a mention of our upcoming publication.</p>
+        <p>There are lots of details to think about when setting up your own project
+        since the best way to represent your data to end users is very much
+        dependent on the intricacies of the data.</p>
+        
+        <p>While we'd love to include a standard recipe here, production
+        deployment environments can vary quite a bit. The CBMi team has deployed
+        and maintains multiple production instances and we're happy to help you
+        set up your own instance of Harvest and pass on the lessons we've learned.</p>
+        
+        <p>From Django models to Harvest Concepts, sparse data to complete CRFs,
+        we're here to help you get the most out of your data and make something
+        great happen. We are happy to help you directly and put you in touch
+        with others using Harvest for similar data needs. Contact us at
+        <a href="mailto:cbmisupport@email.chop.edu">cbmisupport@email.chop.edu</a></p>
+
+        <p>If you do create a production instance of Harvest we'd appreciate a
+        quick mention. Include a link back to Harvest (<a href="http://harvest.research.chop.edu">harvest.research.chop.edu</a>) or a mention of our upcoming publication.</p>
 
     </section>
 {% endblock %}

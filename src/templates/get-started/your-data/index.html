@@ -1,4 +1,5 @@
 {% extends "get-started/index.html" %}
+{% load url from future %}
 
 {% block title %}Your Data{% endblock %}
 
@@ -16,21 +17,21 @@
 {% block content %}
     <section id="content">
 
-{% include "snippets/get_started_nav.html"  %}
+        {% include "snippets/get_started_nav.html"  %}
         
-        <h1>Outline</h1>
+        <h2>Outline</h2>
 
         <ul>
             <li><a href=#before-you-start>Before You Start</a></li>
             <li><a href=#set-up-your-instance>Set up a New Harvest Instance</a></li>
             <li><a href=#modeling-your-data>Modeling Your Data</a></li>
-            <li><a href=#creating-metadata>Creating and Customizing Metadata</a></li>
+            <!--<li><a href=#creating-metadata>Creating and Customizing Metadata</a></li>-->
         </ul>
-        <div class="page-header">
-            <h1 id=before-you-start>Before You Start</h1>
-        </div>
-            <h2>A Word on Data Quality</h2>
-            <p>While Harvest can make a lot of things simpler, it won't magically make messy, disorganized data clean.
+
+        <h2 id=before-you-start>Before You Start</h2>
+        <h3>A Word on Data Quality</h3>
+
+        <p>While Harvest can make a lot of things simpler, it won't magically make messy, disorganized data clean.
                 Unless your data is coming from a very well controlled, curated data source, it's likely that you
                 will have to put some manual effort into data cleanup. How much effort depends entirely on the data
                 source. In our experience with biomedical data, pulling data from active, electronic health records requires considerable cleaning, whereas
@@ -42,7 +43,8 @@
                 vocabularies will cause your bar graphs and pick lists to have too many obviously overlapping items. You may also find that some fields
                 that you consider important may not be as frequently populated as you had hoped. Because you get started looking at your data early in
                 the deployment process, you can iterate rapidly to clean and organize the data, seeing the impacts in the live application immediately.</p>
-            <h2>Choosing the Right Data Model</h2>
+
+            <h3>Choosing the Right Data Model</h3>
             <p>Harvest is most definitely a BYOM ("Bring Your Own Model") system. You are largely free to create the tables and organizational 
                 structure that best suits your needs for a given project. This level of customization means you'll need to be familiar with basic
                 database modeling techniques and concepts. You can also use an existing database "as-is", though in some cases this may be more work 
@@ -56,12 +58,13 @@
                    <li>Try to decompose complex values (e.g. measurements and units) into individual database columns</li>
                    
               </ul>
+
               <p>While some of the above requirements may seem limiting at first, they force a simple, predictable data model that is
                   easily traversed by the automated tools embedded in Harvest while at the same time providing a good experience for end
                   users.</p>
-            <div class="alert alert-info">
-                <strong>Considerations for Healthcare Data Models</strong>
-                <p>One of the challenges to working with healthcare data is that the data is often very hierarchical. In a typical electronic medical record 
+
+            <h3>Considerations for Healthcare Data Models</h3>
+            <p>One of the challenges to working with healthcare data is that the data is often very hierarchical. In a typical electronic medical record 
                     system, one might have a patient with one or more "visits" or "encounters" with each of those having procedures, diagnoses, tests, 
                     test results, notes, etc... In general, it is usually desirable to preserve this hierarchy. However, the nesting also can lead to 
                     end-user confusion about data. The notion of a "visit" in particular makes certain kinds of queries difficult. For example, if two kinds
@@ -78,83 +81,60 @@
                 <!-- <p>These are just some of the considerations one needs to keep in mind when working with healthcare data. For a more detailed discussion of these and other issues,
                     see <a href=#todo>AudGenDB: A Harvest Case Study</a>
                     -->
-            </div>
         
-        <div class="page-header">
-            <h1 id=set-up-your-instance>Setting up a New Harvest Instance</h1>
-        </div>
-        <div class="alert alert-info">
-            <span class="label label-info">Tip</span>
-            <p>If you haven't yet run through the <a href="/demo">OpenMRS demo project</a>, you will probably want to do that 
+        <h2 id=set-up-your-instance>Setting up a New Harvest Instance</h2>
+
+        <div class="alert alert-info alert-block">
+            <span class="label label-info">Tip</span> If you haven't yet run through the <a href="{% url "page" "demo" %}">OpenMRS demo project</a>, you will probably want to do that 
                 first before tackling your own project from scratch. This guide
-                assumes some background understanding of Harvest and Django that you will get from that tutorial.</p>
+                assumes some background understanding of Harvest and Django that you will get from that tutorial.
         </div>
+
         <ol>
-            <li>Visit the <a href="/download">Download</a> page and download a copy of the harvest project.</li>
-            <li>If you haven't already done so, be sure you install the <a href="/install/#dependencies">dependencies</a> for Harvest as outlined on the <a href="/install">Install the Demo</a> page.</li>
-            <li>Set up the environment as follows:</li>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Unix</th>
-                                    <td>
-
-                <pre class="prettyprint linenums lang-bsh">
-virtualenv your-project-name-env
-cd your-project-name-env
-source bin/activate
-</pre>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>Windows</th>
-                                    <td>
-                <pre class="prettyprint linenums lang-bsh">
-virtualenv your-project-name-env
-chdir your-project-name-env
-./Scripts/activate.bat
-</pre>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
- <!--       <li>Make sure your installation is configured properly:</li> -->
+            <li>Visit the <a href="{% url "page" "download" %}">Download</a> page and ensure the prerequisites are installed, then install the Harvest package.</li>
+            <li>Set up a new project by running the command. Follow the
+            instructions printed in the terminal at the end of the setup.</li>
         </ol>
-        <div class="page-header">
-            <h1 id=modeling-your-data>Modeling Your Data</h1>
-        </div>
-            <h2>Django Models</h2>
-            <p>Data models are the heart of any Harvest application. Harvest is built using the <a href="https://www.djangoproject.com/">Django
-                web framework</a> which has an object relational mapping (ORM) layer for interfacing with relational databases. The 
+
+<div class=row-fluid>
+    <div class=span6>
+        <h4>Unix</h4>
+<pre class="prettyprint linenums lang-bsh">
+harvest init myproject
+</pre>
+    </div>
+    <div class=span6>
+        <h4>Windows</h4>
+<pre class="prettyprint linenums lang-bsh">
+harvest init myproject
+</pre>
+    </div>
+</div>
+        <h2 id=modeling-your-data>Modeling Your Data</h2>
+
+        <h3>Django Models</h3>
+
+        <p>Data models are the heart of any Harvest application. Harvest is built using the <a href="https://www.djangoproject.com/">Django web framework</a> which has an object relational mapping (ORM) layer for interfacing with relational databases. The 
                 ORM allows you to describe your database schema and the relationships between various tables using a simple Python 
                 syntax. It's likely that for a majority of cases, you will have a 1:1 relationship between a table and 
                 a Python class describing it. Before going too far, you might want to familiarize yourself with the excellent documentation
                 on <a href="https://docs.djangoproject.com/en/dev/topics/db/models/">Django models</a>. If you've worked with similar tools such as Hibernate in Java or ActiveRecord in Ruby on Rails, Django models
                 should be pretty familiar.</p>
-            <h2>Using an Existing Database Schema with InspectDB</h2>
+
+            <h3>Using an Existing Database Schema with InspectDB</h3>
                 <p>If you have an existing database that you're looking to use with Harvest, you can probably get something running quickly 
                     by using the tables and data structures you already have. While the table structures and formats might be less than ideal, getting started
                     this way will help you get a sense of the changes you might make to take full advantage of the platform.</p>
-                    <div class="alert alert-error">
-                        <span class="label label-important">Warning</span>
-                        <p>While most data models will work fine, like many ORM tools, Django enforces a strict requirement
-                        that each table have a single primary key column. Tables with composite keys are not permitted.</p>
-                    </div>
-<!-- >
-        -managed=false
-                -Tip: views to help hide some complexity without ETL
-            <h2>Starting from a Clean Slate</h2>
-                
-        <div class="page-header">
-            <h1 id=creating-metadata>Creating and Customizing Metadata</h1>
+
+        <div class="alert alert-error alert-block"> 
+            <span class="label label-important">Warning</span> While most data models will work fine, like many ORM tools, Django enforces a strict requirement
+            that each table have a single primary key column. Tables with composite keys are not permitted. Furthermore, this is generally a preferred practice so each record
+            can always be referred to using a single key.
         </div>
-            <h2>Fields</h2>
-            <h2>Making Categorical Data Easier to use with Choices</h2>
-            <h2>Concepts</h2>
-            <h2>Names, Descriptions, and Keywords</h2>
-            <h2>Formatters<h2>
--->
-{% include "snippets/get_started_nav.html"  %}
+
+        <p><strong>Congratulations!</strong> You've completed the first and most
+        important step for setting up a Harvest project with your own data.</p>
+
+        {% include "snippets/get_started_nav.html"  %}
     </section>
 {% endblock %}

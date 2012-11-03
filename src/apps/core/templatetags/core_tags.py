@@ -11,7 +11,7 @@ def active(context, pattern, name='active', exact=True):
     Usage:
         {% url "some-url" as some_url %}
 
-        <a class="{% active url_stream %}" href="{{ url_stream }}">stream</a>
+        <a class="{% active some_url %}" href="{{ some_url }}">stream</a>
     """
     if type(exact) is not bool and exact.lower() in ('false', '0'):
         exact = False
