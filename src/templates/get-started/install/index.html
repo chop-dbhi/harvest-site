@@ -18,7 +18,8 @@
         {% include "snippets/get_started_nav.html"  %}
 
         <div class="alert alert-info alert-block">
-            <span class="label label-info">Tip</span> If you haven't yet played with the <a href="{% url page "demo" %}">live OpenMRS demo</a> on our website, give it try before installing a local copy.
+            <span class="label label-info">Tip</span> If you haven't yet played with the <a href="{% url page "demo" %}">OpenMRS demo</a>,
+            give it try before installing a local copy.
         </div>
 
         <h2>Outline</h2>
@@ -37,55 +38,15 @@
 
         <h2 id=setup-local-instance>Set up a Local Instance</h2>
 
-        <h3>Prerequisites</h3>
-
-        <p><strong>Harvest requires Python 2.7.</strong> Check to see which
-        version of Python you have:</p>
-
-<pre class="prettyprint linenums lang-bsh">
-python --version
-</pre>
-        
-        <p>In order to install the Harvest package, Pip or setuptools must
-        be installed. Check for either command.</p>
-
-<pre class="prettyprint linenums lang-bsh">
-which pip easy_install
-</pre>
-        <p>If <strong>nothing prints out</strong>, then do the following to
-        get Pip (the preferred installer). Note, you may have to do
-        <code>sudo python</code> if you are installing it globally on your
-        system.</p>
-
-<pre class="prettyprint linenums lang-bsh">
-curl http://python-distribute.org/distribute_setup.py | python
-curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
-</pre>
-
-        <h3>Install</h3>
-
-        <p>The Harvest package is availble on <a href="http://pypi.python.org/pypi/harvest">PyPi</a>
-        and can be installed using Pip or easy_install. Again, you may need to prefix this
-        with <code>sudo</code> if this is being installed globally on your system.</p>
-
-        <div class=row-fluid>
-            <div class=span6>
-            <strong>Pip</strong>
-<pre class="prettyprint linenums lang-bsh">
-pip install harvest
-</pre>
-            </div>
-            <div class=span6>
-            <strong>easy_install</strong>
-<pre class="prettyprint linenums lang-bsh">
-easy_install harvest
-</pre>
-            </div>
-        </div>
+        <h3>Install Harvest</h3>
+        <p>Jump over to the <a href="{% url page "download" %}">download page</a>
+            for instructions on installing Harvest. Once successfully installed,
+            you can proceed below.</p>
 
         <h3>Install the Demo</h3>
 
-        <p>The demo can also be installed with one line.</p>
+        <p>The demo can also be installed with one line using the Harvet command
+            line tool.</p>
 
 <pre class="prettyprint linenums lang-bsh">
 harvest init-demo openmrs
@@ -107,7 +68,7 @@ harvest init-demo openmrs
 
        <dl>
            <dt><code>requirements.txt</code></dt>
-           <dd>Contains all the information on dependencies required by the application. As described above, these can be installed using <a href="http://pypi.python.org/pypi/pip/1.1">pip</a>. 
+           <dd>Contains all the information on dependencies required by the application. As described above, these can be installed using <a href="http://pypi.python.org/pypi/pip/1.1">pip</a>.
 
            <dt><code>bin/</code></dt>
            <dd>Contains the important <code>manage.py</code> script that allows you to run various management tasks, including starting the Django development server.</dd>
@@ -225,17 +186,17 @@ python bin/manage.py runserver
             <td>Basic patient information</td>
             <td><ul class="unstyled">
                 <li><code>id</code> <span class="badge badge-success">PK</span></li>
-                <li><code>gender</code> Patient's gender</li>               
-                <li><code>birthdate</code> Patient's birth date (can be an estimate)</li> 
+                <li><code>gender</code> Patient's gender</li>
+                <li><code>birthdate</code> Patient's birth date (can be an estimate)</li>
                 <li><code>birthdate_estimated</code> Flag to indicate whether the birth date is an estimate</li></td>
         </tr>
         <tr>
             <td><code>encounter</code></td>
             <td>Record of all patient encounters</td>
             <td><ul class="unstyled">
-                <li><code>id</code> <span class="badge badge-success">PK</span></li> 
-                <li><code>patient_id</code> <span class="badge badge-inverse">FK</span></li>  
-                <li><code>encounter_datetime</code> Date of the encounter</li>            
+                <li><code>id</code> <span class="badge badge-success">PK</span></li>
+                <li><code>patient_id</code> <span class="badge badge-inverse">FK</span></li>
+                <li><code>encounter_datetime</code> Date of the encounter</li>
                 <li><code>description</code> Type of encounter</li>
                 </ul>
             </td>
@@ -244,10 +205,10 @@ python bin/manage.py runserver
             <td><code>vital_signs</code></td>
             <td>Vital signs recorded at an encounter</td>
             <td><ul class="unstyled">
-                    <li><code>id</code><span class="badge badge-success">PK</span></li> 
+                    <li><code>id</code><span class="badge badge-success">PK</span></li>
                     <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                     <li><code>sbp</code> Systolic blood pressure </li>
-                    <li><code>dbp</code> Diastolic blood pressure</li> 
+                    <li><code>dbp</code> Diastolic blood pressure</li>
                     <li><code>hr</code> Heart rate</li>
                     <li><code>temp</code> Temperature</li>
                     <li><code>wt</code> Weight</li>
@@ -329,11 +290,11 @@ python bin/manage.py runserver
             <td>Indicates which drugs are associated with each encounter</td>
             <td><ul class="unstyled">
                 <li><code>id</code> <span class="badge badge-success">PK</span></li>
-                <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li> 
+                <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                 <li><code>drug_id</code> <span class="badge badge-inverse">FK</span></li>
             </ul>
             </td>
-                
+
         </tr>
         <tr>
             <td><code>vaccine</code></td>
@@ -387,7 +348,7 @@ python bin/manage.py runserver
             <td>Indicates which diagnoses are associated with each encounter</td>
             <td><ul class="unstyled">
                     <li><code>id</code> <span class="badge badge-success">PK</span></li>
-                    <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li> 
+                    <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                     <li><code>diagnosis_id</code> <span class="badge badge-inverse">FK</span></li>
                 </ul>
             </td>
@@ -406,7 +367,7 @@ python bin/manage.py runserver
              <td>Indicates which referrals are associated with each encounter</td>
              <td><ul class="unstyled">
                      <li><code>id</code> <span class="badge badge-success">PK</span></li>
-                     <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li> 
+                     <li><code>encounter_id</code> <span class="badge badge-inverse">FK</span></li>
                      <li><code>referral_id</code> <span class="badge badge-inverse">FK</span></li>
                  </ul></td>
         </tr>
@@ -538,21 +499,21 @@ u''
 u''
 </pre>
 
-<p>Harvest fields also come pre-packaged with a number of properties that make exploring your data a walk in the park <span class=muted>(or field!)</span>. For example, using Harvest allows you to easily access and gain information about the underlying data stored in your Django database.</p> 
+<p>Harvest fields also come pre-packaged with a number of properties that make exploring your data a walk in the park <span class=muted>(or field!)</span>. For example, using Harvest allows you to easily access and gain information about the underlying data stored in your Django database.</p>
 
 <pre class="prettyprint linenums lang-python">
 &gt;&gt;&gt; from avocado.models import DataField
 
 &gt;&gt;&gt; wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
 
-# Using the 'size' property on a Harvest field, you can retrieve the number of 
+# Using the 'size' property on a Harvest field, you can retrieve the number of
 # distinct values stored in the associated Django field.
 # Prints 174, the number of distinct values in the the white blood cell count
 # field.
 &gt;&gt;&gt; print wbc_field.size
 174
 
-# Using the 'values' property on a Harvest field, you can retrieve a list of the 
+# Using the 'values' property on a Harvest field, you can retrieve a list of the
 # distinct values stored in the Django field.
 # Prints a list of the unique values in the white blood cell count field.
 # There should be 175 elements in this list because it also accounts for None.
@@ -586,7 +547,7 @@ u''
 # a `ValuesQuerySet` of distinct values for the field. This is most useful when you want
 # to perform other query operations on the values.
 &gt;&gt;&gt; print wbc_field.values_list
-[2.5, 2.6, 2.7, 2.9, 3.1, 3.5, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.4, 4.6, 4.7, 4.8, 4.9, 5.1, 
+[2.5, 2.6, 2.7, 2.9, 3.1, 3.5, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.4, 4.6, 4.7, 4.8, 4.9, 5.1,
 5.7, 6.0, '...(remaining elements truncated)...']
 </pre>
 
@@ -597,7 +558,7 @@ u''
 
 &gt;&gt;&gt; wbc_field = DataField.objects.get_by_natural_key('openmrs', 'labresult', 'wbc')
 
-# Calling the aggregator 'count' method on a harvest field will return the number 
+# Calling the aggregator 'count' method on a harvest field will return the number
 # of total values for the field.
 &gt;&gt;&gt; print wbc_field.count()
 [{'count': 1617}]
@@ -610,7 +571,7 @@ u''
 &gt;&gt;&gt; print wbc_field.min()
 [{'min': 2.5}]
 
-# The aggregator method 'avg' will return the average of all the values in the 
+# The aggregator method 'avg' will return the average of all the values in the
 # field.
 &gt;&gt;&gt; print wbc_field.avg()
 [{'avg': 5441.65924551639}]
@@ -691,9 +652,9 @@ u''
 
 <pre class="prettyprint linenums lang-python">
 &gt;&gt;&gt; from avocado.models import DataConcept
-&gt;&gt;&gt; from datetime import date 
+&gt;&gt;&gt; from datetime import date
 
-# Get the Birthdate DataConcept 
+# Get the Birthdate DataConcept
 &gt;&gt;&gt; bday_concept = DataConcept.objects.get(name="Birthdate")
 
 # See the name of the formatter assigned to the
@@ -702,7 +663,7 @@ u''
 u'Age'
 
 # Now that we know the concept has a formatter associated with it,
-# we can use the formatter. 
+# we can use the formatter.
 # A formatter always takes a value or values and preferred_formats as arguments.
 # In the case of our Birthdate concept, the values we need to provide to the formatter are
 # a birthdate and a boolean value for whether the birthdate has been estimated.
@@ -721,7 +682,7 @@ OrderedDict([(u'Birthdate', '37.0 years old')])
 
 
 # We want to get how old the patient will be in 10 years, so first we need to format
-# the Birthdate so that it returns the age as a number 
+# the Birthdate so that it returns the age as a number
 &gt;&gt;&gt; age = bday_concept.format([date(1975, 10, 13), False], preferred_formats=['number'])
 &gt;&gt;&gt; print age
 OrderedDict([('Birthdate':[{'age': 37.0, 'est':False, 'time': 'years'}])])
@@ -767,7 +728,7 @@ MONTH_SECONDS = DAY_SECONDS * 30.4368
 YEAR_SECONDS = DAY_SECONDS * 365.242
 
 class AgeFormatter(HTMLFormatter)
-    
+
     def to_html(self, values, **context):
         # Get the values to format
         dob = values['birthdate']
@@ -777,7 +738,7 @@ class AgeFormatter(HTMLFormatter)
         diff_seconds = (date.today() - dob).total_seconds()
 
         # Check to make sure that the date of birth is specified.
-        if not dob: 
+        if not dob:
             return "Current Age not available"
 
         # Calculate the patient's age based on birthdate
@@ -789,13 +750,13 @@ class AgeFormatter(HTMLFormatter)
             # Recalculate the age in months
             age = round(diff_seconds / MONTH_SECONDS, 1)
             unit = "months"
-            
+
             # Check to see if the patient is less than 1 month old
             if age &lt; 1.0:
                 # Recalculate the age in days
                 age = round(diff_seconds / DAY_SECONDS, 1)
                 unit = "days"
-                
+
                 # Check to see if the patient is 1 day old
                 if age == 1.0:
                     unit = "day"
@@ -807,7 +768,7 @@ class AgeFormatter(HTMLFormatter)
         # Check to see if patient is exaclty one year old
         elif age == 1.0:
             unit = "year"
-      
+
         if est:
             # If the birthdate was estimted return the age, the unit along with
             # estimated. Since this is an HTML formatter, we can put HTML in
