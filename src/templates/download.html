@@ -24,7 +24,15 @@
 <pre class="prettyprint linenums lang-bsh">
 python --version
 </pre>
-        
+
+        <div class="alert alert-block alert-info">
+            <strong>Required stdlib modules.</strong> Harvest depends on the SSL
+            and SQLite modules to be built in the standard library. If you are
+            building Python from source, the OpenSSL and SQLite C headers must
+            be installed prior to building Python. On CentOS, these are the
+            <code>sqlite-devel</code> and <code>openssl-devel</code> packages.
+        </div>
+
         <p>In order to install the Harvest package, Pip or setuptools must
         be installed. Check for either command.</p>
 
