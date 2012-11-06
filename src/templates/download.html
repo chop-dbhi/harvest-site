@@ -41,6 +41,14 @@ curl http://python-distribute.org/distribute_setup.py | python
 curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
 </pre>
 
+<div class="alert alert-block alert-info">
+    <strong>Watch out for sudo!</strong> The root user <code>$PATH</code> most
+    likely does not include <code>/usr/local/bin</code>. If you did not install
+    Python 2.7 through your distro's package manager, use the absolute path to
+    the Python 2.7 binary to prevent installing the above libraries with the
+    wrong version (like Python 2.4 on CentOS), e.g. <code>/usr/local/bin/python2.7</code>.
+</div>
+
         <h2>Install</h2>
 
         <p>The Harvest package is availble on <a href="http://pypi.python.org/pypi/harvest">PyPi</a>
