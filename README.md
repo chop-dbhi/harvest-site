@@ -33,7 +33,7 @@ Django Template
 
 Dependencies
 ------------
-- Python 2.7 (because that's how we roll)
+- Python 2.6 or 2.7
 
 For stylesheet development, the [Sass](http://sass-lang.com) CSS preprocessor is used, specifically using the SCSS syntax.
 
