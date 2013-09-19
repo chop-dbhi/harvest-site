@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Signup{% endblock %}
+
+{% block header %}
+    <section id="page-title">
+        <img class="harvest-box" src="{{ STATIC_URL }}images/box-demo.png" alt="Signup">
+        <hgroup>
+            <h1>Sign-up</h1>
+            <h2>Let's learn together</h2>
+        </hgroup>
+    </section>
+{% endblock %}
+
+
+{% block content %}
+    <section id=content style="text-align:center">
+        <p class=lead><strong>Stay in touch!</strong> Sign up for our email list to get periodic updates on Harvest, tutorials, and invitations to future webinars (don't worry, we won't clog your inbox with useless stuff, and we'll never give your email to anyone else or otherwise spam you).</p>
+
+        <!-- Begin MailChimp Signup Form -->
+        <form class=form-inline action="http://chop.us7.list-manage.com/subscribe/post?u=d587d405b4f54fec30bf3dcab&amp;id=97ea97c5ba" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+            <input class="span4" type="email" name="EMAIL" class="email" placeholder="Email...">
+            <input type="submit" class=btn value="Subscribe" name="subscribe">
+        </form>
+        <!--End mc_embed_signup-->
+    </section>
+{% endblock %}
