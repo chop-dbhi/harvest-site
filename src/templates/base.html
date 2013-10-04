@@ -55,14 +55,8 @@
         <script src="{{ JAVASCRIPT_URL }}prettify.js"></script>
         <script>prettyPrint();</script>
 
-        <!-- JavaScript at the bottom for fast page loading -->
+        {% block scripts %}{% endblock %}
 
-        <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script> -->
-
-        <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
-            mathiasbynens.be/notes/async-analytics-snippet -->
         {% if not debug %}
         <script>
             var _gaq=[['_setAccount','UA-30792817-5'],['_trackPageview']];

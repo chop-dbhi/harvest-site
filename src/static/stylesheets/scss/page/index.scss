@@ -126,15 +126,18 @@ header {
     margin-bottom: -120px;
 }
 
-#signup {
+#signup, #talk {
     padding: 20px 40px;
 	border-top: 1px dotted #aaa;
     text-align: center;
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
 }
 
 #whats-inside {
-	margin: 0 40px 20px 40px;
-    padding: 20px 0;
+    padding: 20px 40px;
 	border-top: 1px dotted #aaa;
 	display: block;
 

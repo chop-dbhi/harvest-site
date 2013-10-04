@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Talk{% endblock %}
+
+{% block scripts %}
+        <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="{{ JAVASCRIPT_URL }}hipchat.js"></script>
+    <script>
+        $(function() {
+            $('#content').hipChatPanel({
+                url: 'https://www.hipchat.com/gkfNOKOPG',
+                timezone: 'EST'
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block header %}
+    <section id="page-title">
+        <img class="harvest-box" src="{{ STATIC_URL }}images/box-demo.png" alt="Talk">
+        <hgroup>
+            <h1>Harvest Talk</h1>
+            <h2>Have a question? Talk to us.</h2>
+        </hgroup>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section id=content></section>
+{% endblock %}
