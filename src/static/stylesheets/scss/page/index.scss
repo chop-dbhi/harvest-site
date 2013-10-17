@@ -126,7 +126,7 @@ header {
     margin-bottom: -120px;
 }
 
-#signup, #talk, #manuscript{
+#content ~ section {
     padding: 20px 40px;
 	border-top: 1px dotted #aaa;
     text-align: center;

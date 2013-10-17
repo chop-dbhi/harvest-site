@@ -17,7 +17,6 @@ footer {
 
     .harvest-logo {
     	text-align: center;
-    	opacity: 0.3;
     }
 
     .copyright {
@@ -37,8 +36,10 @@ footer {
         max-width: 320px;
         margin-right: 0;
     }
-    
-    p { font-size: 12px; }
+
+    p {
+        font-size: 12px;
+    }
 
     h5 {
     	color: #374656;

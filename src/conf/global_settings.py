@@ -1,6 +1,6 @@
 import os
 
-# Import global settings to make it easier to extend settings. 
+# Import global settings to make it easier to extend settings.
 from django.conf.global_settings import *
 
 # Import the project module to calculate directories relative to the module
@@ -19,7 +19,7 @@ INSTALLED_APPS = (
     # third-party apps
     # 'siteauth',
     # 'south',
-    
+
     # built-in Django apps
     # 'django.contrib.admin',
     # 'django.contrib.auth',
@@ -136,7 +136,7 @@ STATICFILES_DIRS = (
 
 # Project level templates and template directories that override
 # third-party app templates.
-TEMPLATE_DIRS = (    
+TEMPLATE_DIRS = (
     # This project's templates directory
     os.path.join(PROJECT_PATH, 'src/templates'),
 )
@@ -167,7 +167,7 @@ ROOT_URLCONF = 'src.conf.urls'
 # For non-publicly accessible applications, the siteauth app can be used to
 # restrict access site-wide.
 # SITEAUTH_ACCESS_ORDER = 'allow/deny'
-# 
+#
 # SITEAUTH_ALLOW_URLS = (
 #     r'^$',
 #     r'^log(in|out)/',
@@ -185,7 +185,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'siteauth.middleware.SiteAuthenticationMiddleware',   
+    # 'siteauth.middleware.SiteAuthenticationMiddleware',
 )
 
 
@@ -210,11 +210,25 @@ EMAIL_SUBJECT_PREFIX = '[Harvest Site] '
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        }
+    },
     'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
         'mail_admins': {
             'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
     },
     'loggers': {
         'django.request': {
@@ -224,7 +238,6 @@ LOGGING = {
         },
     }
 }
-
 
 #
 # CACHE
