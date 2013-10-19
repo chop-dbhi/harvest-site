@@ -164,8 +164,8 @@ def deploy(commit, force=False):
     install_deps(force)
     #syncdb_migrate()
     # Production runs Apache..
+    make()
     if env.host != 'production':
-        make()
         reload_nginx()
     reload_supervisor()
     reload_wsgi()
@@ -175,8 +175,11 @@ def deploy(commit, force=False):
 @host_context
 def make():
     "Rebuilds all static files using the Makefile."
-    with prefix('rvm use default'):
-        verun('make')
+    if env.host == 'production':
+        verun('make collect')
+    else:
+        with prefix('rvm use default'):
+            verun('make')
 
 
 @host_context
