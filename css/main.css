@@ -50,18 +50,18 @@ section {
 /* Harvest logo at various sizes. This is to be used inline with text */
 .harvest-logo-16 {
     display: inline-block !important;
-	background: transparent url(../img/logo/favicon/wheat.svg) no-repeat;
-    height: 16px;
-    width: 16px;
-    background-size: 16px 16px;
+	background: transparent url(../img/logo/favicon/wheat_5grain.svg) no-repeat;
+    height: 14px;
+    width: 14px;
+    background-size: 14px 14px;
 }
 
 .harvest-logo-24 {
     display: inline-block !important;
-	background: transparent url(../img/logo/favicon/wheat.svg) no-repeat;
-    height: 24px;
-    width: 24px;
-    background-size: 24px 24px;
+	background: transparent url(../img/logo/favicon/wheat_5grain.svg) no-repeat;
+    height: 22px;
+    width: 22px;
+    background-size: 22px 22px;
 }
 
 /* Light text shadow for elements that have a light background */
@@ -100,7 +100,7 @@ pre, code, #header, #footer, section {
 /* Float harvest logo to prevent increasing header size */
 #header .harvest-logo-24 {
     float: left;
-    margin-top: -4px;
+    margin-top: -2px;
     margin-right: 5px;
 }
 
