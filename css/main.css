@@ -10,7 +10,7 @@ a {
 
 /* Fancy serif font for headings and brand */
 h1, h2, h3, h4, h5, h6, .navbar-brand {
-	font-family: Kreon, Georgia, "Times New Roman", Times, serif;
+	font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 /* Fancy horizontal rule */
