@@ -17,7 +17,7 @@ The following layouts are the ones that should be used for creating pages or blo
 - `standard` - Extends `container`. 8-point single column. This is the default layout for pages.
 - `slim` - Extends `container`. 6-point single column.
 
-The `default` layout is a symlink to the current default page layout (currently the `standard` layout). This is a simple convenience in case the underlying default layout changes in the future.
+The `default` layout is a copy of the default page layout (currently the `standard` layout). This is a simple convenience in case the underlying default layout changes in the future.
 
 ### Front-Matter Attributes
 
