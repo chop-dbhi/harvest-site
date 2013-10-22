@@ -1,0 +1,39 @@
+---
+layout: default
+title: "Articles"
+content_class: "sticky"
+---
+
+<p class=lead><strong>We have a lot to talk about.</strong> We would, however, like to know what <em>you</em> in the community would like to learn more about. Let us know in the <a href="{{ site.baseurl }}chat/">chatroom</a> or send us an email at <a href="mailto:info@harvest.io">info@harvest.io</a> with your topics in mind. Thanks!</p>
+
+<hr>
+
+{% if paginator.total_posts %}
+    {% if paginator.total_pages > 1 %}
+        <ul class=pager>
+            {% if paginator.previous_page %}
+                {% if paginator.previous_page == 1 %}
+                    <li><a href="{{ site.baseurl }}articles/">&laquo; Newer</a></li>
+                {% else %}
+                    <li><a href="{{ paginator.previous_page_path }}">&laquo; Newer</a></li>
+                {% endif %}                
+            {% else %}
+                <li class="disabled"><span>&laquo; Newer</span></li>
+            {% endif %}
+        
+            {% if paginator.next_page %}
+                <li><a href="{{ paginator.next_page_path }}">Older &raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>Older &raquo;</span></li>
+            {% endif %}    
+        </ul>
+    {% endif %}
+
+    <ul class=list-unstyled>
+    {% for post in paginator.posts %}
+        <li><span class=date>{{ post.date | date:"%Y-%m-%d" }}</span> - <strong><a href="{{ post.url }}">{{ post.title }}</a></strong> {% if post.intro %}{{ post.intro|markdownify }}{% endif %}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No articles have been written yet! Help us by suggesting a topic!</p>
+{% endif %}

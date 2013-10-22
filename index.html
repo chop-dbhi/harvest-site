@@ -1,0 +1,65 @@
+---
+layout: base
+---
+
+{% include header.html %}
+
+<div class=container>
+    <div class=row>
+        <div class=col-sm-12>
+            <div class=jumbotron>
+                <h1>Data Discovery For Humans</h1>
+                <h2>Explore your data not your database.</h2>
+                <p>Designed by and for biomedical researchers, The Harvest Stack is an <strong>open source BSD-licensed</strong> toolkit for building web applications for integrating, discovering, and reporting data.</p>
+                <p><a class="btn btn-success" href="{{ site.baseurl }}demo/" target=_blank><i class="icon-cloud"></i> Try the Demo</a> <!--<a class="btn btn-primary" href="{{ site.baseurl }}media/"><i class="icon-play-sign"></i> Watch &amp; Learn</a>--></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <div class=row>
+            <div class=col-sm-6>
+                <h3><i class="icon-github"></i> Open Source &amp; Available on GitHub</h3>
+                <p>We believe in open source software and assume to <a href="https://github.com/cbmi/">open source our work</a>. Harvest is licensed under BSD 2-clause License.</p>
+            </div>
+
+            <div class=col-sm-6>
+                <h3><i class="icon-html5"></i> Web-Based Technologies</h3>
+                <p>Harvest comes with an HTML5 web client backed by a set of discoverable REST APIs.</p>
+            </div>
+        </div>
+
+        <div class=row>
+            <div class=col-sm-6>
+                <h3><i class="icon-medkit"></i> Designed for Biomedical Data First</h3>
+                <p>Created by Center of Biomedical Informatics at The Children's Hospital of Philadelphia, Harvest addresses the unique needs of biomedical researchers.</p>
+            </div>
+
+            <div class=col-sm-6>
+                <h3><i class="icon-trophy"></i> Nationally Funded (This is Real)</h3>
+                <p>National Human Genome Research Institute, National Institute on Deafness and Other Communication Disorders, National Heart, Lung and Blood Institute.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class=container>
+    <div class=row>
+        <div class=col-sm-6>
+            <h3><span class="icon icon-bullhorn"></span> Announcements</h3>
+            
+            {% include announcements.html %}
+        </div>
+
+        <div class=col-sm-6>
+            <h3><span class="icon icon-envelope"></span> Mailing List</h3>
+
+            {% include mailing_list_form.html %}
+        </div>
+    </div>
+</div>
+
+{% include footer.html %}

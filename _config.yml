@@ -1,0 +1,25 @@
+name: Harvest
+timezone: America/New_York
+markdown: redcarpet
+pygments: true
+lsi: true
+exclude: ['bin']
+permalink: pretty
+paginate: 10
+paginate_path: "articles/:num/"
+
+redcarpet:
+    extensions:
+        - tables
+        - no_intra_emphasis
+        - autolink
+
+# Map of authors and details
+authors:
+    byron:
+        name: Byron Ruth
+        website: http://devel.io
+    mike:
+        name: Michael Italia
+    don:
+        name: Don Naegely
