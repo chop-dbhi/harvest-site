@@ -17,13 +17,7 @@ Want to learn more about the vision behind Harvest, [read the Manifesto]({{ site
 
 ## Is This Vaporware?
 
-**No.** We can disclose three nationally funded, multi-institutional Harvest deployments including:
-
-- [AudGenDB](http://audgendb.chop.edu/) - funded by the National Institute on Deafness and Other Communication Disorders (NIDCD)
-- [Pediatric Cardiac Genomics Consortium Data Hub](http://www.benchtobassinet.net/AboutPCGC.asp) - funded by the National Heart, Lung and Blood Institute (NHLBI)
-- [Longitudinal Pediatric Data Resource](https://www.nbstrn.org/research-tools/longitudinal-pediatric-data-resource) - Funded by the National Human Genome Research Institute (NHGRI)
-
-Also check out the [media & press page]({{ site.baseurl }}media/) for talks and general press about Harvest.
+**No.** Head over to the [media & press page]({{ site.baseurl }}media/) to see a listing our nationally funded projects (that we are able to disclose).
 
 ## We Are Here To Help
 
