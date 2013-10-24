@@ -4,7 +4,7 @@ markdown: redcarpet
 pygments: true
 lsi: true
 exclude: ['bin']
-permalink: pretty
+permalink: "articles/:year/:month/:day/:title/"
 paginate: 10
 paginate_path: "articles/:num/"
 
