@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "New Website"
 subtitle: "New beginnings"
 author: byron
