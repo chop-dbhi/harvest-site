@@ -180,6 +180,10 @@ pre, code, #header, #footer, section {
     color: inherit;
 }
 
+.hidden-sm {
+    display: inline-block !important;
+}
+
 /* Use 2x sized images for retina-based displays */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
 only screen and (-moz-min-device-pixel-ratio: 1.5),
@@ -191,5 +195,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
 @media (max-width: 768px) {
     #wrap {
         padding-bottom: 310px;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .hidden-sm {
+        display: none !important;
     }
 }
