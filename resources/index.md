@@ -17,6 +17,10 @@ subtitles: "Videos, publications, press, and other resources"
 - [AudGenDB & Harvest - Origins of a Modern Web-Based Biomedical Data Discovery Stack](http://www.youtube.com/watch?v=0fh4ukKqX9Q)
 - [AudGenDB: Intuitive Biomedical Query and Reporting Tool Using Django](http://archive.org/details/Wednesday-203-8-AudgendbIntuitiveBiomedicalQueryAndReportingTool) - SciPy 2011
 
+### Interviews
+
+- [CHOP's Harvest Toolkit Offers Reusable Components for Biomedical Data Exploration](http://www.genomeweb.com/informatics/chops-harvest-toolkit-offers-reusable-components-biomedical-data-exploration) (requires an account to GenomeWeb to view)
+
 ### Grant-Funded Projects
 
 - [AudGenDB](http://audgendb.chop.edu/) - funded by the National Institute on Deafness and Other Communication Disorders (NIDCD)
