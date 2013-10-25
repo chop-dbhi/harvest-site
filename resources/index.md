@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Media & Press"
-subtitles: "Videos, publications, slide decks, and general press"
+title: "Resources"
+subtitles: "Videos, publications, press, and other resources"
 ---
 
 ### Press Releases
@@ -28,6 +28,6 @@ subtitles: "Videos, publications, slide decks, and general press"
 
 ### Related
 
-This includes media and press of projects where Harvest facilitated discovery or assertion of hypotheses.
+_Resources where Harvest facilitated research._
 
 - [NIH Media Availability: Researchers take important step in unlocking what causes congenital heart disease](http://www.nhlbi.nih.gov/news/press-releases/2013/nih-media-availability-researchers-take-important-step-in-unlocking-what-causes-congenital-heart-disease.html)

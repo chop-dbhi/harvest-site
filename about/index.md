@@ -17,7 +17,7 @@ Want to learn more about the vision behind Harvest, [read the Manifesto]({{ site
 
 ## Is This Vaporware?
 
-**No.** Head over to the [media & press page]({{ site.baseurl }}media/) to see a listing our nationally funded projects (that we are able to disclose).
+**No.** Head over to the [resources page]({{ site.baseurl }}resources/) to see a listing our nationally funded projects (that we are able to disclose).
 
 ## We Are Here To Help
 
