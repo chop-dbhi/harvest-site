@@ -1,5 +1,6 @@
 # Harvest Site & Blog
 
+- colors: https://kuler.adobe.com/Harvest-Website-color-theme-3136132/
 
 ### Layouts
 
