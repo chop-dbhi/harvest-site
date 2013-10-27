@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "About"
+subtitle: "and FAQ"
 ---
 
 ## What is Harvest?
@@ -15,9 +16,21 @@ From the [Harvest Manuscript](http://jamia.bmj.com/content/early/2013/10/16/amia
 
 Want to learn more about the vision behind Harvest, [read the Manifesto]({{ site.baseurl }}manifesto/).
 
+## Is Harvest For Me?
+
+If you have data encompassing up to several dozen tables and hundreds or even thousands of fields, and you'd like to create a web site to allow users to perform custom queries on the data, page though the results, and export to a variety of formats, then you should consider Harvest. Harvest comes with a dynamic query builder that allows users to easily find the fields they are interested in and define query conditions on them. Users can then view the results, choose which fields to display, and export the data to CSV, Excel, JSON, R, or SAS. Users can also name and save queries (consisting of query conditions and display columns) and optionally share specified queries with other users of your web site. Even if you don't intend to make the data public, a private or intranet instance of Harvest can be a great way to explore and understand complex data.
+
+## What is "Data Discovery"?
+
+First off, if you haven't already done so, [try the Demo]({{ site.baseurl }}demo/). This will show you first-hand what data discovery means in the context of Harvest.
+
+In a complex data set, there may be hundreds or thousands of fields arranged in a hierarchy of dozens of categories. How do users find the fields they are interested in and understand their data content? With Harvest, users just start typing in the field search box, and a full-text index of the field names, descriptions, categories, and even the data itself(!) is used to show relevant fields.  Alternatively, users can browse the category hierarchy of fields, which is also always visible in the query builder interface. Once a field is chosen, the query builder shows information gleaned from the database that allows the user to quickly define a sensible query condition on that field. This information depends on the type of field, but it may include value statistics, all values (for low-cardinality fields), or sample field values.
+
 ## Is This Vaporware?
 
-**No.** Head over to the [resources page]({{ site.baseurl }}resources/) to see a listing our nationally funded projects (that we are able to disclose).
+**No.** Head over to the [resources page]({{ site.baseurl }}resources/) to see a listing nationally funded Harvest applications.
+
+---
 
 ## We Are Here To Help
 
