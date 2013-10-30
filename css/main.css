@@ -93,6 +93,10 @@ section .btn {
     background-color: hsla(42, 32%, 51%, 0.1);
 }
 
+#header {
+    margin-bottom: 0;
+}
+
 #header a:link, #header a:visited, #footer a:link, #footer a:visited {
     color: #755E33;
 }
@@ -113,6 +117,12 @@ section .btn {
     font-size: 26px;
 }
 
+#attribution {
+    text-align: center;
+    padding: 5px 30px;
+    color: #777;
+    border-bottom: 1px dashed #ccc;
+}
 
 /* Structural element which enables keeping the footer *stuck* to
     the bottom of the page. */
@@ -147,10 +157,10 @@ section .btn {
 /* Remove excessive padding around jumbotron within a container */
 .jumbotron .harvest-wheat {
     display: inline-block;
-	background: transparent url(../img/logo/color/wheat.svg) no-repeat;
-    height: 62px;
-    width: 62px;
-    background-size: 62px 62px;
+	background: transparent url(../img/logo/color/wheat-single.svg) no-repeat;
+    height: 98px;
+    width: 98px;
+    background-size: 116px 116px;
     float: left;
     margin-right: 10px;
 }
@@ -158,6 +168,10 @@ section .btn {
 /* Reduce to fit the tagline */
 .jumbotron h1 {
     font-size: 61px;
+}
+
+.jumbotron h2 {
+    margin-top: 0;
 }
 
 /* Page-related styles */
