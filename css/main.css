@@ -128,29 +128,33 @@ pre, code, #header, #footer, section {
     position: static;
 }
 
-/* Add additional margin after containers and sections */
-#wrap > .container, #wrap > section {
-    margin-bottom: 20px;
-}
-
-#wrap > section > .container {
+#wrap > section, #wrap > section > .container {
     margin-bottom: 10px;
-}
-
-/* Remove excessive padding around jumbotron within a container */
-.container .jumbotron {
-    padding: 0 0 20px 0;
 }
 
 .jumbotron {
     background: none;
-    margin-bottom: 0;
+    border-color: transparent;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px !important;
 }
 
-.jumbotron :last-child {
-    margin-bottom: 0;
+/* Remove excessive padding around jumbotron within a container */
+.jumbotron .harvest-wheat {
+    display: inline-block;
+	background: transparent url(../img/logo/color/wheat.svg) no-repeat;
+    height: 62px;
+    width: 62px;
+    background-size: 62px 62px;
+    float: left;
+    margin-right: 10px;
 }
 
+/* Reduce to fit the tagline */
+.jumbotron h1 {
+    font-size: 61px;
+}
 
 /* Page-related styles */
 .page-header h1 {
