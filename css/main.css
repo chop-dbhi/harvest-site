@@ -42,9 +42,10 @@ pre {
 
 /* A misuse of an element... */
 section {
-    background-color: rgba(51, 187, 255, 0.1); /* alpha light blue */
-    border-top: 1px solid #B1D4E7;
-    border-bottom: 1px solid #B1D4E7;
+    background-color: #e5eff4; /* solid form of below */
+    background-color: hsla(200, 100%, 30%, 0.1); /* alpha light grey-blue */
+    border-top: 1px solid #bdd1dc;
+    border-bottom: 1px solid #bdd1dc;
 }
 
 /* Harvest logo at various sizes. This is to be used inline with text */
@@ -77,9 +78,10 @@ section .btn {
 /* Header and footer style */
 
 #header, #footer {
-    border-color: #E1DCD0; /* light brown */
+    border-color: #e1dcd0; /* light brown */
+    background-color: #f6f3ee; /* solid form of below */
     background-color: hsla(42, 32%, 51%, 0.1); /* alpha beige */
-    color: #755E33; /* brown */
+    color: #755e33; /* brown */
 }
 
 #footer {
@@ -89,8 +91,7 @@ section .btn {
     position: absolute;
     bottom: 0;
     margin: 0;
-    border-top: 1px solid #e7e7e7;
-    background-color: hsla(42, 32%, 51%, 0.1);
+    border-top: 1px solid #e1dcd0;
 }
 
 #header {
@@ -118,10 +119,34 @@ section .btn {
 }
 
 #attribution {
-    text-align: center;
-    padding: 5px 30px;
+    text-align: right;
+    padding: 2px 25px;
     color: #777;
-    border-bottom: 1px dashed #ccc;
+    border-bottom: 1px dashed #e3e3e3;
+}
+
+#attribution a:link, #attribution a:visited {
+    color: inherit;
+}
+
+#attribution a:hover, #attribution a:active {
+    color: #448CCA;
+}
+
+.cbmi-logo {
+    transition: opacity 0.2s;
+    display: inline-block;
+	background: transparent url(../img/cbmi.svg) no-repeat;
+    height: 15px;
+    width: 54px;
+    background-size: 54px 15px;
+    margin: 0 2px;
+    vertical-align: text-top;
+    opacity: 0.7;
+}
+
+.cbmi-logo:hover {
+    opacity: 1;
 }
 
 /* Structural element which enables keeping the footer *stuck* to
@@ -158,16 +183,11 @@ section .btn {
 .jumbotron .harvest-wheat {
     display: inline-block;
 	background: transparent url(../img/logo/color/wheat-single.svg) no-repeat;
-    height: 98px;
     width: 98px;
-    background-size: 116px 116px;
+    height: 100px;
+    background-size: 116px 120px;
     float: left;
     margin-right: 10px;
-}
-
-/* Reduce to fit the tagline */
-.jumbotron h1 {
-    font-size: 61px;
 }
 
 .jumbotron h2 {
@@ -215,13 +235,27 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 @media (max-width: 768px) {
+    #footer {
+        position: static;
+        margin-top: 30px;
+    }
     #wrap {
-        padding-bottom: 310px;
+        padding-bottom: 0;
     }
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
+    #wrap {
+        padding-bottom: 220px;
+    }
+
     .hidden-sm {
         display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #header .navbar-collapse .navbar-nav {
+        text-align: right;
     }
 }
