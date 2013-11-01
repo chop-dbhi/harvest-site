@@ -51,7 +51,8 @@ section {
 /* Harvest logo at various sizes. This is to be used inline with text */
 .harvest-logo-16 {
     display: inline-block !important;
-	background: transparent url(../img/logo/favicon/wheat_5grain.svg) no-repeat;
+    background: transparent url(../img/5grain-16.png) no-repeat;
+	background-image: url(../img/5grain.svg), none;
     height: 14px;
     width: 14px;
     background-size: 14px 14px;
@@ -59,7 +60,8 @@ section {
 
 .harvest-logo-24 {
     display: inline-block !important;
-	background: transparent url(../img/logo/favicon/wheat_5grain.svg) no-repeat;
+    background: transparent url(../img/5grain-24.png) no-repeat;
+	background-image: url(../img/5grain.svg), none;
     height: 22px;
     width: 22px;
     background-size: 22px 22px;
@@ -136,7 +138,8 @@ section .btn {
 .cbmi-logo {
     transition: opacity 0.2s;
     display: inline-block;
-	background: transparent url(../img/cbmi.svg) no-repeat;
+	background: transparent url(../img/cbmi-15.png) no-repeat;
+    background-image: url(../img/cbmi.svg), none;
     height: 15px;
     width: 54px;
     background-size: 54px 15px;
@@ -182,7 +185,8 @@ section .btn {
 /* Remove excessive padding around jumbotron within a container */
 .jumbotron .harvest-wheat {
     display: inline-block;
-	background: transparent url(../img/logo/color/wheat-single.svg) no-repeat;
+	background: transparent url(../img/wheat-98.png) no-repeat;
+    background-image: url(../img/wheat.svg), none;
     width: 98px;
     height: 100px;
     background-size: 116px 120px;
