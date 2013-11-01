@@ -72,11 +72,6 @@ pre, code, #header, #footer, section {
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
-section .btn {
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-
 /* Header and footer style */
 
 #header, #footer {
@@ -162,24 +157,18 @@ section .btn {
     padding-bottom: 185px;
 }
 
-#wrap.static {
-    padding-bottom: 0;
-}
-
-#wrap.static #footer {
-    position: static;
-}
-
 #wrap > section, #wrap > section > .container {
     margin-bottom: 10px;
 }
 
 .jumbotron {
     background: none;
-    border-color: transparent;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 20px !important;
+    border: 0;
+}
+
+.container .jumbotron {
+    padding: 0;
+    margin: 40px 0;
 }
 
 /* Remove excessive padding around jumbotron within a container */
@@ -245,6 +234,31 @@ only screen and (min-device-pixel-ratio: 1.5) {
     }
     #wrap {
         padding-bottom: 0;
+    }
+    .jumbotron {
+        text-align: center;
+    }
+    .container .jumbotron {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+    .jumbotron h1 {
+        margin-top: 0;
+    }
+    .jumbotron h2 {
+        font-size: 24px;
+    }
+    .jumbotron .harvest-wheat {
+        width: 67px;
+        height: 67px;
+        background-size: 79px 79px;
+        float: none;
+    }
+    #attribution {
+        text-align: center;
+    }
+    h3 {
+        font-size: 20px;
     }
 }
 

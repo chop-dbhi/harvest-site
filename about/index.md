@@ -30,8 +30,6 @@ In a complex data set, there may be hundreds or thousands of fields arranged in 
 
 **No.** Head over to the [resources page]({{ site.baseurl }}resources/) to see a listing nationally funded Harvest applications.
 
----
-
 ## We Are Here To Help
 
 There are lots of details to think about when setting up your own project since the best way to represent your data to end users is very much dependent on the intricacies of the data.
