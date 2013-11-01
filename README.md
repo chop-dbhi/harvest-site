@@ -69,3 +69,38 @@ These are the fragments that are used in layouts. Unless new layouts are being c
 - `page_header.html` - Renders a `.page-header` block. Takes a `title` and optional `subtitle` parameters.
 - `author.html` - Renders a span of details for the post's author. This assumes the `author` front-matter variable has been specified and matches one of the authors listed in `_config.yaml`.
 - `meta.html` - Renders metadata about a blog post including the author (see above include) and the publish and last update date.
+
+
+## Deployment
+
+### Environment
+
+- Ruby 2.0.0
+
+```bash
+curl -L https://get.rvm.io | bash -s stable
+rvm install 2.0.0
+rvm --default use 2.0.0
+gem install jekyll
+```
+
+For faster page indexing (for displaying related articles), do the following (for Redhat/CentOS):
+
+```bash
+sudo yum install gsl gsl-devel
+gem install gsl
+```
+
+### Build
+
+Go to the directory and run:
+
+```bash
+jekyll build
+```
+
+During development, do:
+
+```bash
+jekyll serve --watch
+```
