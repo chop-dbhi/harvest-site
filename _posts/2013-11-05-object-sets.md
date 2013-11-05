@@ -15,7 +15,7 @@ Aside from exposing users to these details, it is incredibly difficult to make a
 
 ### Discovery == Iterative
 
-    One inherent characteristic of data discovery is it's iterative nature. The question being asked is constantly being refined and tweaked as data is being assessed and [new knowledge is being gained along the way](http://en.wikipedia.org/wiki/I_know_that_I_know_nothing). Coming back to our example above, we can apply this knowledge gain and collapse each expression as they are evaluated:
+One inherent characteristic of data discovery is it's iterative nature. The question being asked is constantly being refined and tweaked as data is being assessed and [new knowledge is being gained along the way](http://en.wikipedia.org/wiki/I_know_that_I_know_nothing). Coming back to our example above, we can apply this knowledge gain and collapse each expression as they are evaluated:
 
 ```
 M = C and D     // first iteration
