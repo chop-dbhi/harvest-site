@@ -1,1 +1,1 @@
-<div class="meta text-muted">{% if page.author %}{% include author.html %}{% endif %}{% if page.date %} &middot; {{ page.date | date:"%B %d %Y" }}{% if page.modified %}(updated {{ page.modified | date:"%B %d %Y" }}){% endif %}{% endif %}</div>
+<div class="meta text-muted">{% if include.page.author %}{% include author.html %}{% endif %}{% if include.page.date %} &middot; {{ include.page.date | date:"%B %d %Y" }}{% if include.page.modified %}(updated {{ include.page.modified | date:"%B %d %Y" }}){% endif %}{% endif %}</div>
