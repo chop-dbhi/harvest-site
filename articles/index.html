@@ -16,24 +16,24 @@ content_class: "sticky"
                     <li><a href="{{ site.baseurl }}articles/">&laquo; Newer</a></li>
                 {% else %}
                     <li><a href="{{ paginator.previous_page_path }}">&laquo; Newer</a></li>
-                {% endif %}                
+                {% endif %}
             {% else %}
                 <li class="disabled"><span>&laquo; Newer</span></li>
             {% endif %}
-        
+
             {% if paginator.next_page %}
                 <li><a href="{{ paginator.next_page_path }}">Older &raquo;</a></li>
             {% else %}
                 <li class="disabled"><span>Older &raquo;</span></li>
-            {% endif %}    
+            {% endif %}
         </ul>
     {% endif %}
 
-    <ul class=list-unstyled>
     {% for post in paginator.posts %}
-        <li><span class=date>{{ post.date | date:"%Y-%m-%d" }}</span> - <strong><a href="{{ post.url }}">{{ post.title }}</a></strong> {% if post.intro %}{{ post.intro|markdownify }}{% endif %}</li>
+        {% include page_header.html page=post embed=1 %}
+        {{ post.content | truncatewords:50 }}
     {% endfor %}
-    </ul>
+
 {% else %}
     <p>No articles have been written yet! Help us by suggesting a topic!</p>
 {% endif %}

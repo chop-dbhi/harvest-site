@@ -58,18 +58,18 @@ section {
     display: inline-block !important;
     background: transparent url(../img/5grain-16.png) no-repeat;
 	background-image: url(../img/5grain.svg), none;
+    background-size: contain;
     height: 14px;
     width: 14px;
-    background-size: 14px 14px;
 }
 
 .harvest-logo-24 {
     display: inline-block !important;
     background: transparent url(../img/5grain-24.png) no-repeat;
 	background-image: url(../img/5grain.svg), none;
+    background-size: contain;
     height: 22px;
     width: 22px;
-    background-size: 22px 22px;
 }
 
 /* Light text shadow for elements that have a light background */
@@ -202,7 +202,7 @@ pre, code, #header, #footer, section {
     font-weight: 200;
 	font-family: Georgia, "Times New Roman", Times, serif;
     margin-bottom: 20px;
-    font-size: 21px;
+    font-size: 20px;
     line-height: 1.4;
 }
 
@@ -237,31 +237,39 @@ only screen and (min-device-pixel-ratio: 1.5) {
         position: static;
         margin-top: 30px;
     }
+
     #wrap {
         padding-bottom: 0;
     }
+
     .jumbotron {
         text-align: center;
     }
+
     .container .jumbotron {
         margin-top: 20px;
         margin-bottom: 30px;
     }
+
     .jumbotron h1 {
         margin-top: 0;
     }
+
     .jumbotron h2 {
         font-size: 24px;
     }
+
     .jumbotron .harvest-wheat {
         width: 67px;
         height: 67px;
         background-size: 79px 79px;
         float: none;
     }
+
     #attribution {
         text-align: center;
     }
+
     h3 {
         font-size: 20px;
     }

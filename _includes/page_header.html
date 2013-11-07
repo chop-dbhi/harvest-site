@@ -1,6 +1,12 @@
 <div class=page-header>
-    <h1>{{ page.title }}{% if page.subtitle %} <small>{{ page.subtitle }}</small>{% endif %}</h1>
-    {% include meta.html %}    
+    {% if include.embed %}
+        <h3><a href="{{ include.page.url }}">{{ include.page.title }}</a>
+            <small>{{ include.page.subtitle }}</small>
+        </h3>
+    {% else %}
+        <h1>{{ include.page.title }} <small>{{ include.page.subtitle }}</small></h1>
+    {% endif %}
+    {% include meta.html page=include.page %}
 </div>
 
-{% if page.intro %}<p class="intro-text">{{ page.intro }}</p>{% endif %}
+{% if include.page.intro %}<p class="intro-text">{{ include.page.intro }}</p>{% endif %}
