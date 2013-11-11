@@ -11,7 +11,7 @@ An [ongoing design goal]({{ site.baseurl }}manifesto/) of Harvest is to expose j
 
 Aside from exposing users to these details, it is incredibly difficult to make a decent user experience interacting with these low-level concepts. The interface can quickly become complex and interactions become complicated. As a result, it is common for query applications to succumb to the demand of power users and eventually embed a command prompt for writing raw queries to the application.
 
-![cathode terminal]({{ site.baseurl }}img/articles/cathode.png)
+![cathode terminal]({{ site.baseurl }}media/articles/cathode.png)
 
 ### Discovery is Iterative
 
