@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Resources"
-subtitles: "Videos, publications, press, and other resources"
+subtitle: "Videos, publications, press, and other resources"
 ---
 
 ### Press Releases
