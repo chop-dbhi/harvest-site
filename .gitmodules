@@ -1,0 +1,3 @@
+[submodule "media"]
+	path = media
+	url = git://github.com/cbmi/harvest-site-media.git
