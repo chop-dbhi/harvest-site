@@ -70,8 +70,21 @@ These are the fragments that are used in layouts. Unless new layouts are being c
 - `author.html` - Renders a span of details for the post's author. This assumes the `author` front-matter variable has been specified and matches one of the authors listed in `_config.yaml`.
 - `meta.html` - Renders metadata about a blog post including the author (see above include) and the publish and last update date.
 
+## Development
 
-## Deployment
+## Setup
+
+Fork or clone (if you have permission) the repo:
+
+```
+git clone git://github.com/cbmi/harvest-site.git
+```
+
+To pull down the media including article images, videos and documents (not necessary for general development), do:
+
+```
+git submodule update --init
+```
 
 ### Environment
 
