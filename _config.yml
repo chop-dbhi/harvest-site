@@ -4,7 +4,7 @@ timezone: America/New_York
 markdown: redcarpet
 pygments: true
 lsi: true
-exclude: ['bin']
+exclude: ['bin', 'fabfile.py']
 permalink: "articles/:year/:month/:day/:title/"
 paginate: 10
 paginate_path: "articles/:num/"
