@@ -7,10 +7,6 @@ title: "Webinars"
 
 <p class=text-muted>Aired November 1, 2013</p>
 
-- [Introduction]({{ site.baseurl }}media/webinars/last-mile/intro.mov) - 8:32
-- [Philosophy and Future]({{ site.baseurl }}media/webinars/last-mile/philosophy.mov) - 4:31
-- [Technical Overview]({{ site.baseurl }}media/webinars/last-mile/tech.mov) - 7:27
-- [Who Is Using Harvest]({{ site.baseurl }}media/webinars/last-mile/usage.mov) - 3:46
-- [Demo]({{ site.baseurl }}media/webinars/last-mile/demo.mov) - 5:46
+<iframe class=webinar width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLuyM9kxlfCq6yBYMl7W4EHSYcbbrT4lTr" frameborder="0" allowfullscreen></iframe>
 
 ---
