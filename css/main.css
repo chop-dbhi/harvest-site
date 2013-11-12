@@ -224,9 +224,9 @@ pre, code, #header, #footer, section {
     display: inline-block !important;
 }
 
-iframe.webinar {
-    display: block;
-    margin: 0 auto;
+iframe.youtube {
+    min-height: 220px;
+    box-shadow: 0 1px 5px #aaa;
 }
 
 /* Use 2x sized images for retina-based displays */
@@ -238,6 +238,10 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 @media (max-width: 768px) {
+    .video-list {
+        text-align: center;
+    }
+
     #footer {
         position: static;
         margin-top: 30px;
