@@ -9,6 +9,12 @@ If you have any immediate questions, head over to the [chatroom]({{ site.baseurl
 
 ---
 
+<p class=lead>Looking to start using Harvest on your own data?</p>
+
+Check out the series of [articles]({{ site.baseurl }}articles/) we are writing about just that. Here's the [first one]({{ site.baseurl }}articles/2013/11/12/using-your-data/).
+
+---
+
 If you want to know how to download and setup a Harvest application, head over to the [download page]({{ site.baseurl }}download/). Otherwise feel free to look at the existing technical documentation separated by Harvest component:
 
 - http://avocado.harvest.io
