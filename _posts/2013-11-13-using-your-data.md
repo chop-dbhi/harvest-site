@@ -16,9 +16,9 @@ Once you connect to a new database (other than the SQLite database that comes wi
 
 ## Model Your Data
 
-Once your database is connected, you'll need to generate Django models for your data. If you're data is already in the database, you can use `python bin/manage.py inspectdb`, which you can read about in the [Django docs](https://docs.djangoproject.com/en/1.5/ref/django-admin/#inspectdb).
+Once your database is connected, you'll need to generate Django models for your data. If your data is already in the database, you can use `python bin/manage.py inspectdb`, which you can read about in the [Django docs](https://docs.djangoproject.com/en/1.5/ref/django-admin/#inspectdb).
 
-If you're data is not already in a relational database, you might choose to write Django models for your data manually and then write a Python script to extract your data from its current location, transform it as needed, and load it into the database you are using for Harvest (this process is called ETL). Look for a future post with a detailed walk-through of this process. You can start by looking at the [Django model reference](https://docs.djangoproject.com/en/1.5/topics/db/models/).
+If your data is not already in a relational database, you might choose to write Django models for your data manually and then write a Python script to extract your data from its current location, transform it as needed, and load it into the database you are using for Harvest (this process is called [ETL](http://en.wikipedia.org/wiki/Extract,_transform,_load)). Look for a future post with a detailed walk-through of this process. You can start by looking at the [Django model reference](https://docs.djangoproject.com/en/1.5/topics/db/models/).
 
 After defining your models, you need to tell Harvest which model you want to use as the basis of your queries by defining `MODELTREES` in your `global_settings.py` file. Read about this setting in the [ModelTree docs](http://modeltree.harvest.io/ref/settings.html) and look for a future post about advanced ModelTree configuration.
 
@@ -36,7 +36,7 @@ Other topics to explore include using more than one DataField in a single DataCo
 
 ## Disclaimer
 
-There is no **right** way to use Harvest. The steps above just a place to start. Definitely also install the [Harvest demo]({{ site.baseurl }}demo/) on your server using `harvest init-demo openmrs` and explore how we did things there for inspiration. If you run into trouble, look for help in the [chatroom]({{ site.baseurl }}chat/) or email us directly at info@harvest.io.
+There is no **right** way to use Harvest. The steps above are just a place to start. Definitely also install the [Harvest demo]({{ site.baseurl }}demo/) on your server using `harvest init-demo openmrs` and explore how we did things there for inspiration. If you run into trouble, look for help in the [chatroom]({{ site.baseurl }}chat/) or email us directly at info@harvest.io.
 
 ---
 
