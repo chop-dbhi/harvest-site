@@ -11,7 +11,7 @@ If you have any immediate questions, head over to the [chatroom]({{ site.baseurl
 
 <p class=lead>Looking to start using Harvest on your own data?</p>
 
-Check out the series of [articles]({{ site.baseurl }}articles/) we are writing about just that. Here's the [first one]({{ site.baseurl }}articles/2013/11/13/using-your-data/).
+Check out the series of [articles]({{ site.baseurl }}articles/) we are writing about just that. Here's the [first one]({% post_url 2013-11-13-using-your-data %}).
 
 ---
 
