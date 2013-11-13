@@ -12,7 +12,7 @@ Using the instructions on the [download]({{ site.baseurl }}download/) page will 
 
 Database connections are handled by the Django framework and defined in the settings files at `myproject/conf`. Check out the [Django tutorial](https://docs.djangoproject.com/en/1.5/intro/tutorial01/#database-setup) on this topic for help, and look for detailed examples in a future post.
 
-Once you connect to a new database (other than the SQLite database that comes with a new harvest project), you will have to rebuild the database tables used by Django and Harvest. Use `./bin/manage.py syncdb` and `./bin/manage.py migrate avocado` in order to do this. Read about these commands at the [Django docs](https://docs.djangoproject.com/en/1.5/ref/django-admin/#syncdb) and the [South docs](http://south.readthedocs.org/en/latest/commands.html#migrate).
+Once you connect to a new database (other than the SQLite database that comes with a new harvest project), you will have to rebuild the database tables used by Django and Harvest. Use `./bin/manage.py syncdb --migrate` in order to do this. Read about this command at the [Django docs](https://docs.djangoproject.com/en/1.5/ref/django-admin/#syncdb). (Pro hint: the `--migrate` option taps into functionality from [South](http://south.readthedocs.org/en/latest/commands.html#migrate)).
 
 ## Model Your Data
 
