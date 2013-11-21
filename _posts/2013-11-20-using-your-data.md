@@ -47,13 +47,9 @@ In order for a DataField to show up in the Harvest query view, it must be includ
 
 + Django admin site: https://docs.djangoproject.com/en/1.5/intro/tutorial02/#enter-the-admin-site
 
-## Start Adding Extras
+## Contact Us for Help
 
-Other topics to explore include using more than one DataField in a single DataConcept, using Formatters to change the way DataConcepts appear in Harvest, implementing and recording data model changes using South, saving and sharing queries in Harvest, and using Translators and Exporters to get data out of Harvest. 
-
-## Disclaimer
-
-There is no **right** way to use Harvest. The steps above are just a place to start. Definitely also install the [Harvest demo]({{ site.baseurl }}demo/) on your server using `harvest init-demo openmrs` and explore how we did things there for inspiration. If you run into trouble, look for help in the [chatroom]({{ site.baseurl }}chat/) or email us directly at info@harvest.io.
+For those of you who need more information (probably most people) to make your Harvest experience successful, stop in to the [chatroom]({{ site.baseurl }}chat/), join the listserv at https://groups.google.com/forum/#!forum/harveststack, or send us a direct email at info@harvest.io. We'd love to help.
 
 ---
 
