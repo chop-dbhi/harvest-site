@@ -7,18 +7,22 @@ title: "Contact"
 
 ---
 
-<h3><i class=icon-comment></i> Chat</h3>
+<h3><i class="fa fa-envelope"></i> Mailing List</h3>
+
+{% include mailing_list_form.html %}
+
+<h3><i class="fa fa-comment"></i> Chat</h3>
 
 Need to ask a quick question? Join the [chatroom]({{ site.baseurl }}chat/) and talk to one of the members of the Harvest team. Feel free to hang out there all day!
 
-<h3><i class=icon-google-plus></i> Google Group</h3>
+<h3><i class="fa fa-google-plus"></i> Google Group</h3>
 
 General discussion, questions, and future visions of Harvest are dicussed on the [Harvest Google Group](https://groups.google.com/forum/#!forum/harveststack). We also have a [Google+ community](https://plus.google.com/communities/100380212389444815687) which complements information sharing in a more feed-based way.
 
-<h3><i class=icon-twitter></i> Twitter</h3>
+<h3><i class="fa fa-twitter"></i> Twitter</h3>
 
 Follow [@HarvestNews](https://twitter.com/HarvestNews) for updates on bug fixes, new releases, and general news.
 
-<h3><i class=icon-github></i> GitHub</h3>
+<h3><i class="fa fa-github"></i> GitHub</h3>
 
 By far, the most active place to find the Harvest developers is on GitHub. To keep track of the activity, watch the [Harvest](https://github.com/cbmi/harvest/), [Avocado](https://github.com/cbmi/avocado/), [Serrano](https://github.com/cbmi/serrano/), and [Cilantro](https://github.com/cbmi/cilantro/) repos on GitHub to get notifications when any issues have activity. If you do not want to watch _all_ notifications, you can look through variou issues and get notifications about specific issues of interest.
