@@ -26,6 +26,8 @@ hr {
 img {
     width: 100%;
     display: block;
+    border: 1px solid #fff;
+    box-shadow: 0 2px 5px #ccc;
 }
 
 h1, h2 {
