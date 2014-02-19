@@ -4,7 +4,7 @@ title: "Configuring Cilantro Like a Pro"
 author: byron
 category: tutorial
 published: true
-date: 2014-12-16
+date: 2014-02-16
 ---
 
 This is an overview and mini-tutorial on how you can configure Cilantro, Harvest's default HTML5 client, to suit your project's needs. The client is the most challenging component to get right for any application. It is the layer between what you as the developer intend your application to do and what the user actually does with it. Harvest originally grew from a single project with general enough needs that creating a framework was the logical next step. Since then (2009), our team has built many applications using Harvest for various clinical research domains.
