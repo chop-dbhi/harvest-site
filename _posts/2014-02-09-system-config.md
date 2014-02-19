@@ -34,7 +34,7 @@ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noa
 
 ### Install system packages and then upgrade everything
 
-This list includes packages for a production deployment. Some needs may be differ depending on your choice of database and web server.
+This list includes packages for a production deployment. Some needs may differ depending on your choice of database and web server.
 
 ```bash
 sudo yum install httpd-devel openssl-devel ncurses-devel rpm-devel apr-util-devel apr-devel glibc-devel memcached readline-devel bzip2 bzip2-devel bzip2-libs libpng-devel openldap-devel freetype fontconfig freetype-devel lapack-devel blas-devel libgfortran gcc-gfortran gcc 'gcc-c++' postgresql-devel zlib-devel libcurl-devel expat-devel gettext-devel nginx sqlite-devel vim python-devel gmp-devel man
@@ -55,12 +55,13 @@ I'll break caveat 1 here to say that I chose `/home/devuser/local` as the instal
 ```bash
 mkdir /home/devuser/local
 echo 'export PATH=/home/devuser/local/bin:${PATH}' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/home/devuser/local/lib:${LD_LIBRARY_PATH}' >> ~/.bashrc
 source ~/.bashrc
 ```
 
 ### Compile and install python 2.7
 
-This script was tested and I have been developing in python 2.7.3, but later 2.7.x versions are available (2.7.6 is the latest). It's up to you if you want to find the latest 2.7.x and use that instead, it most likely won't make a difference.
+This script was tested and I have been developing in python 2.7.3, but later 2.7.x versions are available (as of writing, 2.7.6 is the latest). It's up to you if you want to find the latest 2.7.x and use that instead, it most likely won't make a difference.
 
 ```bash
 mkdir /home/devuser/downloads
@@ -103,11 +104,12 @@ npm install -g grunt-cli coffee-script
 ```bash
 mkdir /home/devuser/webapps
 ```
+
 Now, you're ready to [download Harvest]({{ site.baseurl }}download/).
 
 ### Download the scripts
 
-If the above looks like too much copy-paste for you, you can download the scripted version of these steps and just source it. The script had to be split into two parts because of the group membership modification step, so just run [system-config-1.sh]({{ site.baseurl }}media/articles/system-config-1.sh) first and [system-config-2.sh]({{ site.baseurl }}media/articles/system-config-2.sh) second. Alternatively, if you don't have sudoer permissions, you can have your sysadmin run the first part of the script (ask him or her to add you to the devuser group as well) and then you can run the second part, if you like.
+If the above looks like too much copy-paste for you, you can download the scripted version of these steps and just source it. The script had to be split into two parts because of the group membership modification step, so just run [system-config-1.sh]({{ site.baseurl }}media/articles/system-config-1.sh) first and [system-config-2.sh]({{ site.baseurl }}media/articles/system-config-2.sh) second. Alternatively, you can have your sysadmin run the first part of the script (which requires sudoer permissions), ask him or her to add you to the devuser group, and then you can run the second part.
 
 ### Contact us for help
 
