@@ -6,7 +6,7 @@ category: "tutorial"
 published: true
 ---
 
-A bash script for setting up a python development ready, Harvest-friendly system environment on CentOS 6 boxes. Intended for folks without much sysadmin or python experience, without interest in dealing with puppet or another config tool, who just want to get moving.
+A bash script for setting up a python development ready, Harvest-friendly system environment on CentOS 6 boxes. Intended for folks who want the shortest path to a workable system configuration so they can get started developing Harvest. No previous sysadmin or python experience is assumed, and no configuration tool is required. The first portion of the script requires sudoer permissions, but the second does not. Copy and paste the below steps into the terminal or download and run the bash scripts at the end of the post.
 
 Two caveats:
 
@@ -23,17 +23,13 @@ sudo chmod g+rwxs /home/devuser
 ### Add your own user to the devuser group
 
 ```bash
-sudo usermod -a -G devuser `id -un`
-newgrp devuser
+sudo usermod -a -G devuser `whoami`
 ```
 
-### Add supplementary yum repos
+### Add supplementary yum repo
 
 ```bash
-mkdir /home/devuser/downloads
-cd /home/devuser/downloads
-wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-sudo rpm -Uvh ./epel-release-6-8.noarch.rpm
+sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 ```
 
 ### Install system packages and then upgrade everything
@@ -44,6 +40,12 @@ This list includes packages for a production deployment. Some needs may be diffe
 sudo yum install httpd-devel openssl-devel ncurses-devel rpm-devel apr-util-devel apr-devel glibc-devel memcached readline-devel bzip2 bzip2-devel bzip2-libs libpng-devel openldap-devel freetype fontconfig freetype-devel lapack-devel blas-devel libgfortran gcc-gfortran gcc 'gcc-c++' postgresql-devel zlib-devel libcurl-devel expat-devel gettext-devel nginx sqlite-devel vim python-devel gmp-devel man
 sudo yum groupinstall "Development tools"
 sudo yum upgrade
+```
+
+### Drop into a subshell with devuser group membership
+
+```bash
+newgrp devuser
 ```
 
 ### Create `/home/devuser/local` and configure PATH
@@ -61,6 +63,7 @@ source ~/.bashrc
 This script was tested and I have been developing in python 2.7.3, but later 2.7.x versions are available (2.7.6 is the latest). It's up to you if you want to find the latest 2.7.x and use that instead, it most likely won't make a difference.
 
 ```bash
+mkdir /home/devuser/downloads
 cd /home/devuser/downloads
 wget http://www.python.org/ftp/python/2.7.3/Python-2.7.3.tgz
 tar -xzf Python-2.7.3.tgz
@@ -101,6 +104,10 @@ npm install -g grunt-cli coffee-script
 mkdir /home/devuser/webapps
 ```
 Now, you're ready to [download Harvest]({{ site.baseurl }}download/).
+
+### Download the scripts
+
+If the above looks like too much copy-paste for you, you can download the scripted version of these steps and just source it. The script had to be split into two parts because of the group membership modification step, so just run [system-config-1.sh]({{ site.baseurl }}media/articles/system-config-1.sh) first and [system-config-2.sh]({{ site.baseurl }}media/articles/system-config-2.sh) second. Alternatively, if you don't have sudoer permissions, you can have your sysadmin run the first part of the script (ask him or her to add you to the devuser group as well) and then you can run the second part, if you like.
 
 ### Contact us for help
 
