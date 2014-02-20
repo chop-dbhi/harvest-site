@@ -13,23 +13,23 @@ One thing that became very apparent was the need or desire to customize the beha
 
 ### Varify vs. "Vanilla" Harvest
 
-Harvest was created with a *discovery* workflow in mind. A researcher thinks about a question, comes to the application, browses the various data available to them, views some results and iterates. Eventually they will tailor their query and output sufficiently and then finally export the data to perform follow-up tasks such as a statistical analysis.
+Harvest was created with a *discovery* workflow in mind. A researcher thinks about a question, comes to the application, browses the various available data, views some results and iterates. After tailoring the query conditions and output columns, the user may export the data to perform follow-up tasks such as a statistical analysis.
 
-Varify must be tailor an analysis workflow for filtering, disambiguating, and classifiying genomic variants. Users of Varify know exactly what filters to apply and what data they want to see in order to "make a decision" about the results. In addition, Varify must provide custom analysis and *knowledge capture* components to meet the needs of the users and the requirements of the grant.
+Varify must be tailored with an analysis workflow for filtering, disambiguating, and classifying genomic variants. Users of Varify know exactly what filters to apply and what data they want to see in order to evaluate the results. In addition, Varify must provide custom analysis and *knowledge capture* components to meet the needs of the users and the requirements of the grant.
 
-As mentioned above, Varify also serves as a data warehouse for genomic sequence data. This includes samples, variants, sample-specific variant results, public variant annotations, sample cohorts, allele frequencies, and gene, phenotype and literature indexes. This results in two challenges: there is a lot of data that needs to represented clearly in the interface and the scale of the data is beyond what Cilantro (and Harvest in general) has needed to handle in the past.
+As mentioned above, Varify also serves as a data warehouse for genomic sequence data. This includes samples, variants, sample-specific variant results, public variant annotations, sample cohorts, allele frequencies, and gene, phenotype and literature indexes. This presents two challenges: there is a lot of data that needs to represented clearly in the interface, and the scale of the data is beyond what Cilantro (and Harvest in general) has needed to handle in the past.
 
-The following sections will use the "cookbook-style" format of stating the problem first, proposing a solution, and followed by a brief discussion.
+The following sections will use the "cookbook-style" format of stating the problem first, proposing a solution, and ending with a brief discussion.
 
-As of version [2.2.3](https://github.com/cbmi/cilantro/releases/2.2.3/), Cilantro has the beginnings of a configuration-driven approach for customizing it's behavior and representation. This decision was driven by the [culmination](https://github.com/cbmi/cilantro/issues/313) [of](https://github.com/cbmi/cilantro/issues/370) [these](https://github.com/cbmi/cilantro/issues/390) [tickets](https://github.com/cbmi/cilantro/issues/404).
+As of version [2.2.3](https://github.com/cbmi/cilantro/releases/2.2.3/), Cilantro has the beginnings of a configuration-driven approach for customizing its behavior and representation. This decision was driven by the [culmination](https://github.com/cbmi/cilantro/issues/313) [of](https://github.com/cbmi/cilantro/issues/370) [these](https://github.com/cbmi/cilantro/issues/390) [tickets](https://github.com/cbmi/cilantro/issues/404).
 
-The goal of a configuration-driven approach is to make the easy changes _really_ easy and the hard or custom much easier to integrate. Prior to the plethora of tickets above (and more), developers would have to shoe-horn their custom views after Cilantro loaded and their session started. This would result in post-processing overhead to the client, but more severely no ability to prevent unneeded requests the server.
+The goal of a configuration-driven approach is to make the easy changes _really_ easy and the hard or custom much easier to integrate. Prior to the plethora of tickets above (and more), developers would have to shoe-horn their custom views after Cilantro loaded and their session started. This would result in post-processing overhead to the client, but also, more severely, no ability to prevent unneeded requests the server.
 
 ---
 
 ### Set a new welcome message
 
-The default [welcome message](http://harvest.research.chop.edu/demo/query/) on Harvest's query page is tailored towards a discovery workflow and an unknown audience or domain. Being a general purpose tool, this of course was intentional. However, in many cases being too general makes the application feel impersonal and empty.
+The default [welcome message](http://harvest.research.chop.edu/demo/query/) on Harvest's query page is tailored towards a discovery workflow and an unknown audience or domain. Being a general purpose tool, this of course was intentional. However, in many cases, being too general makes the application feel impersonal and empty.
 
 This simple need to change the welcome led to the [template store API](http://cilantro.harvest.io/ref/template-store.html). It maps a name to a template function that will be used to construct the HTML string that will be rendered by Cilantro when the corresponding view is rendered. Using the example above, we can now do this:
 
@@ -81,13 +81,13 @@ define(['cilantro'], function(c) {
 });
 ```
 
-An introduction and explanation of the template store can be read on it's [documentation page](http://cilantro.harvest.io/ref/template-store.html).
+An introduction and explanation of the template store can be read on its [documentation page](http://cilantro.harvest.io/ref/template-store.html).
 
-The above approach is what what will be used and assumed for the remainder of the post. That is, any configurations options or custom templates will be set in this module and prior to requiring `cilantro/main`.
+The above approach is what will be used and assumed for the remainder of the post. That is, any configuration options or custom templates will be set in this module and prior to requiring `cilantro/main`.
 
 ### Turn on/off graphs and stats
 
-One of the primary goals of Harvest is to get useful information about the data in front of users quickly and with as little effort as possible. An example of this is when a user clicks on a concept on the query page and immediately seens a summary of the containing data. From the OpenMRS demo, clicking on the "Hemoglobin" concept will result in this interface. As a user you immediately see a description, simple stats, and a frequency distribution chart.
+One of the primary goals of Harvest is to get useful information about the data in front of users quickly and with as little effort as possible. An example of this is when a user clicks on a concept on the query page and immediately sees a summary of the containing data. From the OpenMRS demo, clicking on the "Hemoglobin" concept will result in this interface. As a user you immediately see a description, simple stats, and a frequency distribution chart.
 
 ![hemoglobin concept]({{ site.baseurl }}media/articles/hemoglobin.png)
 
@@ -109,13 +109,13 @@ define(['cilantro'], function(c) {
 });
 ```
 
-The `config` object has a set method that takes and object that will be merged into the default Cilantro configuration options or it is a dot-delimited string representing a path in the configuration hierarchy. The above settings will ensure the charts and stats are not displayed and thus prevents sending requests to the server needed by those components.
+The `config` object has a `set` method that takes either an object that will be merged into the default Cilantro configuration options or a dot-delimited string representing a path in the configuration hierarchy. The above settings will ensure the charts and stats are not displayed and thus prevent sending requests to the server needed by those components.
 
 ### Logical data types
 
 The example above describes the need to customize how data fields are represented even when they are the same underlying type as other fields. Even though a field may be of type "number", doesn't mean the default interface makes sense or is optimal for interacting with the field's data. This is the primary argument for needing "logical types".
 
-A logical type is an arbitrarily named type that does not inherit any properties from other types. There is no type hierarchy; meaning no sub-types, no type "interfaces", etc. It is merely a organizational technique for a field or fields to be distinguished from other fields.
+A logical type is an arbitrarily named type that does not inherit any properties from other types. There is no type hierarchy; meaning no sub-types, no type "interfaces", etc. It is merely an organizational technique for a field or fields to be distinguished from other fields.
 
 #### Aside: Granularity of Field and Concept options
 
@@ -141,13 +141,13 @@ var cilantro = {
 
 When resolving the configuration options, options are merged top-down: defaults, type, instance. The resulting options will be used when (in this case) rendering the query interface for a field.
 
-Continuing with logical types, the `types` level in the hierarchy above map options to the logical type of a field. The default logical type for a field is simply it's standard (simple) data type such as number, string, date, etc. New data types can be defined for a field by setting the instance level options `type` option.
+Continuing with logical types, the `types` level in the hierarchy above maps options to the logical type of a field. The default logical type for a field is simply its standard (simple) data type such as number, string, date, etc. New data types can be defined for a field by setting the instance level options `type` option.
 
 ```javascript
 c.config.set('fields.instances.10.type', 'info_only');
 ```
 
-This sets the logical type of the field with id `10` to `info_only`. By itself, this is no particularly useful since the `nostats` type has no custom options defined for it. But that can also be easily changed.
+This sets the logical type of the field with id `10` to `info_only`. By itself, this is not particularly useful since the `info_only` type has no custom options defined for it. But that can also be easily changed.
 
 ```javascript
 c.config.set('fields.types.info_only.form', {
@@ -158,10 +158,10 @@ c.config.set('fields.types.info_only.form', {
 });
 ```
 
-The above options disables the stats, chart and query controls for any field with the `info_only` logical type. This provides a flexible and fine grain way to customize the behavior and display of fields and concepts.
+The above options disables the stats, chart and query controls for any field with the `info_only` logical type. This provides a flexible and fine-grained way to customize the behavior and display of fields and concepts.
 
 ### Conclusion
 
-The configuration-driven approach in Cilantro has proven to be an approachable and flexible architecture for our current Harvest applications (even in 1 week period it has been available at the time of this writing).
+The configuration-driven approach in Cilantro has proven to be an approachable and flexible architecture for our current Harvest applications, even within the first week of its existence.
 
-Although there are only a few (but highly demanded) configuration options available, more are on the horizon. If you have a configuration option that you would like added go to the [Configuration Option Wishlist](https://github.com/cbmi/cilantro/issues/313) ticket on Github and add a comment describing the option and how you would use it.
+Although there are only a few (but highly demanded) configuration options available, more are on the horizon. If you have a configuration option that you would like added go to the [Configuration Option Wishlist](https://github.com/cbmi/cilantro/issues/313) ticket on GitHub and add a comment describing the option and how you would use it.
