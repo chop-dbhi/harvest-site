@@ -7,7 +7,7 @@ published: true
 date: 2014-02-23
 ---
 
-This is the next article in the [Configuring Cilantro Like a Pro]({% post_url 2014-02-16-configuring-cilantro-like-a-pro %}) series. To recap, a configuration system is being integrated into Cilantro to make it simple for application developers to customize components in Cilantro to suit their data or domain needs. The first article discussed setting configuration options, creating and setting custom templates, and what Cilantro calls "logical data types". This article gives an overview and example of creating a custom query control.
+This is the next article in the [Configuring Cilantro Like a Pro]({% post_url 2014-02-16-configuring-cilantro-like-a-pro %}) series. To recap, a configuration system has been integrated into Cilantro to make it simple for application developers to customize components in Cilantro to suit their data or domain needs. The first article discussed setting configuration options, creating and setting custom templates, and what Cilantro calls "logical data types". This article gives an overview and example of creating a custom query control.
 
 ### What is a query control?
 
@@ -30,7 +30,7 @@ As an example, if the lower bound was set to 10, the query condition may result 
 
 ### Built-in Controls
 
-Most data types have a common way to be represented in a query interface. Shown above, continous numerical requires an operator and lower and upper bound inputs. Categorical data is typically represented as a set of choices that can be selected. A search box if generally most fitting for free-text data.
+Most data types have a common way to be represented in a query interface. Shown above, continuous numerical data requires an operator and lower and/or upper bound inputs. Categorical data is typically represented as a set of choices that can be selected. A search box is generally most fitting for free-text data.
 
 For this reason, Cilantro comes with a set of built-in controls for each major _logical_ data type. They currently include:
 
@@ -42,7 +42,7 @@ Two simpler controls are included for categorical data, `singleSelectionList` an
 
 ### Creating a custom control
 
-Although the built-in controls have proven to be suitable for most cases, custom controls are sometimes required for expressing domain-specific assumptions. As mentioned in the previous article, a primary driver of recent Cilantro development is [Varify](https://github.com/cbmi/varify/), the open source clinical DNA sequencing analysis application built on Harvest. Varify defines quite a few custom controls to better facilitate the clinical analysis workflow as well as integration some domain-specific assumptions for making the query controls easier to use.
+Although the built-in controls have proven to be suitable for most cases, custom controls are sometimes required for expressing domain-specific assumptions. As mentioned in the previous article, a primary driver of recent Cilantro development is [Varify](https://github.com/cbmi/varify/), the open source clinical DNA sequencing analysis application built on Harvest. Varify defines quite a few custom controls to better facilitate the clinical analysis workflow as well as integration of some domain-specific assumptions for making the query controls easier to use.
 
 We will walk through creating a real-world control defined in Varify that enables querying variants by the [SIFT prediction score](http://sift.jcvi.org/). For context, a SIFT prediction score is a number between 0 and 1 where a score less than or equal to 0.5 denotes a variant has a damaging effect, while a score greater than 0.5 has a tolerated (benign) effect.
 
