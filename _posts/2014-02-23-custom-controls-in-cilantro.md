@@ -46,7 +46,7 @@ Although the built-in controls have proven to be suitable for most cases, custom
 
 We will walk through creating a real-world control defined in Varify that enables querying variants by the [SIFT prediction score](http://sift.jcvi.org/). For context, a SIFT prediction score is a number between 0 and 1 where a score less than or equal to 0.5 denotes a variant has a damaging effect, while a score greater than 0.5 has a tolerated (benign) effect.
 
-Although some geneticists may know these cutoffs, it is certainly not first-hand knowledge. Furthermore requiring the user to enter an explicit score does not make sense since all that matters is whether a score falls in one of the two _categories_. A more suitable control would be a dropdown that contains the choices "Damaging" or "Tolerated" that the end user can choose from.
+Not all users may know the numeric cutoff; furthermore requiring the user to enter an explicit score does not make sense since all that matters is whether a score falls in one of the two _categories_. A more suitable control would be a dropdown that contains the choices "Damaging" or "Tolerated" that the end user can choose from.
 
 Before implementing the specifics of the SIFT control, let's quickly go over the requirements of a control and how it fits in to the rest of Cilantro. All controls are views and must inherit from one of the following base control classes (each correspond to a Marionette view class):
 
@@ -103,7 +103,7 @@ Now that we have our helper code defined, we can now focus on the relevant `get*
     ...
 ```
 
-The next task is handle getting the operator from the state of the UI. This can be done using a simple `if/else` block. As a side note, `lte` means "less than or equal to" and `gt` means "greater than" and they map to Django's [field lookup operators](https://docs.djangoproject.com/en/1.5/ref/models/querysets/#field-lookups).
+The next task is getting the operator from the state of the UI. This can be done using a simple `if/else` block. As a side note, `lte` means "less than or equal to" and `gt` means "greater than" and they map to Django's [field lookup operators](https://docs.djangoproject.com/en/1.5/ref/models/querysets/#field-lookups).
 
 
 ```javascript
@@ -191,4 +191,4 @@ In this particular example, we are assuming the SIFT field has a surrogate ident
 
 A core goal of Harvest is to facilitate data discovery by using the data itself to drive the application. This requires that the interfaces for interacting with the data are suitable for the domain and the data itself. Having the ability to create custom controls and quickly integrate them in the application makes Harvest as a whole that much more powerful for rapidly developing domain-specific applications.
 
-We believe that custom controls are going be one or the primary "selling points" when evaluating Harvest for future projects. As a result, we've decided to begin development of a repository (yet to be named) for storing custom controls for different use cases. This repository will be community-driven and pull requests can be submitted at any time for integrating a custom control. For the time being any ideas for query controls can be added to the [query control wishlist](https://github.com/cbmi/cilantro/issues/437).
+We believe that custom controls are going be one of the primary "selling points" when evaluating Harvest for future projects. As a result, we've decided to begin development of a repository (yet to be named) for storing custom controls for different use cases. This repository will be community-driven and pull requests can be submitted at any time for integrating a custom control. For the time being any ideas for query controls can be added to the [query control wishlist](https://github.com/cbmi/cilantro/issues/437).
