@@ -56,11 +56,11 @@ Before implementing the specifics of the SIFT control, let's quickly go over the
 - `ControlCompositeView`
 - `ControlLayout`
 
-In most cases the `ControlLayout` class should be used to provide the most flexibility for laying all the UI components in the control. All controls must be able to do two things, `get` the state of the UI and return a query condition and `set` the state of the UI given a query condition. The control classes all implement a `get` and `set` method that do nothing by default.
+In most cases the `ControlLayout` class should be used to provide the most flexibility for laying all the UI components in the control. All controls must be able to do two things, `get` the state of the UI to return a query condition and `set` the state of the UI given a query condition. The control classes all implement a `get` and `set` method that do nothing by default.
 
-As mentioned above, the `field` and `concept` ids uniquely identify a query condition and are set by the control itself. This is because controls are contained within a `FieldForm` which is contained in a `ConceptForm`. This hierarchy corresponds to how fields are associated to concepts in the Harvest data model. Since this is case, a control really only needs to worry about the operator and value and thus only needs to implement the `getValue`, `setValue`, `getOperator` and `setOperator` methods (which are used internally by the `get` and `set` methods).
+As mentioned above, the `field` and `concept` ids uniquely identify a query condition and are set by the control itself. This is because controls are contained within a `FieldForm` which is contained in a `ConceptForm`. This hierarchy corresponds to how fields are associated to concepts in the Harvest data model. Since this is the case, a control really only needs to worry about the operator and value and thus only needs to implement the `getValue`, `setValue`, `getOperator` and `setOperator` methods (which are used internally by the `get` and `set` methods).
 
-Given what we know about the SIFT prediction score, we can first create the template to represent the control. As mentioned there are two possible categories the prediction score rated at.
+Given what we know about the SIFT prediction score, we can first create the template to represent the control. As mentioned there are two possible categories the prediction score is rated at.
 
 ```html
 <select>
@@ -103,7 +103,7 @@ Now that we have our helper code defined, we can now focus on the relevant `get*
     ...
 ```
 
-The next task is handle getting the operator from the state of the UI. This can be done using a simple `if/else` block. As a side note, `lte` means "less than or equal to" and `gt` means "greater than"
+The next task is handle getting the operator from the state of the UI. This can be done using a simple `if/else` block. As a side note, `lte` means "less than or equal to" and `gt` means "greater than" and they map to Django's [field lookup operators](https://docs.djangoproject.com/en/1.5/ref/models/querysets/#field-lookups).
 
 
 ```javascript
@@ -118,7 +118,7 @@ The next task is handle getting the operator from the state of the UI. This can 
     ...
 ```
 
-The final method that needs to be implemented is the `setOperator` which takes operator and must update the UI to represent the state.
+The final method that needs to be implemented is the `setOperator` which takes an operator and must update the UI to represent the state.
 
 
 ```javascript
@@ -184,6 +184,8 @@ To use it with the SIFT field, the instance configuration option can be set:
 ```javascript
 c.config.set('fields.instances.64.forms.controls', ['sift']);
 ```
+
+In this particular example, we are assuming the SIFT field has a surrogate identifier of 64.
 
 ### Conclusion
 
