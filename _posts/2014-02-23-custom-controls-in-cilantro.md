@@ -185,7 +185,11 @@ To use it with the SIFT field, the instance configuration option can be set:
 c.config.set('fields.instances.64.forms.controls', ['sift']);
 ```
 
-In this particular example, we are assuming the SIFT field has a surrogate identifier of 64.
+_In this particular example, we are assuming the SIFT field has a surrogate identifier of 64._
+
+What we end up with (not surprisingly) is this basic select box. Although not fancy, it serves it's purpose for hiding complexity in Varify's workflow.
+
+![sift control]({{ site.baseurl }}media/articles/sift-control.png)
 
 ### Conclusion
 
