@@ -24,7 +24,8 @@ hr {
 }
 
 img {
-    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
     display: block;
     border: 10px solid #fff;
     box-shadow: 0 2px 5px #ccc;
