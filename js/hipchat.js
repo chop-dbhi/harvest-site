@@ -22,9 +22,9 @@
             var el = document.querySelector(options.el);
             if (!el) return;
             var params = {
-                anonymous: 0,
+                anonymous: false,
                 timezone: options.timezone,
-                minimal: 1
+                minimal: true
             };
             var url = options.url + (options.url.indexOf('?') > 0 ? '&' : '?') +
                 parametize(params);
