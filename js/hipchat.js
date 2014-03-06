@@ -22,7 +22,6 @@
             var el = document.querySelector(options.el);
             if (!el) return;
             var params = {
-                anonymous: false,
                 timezone: options.timezone,
                 minimal: true
             };
