@@ -8,6 +8,7 @@ exclude: ['bin', 'fabfile.py']
 permalink: "articles/:year/:month/:day/:title/"
 paginate: 10
 paginate_path: "articles/:num/"
+baseurl: "/"
 
 redcarpet:
     extensions:
