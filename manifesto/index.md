@@ -22,13 +22,13 @@ An intuitive and powerful search depends on the first two points mentioned above
 
 ### Expand the search by including the data itself
 
-To make the search more robust, discreate data can be indexed and associated with each data point as well. As an example, if I type `male`, the available query or view options may result in `gender`. This enables users to find what they are looking for by directly searching for the a known data value. One caveat to this is regarding permissions. If certain end are not allowed to view certain data, a match occuring from typing `male` would potentially mean there are `male` data values.
+To make the search more robust, discreate data can be indexed and associated with each data point as well. As an example, if I type `male`, the available query or view options may result in `gender`. This enables users to find what they are looking for by directly searching for a known data value. One caveat to this is regarding permissions. Even if a certain end user is not allowed to view certain data, a match occuring from typing `male` would potentially reveal that there are `male` data values.
 
 ### Humans aren't constrained, databases schemas are (and for good reason)
 
-Databases have _data types_ to allow for fast and effective search on data. For example, you cannot query the string `hello world` using a numerical operator (as least in a way that makes sense). For this reason, data are split up into multiple fields suting the needs of the data. For example when you view a cooking recipe, you would expect to read an ingredient such as _2 teaspoons of salt_. What would happen if you only knew the ingredient name i.e. _salt_? You wouldn't know _how much_ of the ingredient you need. Likewise if you only saw _teaspoons_ without _2_, you would not know the quantity of _salt_ to add.
+Databases have _data types_ to allow for fast and effective search on data. For example, you cannot query the string `hello world` using a numerical operator (at least in a way that makes sense). For this reason, data are split up into multiple fields suiting the needs of the data. For example when you view a cooking recipe, you would expect to read an ingredient such as _2 teaspoons of salt_. What would happen if you only knew the ingredient name i.e. _salt_? You wouldn't know _how much_ of the ingredient you need. Likewise if you only saw _teaspoons_ without _2_, you would not know the quantity of _salt_ to add.
 
-The power of the database comes from storing and indexing discrete values which enables fast search and sorting capabilities. Humans however need to be able to view these discrete values in way that means something to them.
+The power of the database comes from storing and indexing discrete values which enables fast search and sorting capabilities. Humans however need to be able to view these discrete values in ways that means something to them.
 
 ## Large Data Sets
 
@@ -40,13 +40,13 @@ The scale of the data must not tax its usability. Interfaces must be able to sca
 
 ### _Get a sense_ of the data by showing aggregate statistics
 
-Most data should be looked at an aggregate level. If you choose the view _gender_ data, the appropriate view is a series aggregate counts for _male_, _female_ and _unknown_. This immediately gives the user a sense of the data. For example, if the are interesting in the _male_ population, but the data set only has a few, they can make the decision to continue or not.
+Most data should be looked at an aggregate level. If you choose to view the _gender_ data, the appropriate view is a series of aggregate counts for _male_, _female_ and _unknown_. This immediately gives the user a sense of the data. For example, if the user is interested in the _male_ population, but the dataset has only a few males, the user can decide to continue or not.
 
-These statistics can be thought of as another set of metadata. This time it's computed from the data itself.
+These statistics can be thought of as another set of metadata, but this time computed from the data itself.
 
 ### Stats are good, visuals are better
 
-This goes hand-in-hand with displaying aggregate statistics. Use visuals such as histograms to display the distribution of data. This is particularly important for continuous data where simply listing min, max, mean, mode, standard deviation and variance is not good enough. Again, at this stage the goal is for a user to _get a sense_ of the data before having to query or view it.
+This goes hand-in-hand with displaying aggregate statistics. Visuals such as histograms are used to display the distribution of data. This is particularly important for continuous data where simply listing min, max, mean, mode, standard deviation and variance is not good enough. Again, at this stage the goal is for a user to _get a sense_ of the data before having to query or view it.
 
 ## Domain Specificity
 
