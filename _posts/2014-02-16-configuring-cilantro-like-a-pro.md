@@ -69,7 +69,7 @@ define(['cilantro', 'tpl!project/templates/welcome.html'], (c, welcomeTemplate) 
 });
 ```
 
-What this does is load the `cilantro` library prior to loading the bootstrapping module `cilantro/main` which opens the default session and renders the interface. Using this approach, we can set configuration options and set custom templates (for a real world example look at [Varify's configuration](https://github.com/cbmi/varify/blob/master/varify/static/js/src/main.js)).
+What this does is load the `cilantro` library prior to loading the bootstrapping module `cilantro/main` which opens the default session and renders the interface. Using this approach, we can set configuration options and set custom templates (for a real world example look at [Varify's configuration](https://github.com/cbmi/varify/blob/9094abbe86fc2b6260720711baa66c6e124b7ab7/varify/static/js/src/main.js#L57-L95)).
 
 As of version 2.2.7, the template module path can set on the templates store directly, rather than needing to include it as a dependency. The above can be further simplified to:
 
