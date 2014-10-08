@@ -17,13 +17,13 @@ Harvest was created with a *discovery* workflow in mind. A researcher thinks abo
 
 Varify must be tailored with an analysis workflow for filtering, disambiguating, and classifying genomic variants. Users of Varify know exactly what filters to apply and what data they want to see in order to evaluate the results. In addition, Varify must provide custom analysis and *knowledge capture* components to meet the needs of the users and the requirements of the grant.
 
-As mentioned above, Varify also serves as a data warehouse for genomic sequence data. This includes samples, variants, sample-specific variant results, public variant annotations, sample cohorts, allele frequencies, and gene, phenotype and literature indexes. This presents two challenges: there is a lot of data that needs to represented clearly in the interface, and the scale of the data is beyond what Cilantro (and Harvest in general) has needed to handle in the past.
+As mentioned above, Varify also serves as a data warehouse for genomic sequence data. This includes samples, variants, sample-specific variant results, public variant annotations, sample cohorts, allele frequencies, and gene, phenotype and literature indexes. This presents two challenges: there is a lot of data that needs to be represented clearly in the interface, and the scale of the data is beyond what Cilantro (and Harvest in general) has needed to handle in the past.
 
 The following sections will use the "cookbook-style" format of stating the problem first, proposing a solution, and ending with a brief discussion.
 
 As of version [2.2.3](https://github.com/cbmi/cilantro/releases/2.2.3/), Cilantro has the beginnings of a configuration-driven approach for customizing its behavior and representation. This decision was driven by the [culmination](https://github.com/cbmi/cilantro/issues/313) [of](https://github.com/cbmi/cilantro/issues/370) [these](https://github.com/cbmi/cilantro/issues/390) [tickets](https://github.com/cbmi/cilantro/issues/404).
 
-The goal of a configuration-driven approach is to make the easy changes _really_ easy and the hard or custom much easier to integrate. Prior to the plethora of tickets above (and more), developers would have to shoe-horn their custom views after Cilantro loaded and their session started. This would result in post-processing overhead to the client, but also, more severely, no ability to prevent unneeded requests the server.
+The goal of a configuration-driven approach is to make the easy changes _really_ easy and the hard or custom much easier to integrate. Prior to the plethora of tickets above (and more), developers would have to shoe-horn their custom views after Cilantro loaded and their session started. This would result in post-processing overhead to the client, but also, more severely, no ability to prevent unneeded requests to the server.
 
 ---
 
@@ -53,7 +53,7 @@ define(['cilantro/main', 'project/csrf'], function(c) {
 });
 ```
 
-First let's create our template in `static/scripts/javascript/src/templates/welcome.html` (you will need to create the `templates` directory) with the some markup.
+First let's create our template in `static/scripts/javascript/src/templates/welcome.html` (you will need to create the `templates` directory) with the same markup.
 
 ```html
 <h1>Hello there!</h1>
@@ -69,7 +69,7 @@ define(['cilantro', 'tpl!project/templates/welcome.html'], (c, welcomeTemplate) 
 });
 ```
 
-What this does is load the `cilantro` library prior to loading the bootstrapping module `cilantro/main` which opens the default session and renders the interface. Using this approach, we can set configuration options and set custom templates (for a real world example look at [Varify's configuration](https://github.com/cbmi/varify/blob/master/varify/static/scripts/javascript/src/main.js#L13-L29)).
+What this does is load the `cilantro` library prior to loading the bootstrapping module `cilantro/main` which opens the default session and renders the interface. Using this approach, we can set configuration options and set custom templates (for a real world example look at [Varify's configuration](https://github.com/cbmi/varify/blob/9094abbe86fc2b6260720711baa66c6e124b7ab7/varify/static/js/src/main.js#L57-L95)).
 
 As of version 2.2.7, the template module path can set on the templates store directly, rather than needing to include it as a dependency. The above can be further simplified to:
 
