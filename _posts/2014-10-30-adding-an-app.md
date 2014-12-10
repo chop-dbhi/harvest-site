@@ -12,7 +12,7 @@ published: true
 
 Since Harvest is a set of Django apps, you can add any Django app to your project. As a beginner with databases, I wanted to add a tool that would allow me to import data into my Harvest project.
 
-**Please note! I'm using the SQLite database that comes preattached to the Harvest project.**
+Please note, I'm using the SQLite database that comes preattached to the Harvest project.
 
 ### Where to install packages?
 
@@ -38,7 +38,7 @@ Now, in your Harvest project's `global_settings.py` file, you'll need to add the
 
 Harvest is my first experience with database work. My current goal is to explore the tool itself, so for that purpose using the attached SQLite database is adequate. In order to populate this database with my own data, I needed a package that made this easier than writing my own python script.
 
-There are several packages in the PyPi that offer this functionality. I choose this package because it had good documentation and supported the importaton of many different file types. (It also supports data export, but Harvest has that functionality included already). 
+There are several packages in the PyPi that offer this functionality. I choose this package because it had good documentation and supported the importaton of many different file types. (It also supports data export, but Harvest has that functionality included already).
 
 ### After you install the import_export package
 
