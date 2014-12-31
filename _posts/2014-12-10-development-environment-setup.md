@@ -9,10 +9,10 @@ date: 2014-12-10
 
 This page provides instructions for setting up a local environment for developing and testing Avocado, Cilantro, and Serrano. To begin, checkout a local copy of the following repositories:
 
- * [Cilantro](https://github.com/cbmi/cilantro)
- * [Avocado](https://github.com/cbmi/avocado)
- * [Serrano](https://github.com/cbmi/serrano)
- * [Harvest OpenMRS](https://github.com/cbmi/harvest-openmrs)
+ * [Cilantro](https://github.com/chop-dbhi/cilantro)
+ * [Avocado](https://github.com/chop-dbhi/avocado)
+ * [Serrano](https://github.com/chop-dbhi/serrano)
+ * [Harvest OpenMRS](https://github.com/chop-dbhi/harvest-openmrs)
 
 Navigate to the OpenMRS directory and switch to the demo branch with:
 

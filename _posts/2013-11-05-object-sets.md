@@ -31,4 +31,4 @@ X = P = (A and (B or (C and D)))
 
 Each iteration produces a result that can be represented as an _object set_. Regardless of how complicated the query was getting there, the object set is now a single object that needs to be added into subsequent queries. Furthermore, object sets are not simply references to the underlying query, but they contain direct references to the objects themselves. This ensures you always get back the original objects as you originally saw them. Objects can be added or removed from the set, which makes it possible to refine a set over time.
 
-Integration of object sets is the big feature scheduled for [version 2.3](https://github.com/cbmi/harvest/issues?milestone=1&state=open).
+Integration of object sets is the big feature scheduled for [version 2.3](https://github.com/chop-dbhi/harvest/issues?milestone=1&state=open).

@@ -6,10 +6,10 @@ subtitle: "..and setup a new Harvest application."
 
 All releases and release notes are posted on the repo's releases page on GitHub.
 
-- [Harvest](https://github.com/cbmi/harvest/releases/)
-- [Avocado](https://github.com/cbmi/avocado/releases/)
-- [Serrano](https://github.com/cbmi/serrano/releases/)
-- [Cilantro](https://github.com/cbmi/cilantro/releases/)
+- [Harvest](https://github.com/chop-dbhi/harvest/releases/)
+- [Avocado](https://github.com/chop-dbhi/avocado/releases/)
+- [Serrano](https://github.com/chop-dbhi/serrano/releases/)
+- [Cilantro](https://github.com/chop-dbhi/cilantro/releases/)
 
 ## Prerequisites
 

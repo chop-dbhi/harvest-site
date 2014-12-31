@@ -11,9 +11,9 @@ title: "Contact"
 
 {% include mailing_list_form.html %}
 
-<h3><i class="fa fa-comment"></i> Chat</h3>
+<h3><i class="fa fa-comments-o"></i> Chat</h3>
 
-Need to ask a quick question? Join the [chatroom]({{ site.baseurl }}chat/) and talk to one of the members of the Harvest team. Feel free to hang out there all day!
+{% include chatroom.html %}
 
 <h3><i class="fa fa-google-plus"></i> Google Group</h3>
 
@@ -25,4 +25,4 @@ Follow [@HarvestNews](https://twitter.com/HarvestNews) for updates on bug fixes,
 
 <h3><i class="fa fa-github"></i> GitHub</h3>
 
-By far, the most active place to find the Harvest developers is on GitHub. To keep track of the activity, watch the [Harvest](https://github.com/cbmi/harvest/), [Avocado](https://github.com/cbmi/avocado/), [Serrano](https://github.com/cbmi/serrano/), and [Cilantro](https://github.com/cbmi/cilantro/) repos on GitHub to get notifications when any issues have activity. If you do not want to watch _all_ notifications, you can look through variou issues and get notifications about specific issues of interest.
+By far, the most active place to find the Harvest developers is on GitHub. To keep track of the activity, watch the [Harvest](https://github.com/chop-dbhi/harvest/), [Avocado](https://github.com/chop-dbhi/avocado/), [Serrano](https://github.com/chop-dbhi/serrano/), and [Cilantro](https://github.com/chop-dbhi/cilantro/) repos on GitHub to get notifications when any issues have activity. If you do not want to watch _all_ notifications, you can look through variou issues and get notifications about specific issues of interest.

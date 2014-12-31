@@ -2,7 +2,7 @@ name: "Harvest"
 description: "Explore Your Data, Not Your Database"
 timezone: America/New_York
 markdown: redcarpet
-pygments: true
+highlighter: pygments
 lsi: true
 exclude: ['bin', 'fabfile.py']
 permalink: "articles/:year/:month/:day/:title/"

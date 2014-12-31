@@ -9,7 +9,7 @@ date: 2014-02-16
 
 This is an overview and mini-tutorial on how you can configure Cilantro, Harvest's default HTML5 client, to suit your project's needs. The client is the most challenging component to get right for any application. It is the layer between what you as the developer intend your application to do and what the user actually does with it. Harvest originally grew from a single project with general enough needs that creating a framework was the logical next step. Since then (2009), our team has built many applications using Harvest for various clinical research domains.
 
-One thing that became very apparent was the need or desire to customize the behavior of certain components to better suit the domain of the project. The example I will be using for the post is [Varify](https://github.com/cbmi/varify/), our open source clinical DNA sequencing analysis and data warehouse application built on top of Harvest. The characteristics of the data and the workflow requirements of this application challenged Harvest both from a "scale" standpoint, but more noticeably the user interface. As a result, Varify has been the primary driver in the recent evolution of Harvest.
+One thing that became very apparent was the need or desire to customize the behavior of certain components to better suit the domain of the project. The example I will be using for the post is [Varify](https://github.com/chop-dbhi/varify/), our open source clinical DNA sequencing analysis and data warehouse application built on top of Harvest. The characteristics of the data and the workflow requirements of this application challenged Harvest both from a "scale" standpoint, but more noticeably the user interface. As a result, Varify has been the primary driver in the recent evolution of Harvest.
 
 ### Varify vs. "Vanilla" Harvest
 
@@ -21,7 +21,7 @@ As mentioned above, Varify also serves as a data warehouse for genomic sequence 
 
 The following sections will use the "cookbook-style" format of stating the problem first, proposing a solution, and ending with a brief discussion.
 
-As of version [2.2.3](https://github.com/cbmi/cilantro/releases/2.2.3/), Cilantro has the beginnings of a configuration-driven approach for customizing its behavior and representation. This decision was driven by the [culmination](https://github.com/cbmi/cilantro/issues/313) [of](https://github.com/cbmi/cilantro/issues/370) [these](https://github.com/cbmi/cilantro/issues/390) [tickets](https://github.com/cbmi/cilantro/issues/404).
+As of version [2.2.3](https://github.com/chop-dbhi/cilantro/releases/2.2.3/), Cilantro has the beginnings of a configuration-driven approach for customizing its behavior and representation. This decision was driven by the [culmination](https://github.com/chop-dbhi/cilantro/issues/313) [of](https://github.com/chop-dbhi/cilantro/issues/370) [these](https://github.com/chop-dbhi/cilantro/issues/390) [tickets](https://github.com/chop-dbhi/cilantro/issues/404).
 
 The goal of a configuration-driven approach is to make the easy changes _really_ easy and the hard or custom much easier to integrate. Prior to the plethora of tickets above (and more), developers would have to shoe-horn their custom views after Cilantro loaded and their session started. This would result in post-processing overhead to the client, but also, more severely, no ability to prevent unneeded requests to the server.
 
@@ -69,7 +69,7 @@ define(['cilantro', 'tpl!project/templates/welcome.html'], (c, welcomeTemplate) 
 });
 ```
 
-What this does is load the `cilantro` library prior to loading the bootstrapping module `cilantro/main` which opens the default session and renders the interface. Using this approach, we can set configuration options and set custom templates (for a real world example look at [Varify's configuration](https://github.com/cbmi/varify/blob/9094abbe86fc2b6260720711baa66c6e124b7ab7/varify/static/js/src/main.js#L57-L95)).
+What this does is load the `cilantro` library prior to loading the bootstrapping module `cilantro/main` which opens the default session and renders the interface. Using this approach, we can set configuration options and set custom templates (for a real world example look at [Varify's configuration](https://github.com/chop-dbhi/varify/blob/9094abbe86fc2b6260720711baa66c6e124b7ab7/varify/static/js/src/main.js#L57-L95)).
 
 As of version 2.2.7, the template module path can set on the templates store directly, rather than needing to include it as a dependency. The above can be further simplified to:
 
@@ -164,4 +164,4 @@ The above options disables the stats, chart and query controls for any field wit
 
 The configuration-driven approach in Cilantro has proven to be an approachable and flexible architecture for our current Harvest applications, even within the first week of its existence.
 
-Although there are only a few (but highly demanded) configuration options available, more are on the horizon. If you have a configuration option that you would like added go to the [Configuration Option Wishlist](https://github.com/cbmi/cilantro/issues/313) ticket on GitHub and add a comment describing the option and how you would use it.
+Although there are only a few (but highly demanded) configuration options available, more are on the horizon. If you have a configuration option that you would like added go to the [Configuration Option Wishlist](https://github.com/chop-dbhi/cilantro/issues/313) ticket on GitHub and add a comment describing the option and how you would use it.

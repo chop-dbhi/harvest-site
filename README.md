@@ -77,7 +77,7 @@ These are the fragments that are used in layouts. Unless new layouts are being c
 Fork or clone (if you have permission) the repo:
 
 ```
-git clone git://github.com/cbmi/harvest-site.git
+git clone git://github.com/chop-dbhi/harvest-site.git
 ```
 
 To pull down the media including article images, videos and documents (not necessary for general development), do:

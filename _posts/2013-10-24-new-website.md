@@ -22,4 +22,4 @@ The _biggest_ feature of the website is that it is built on top of [Jekyll](http
 
 Our hope with this website is to make it immediately obvious what Harvest _is_ and _isn't_. Only then can new users assess whether Harvest is a good fit for their needs. The problem before was that users never even got to this point and Harvest _lost_ before it even got a chance. No longer will this be the case.
 
-Want to make the site better? Head over to the [site's repository](https://github.com/cbmi/harvest-site) to start fixing stuff!
+Want to make the site better? Head over to the [site's repository](https://github.com/chop-dbhi/harvest-site) to start fixing stuff!

@@ -25,7 +25,7 @@ layout: base
         <div class=row>
             <div class=col-md-6>
                 <h3><i class="fa fa-github"></i> Open Source &amp; Available on GitHub</h3>
-                <p>We believe in open source software and <a href="https://github.com/cbmi/">open-source our work</a>. Harvest is licensed under BSD 2-clause License.</p>
+                <p>We believe in open source software and <a href="https://github.com/chop-dbhi/">open-source our work</a>. Harvest is licensed under BSD 2-clause License.</p>
             </div>
 
             <div class=col-md-6>
@@ -37,7 +37,7 @@ layout: base
         <div class=row>
             <div class=col-md-6>
                 <h3><i class="fa fa-medkit"></i> Designed for Biomedical Data First</h3>
-                <p>Created by the <a href="http://cbmi.chop.edu" target=_blank>Center for Biomedical Informatics</a> at <a href="http://www.research.chop.edu" target=_blank>The Children's Hospital of Philadelphia Research Institute</a>, Harvest addresses the unique needs of biomedical researchers.</p>
+                <p>Created by the <a href="http://dbhi.chop.edu" target=_blank>Department of Biomedical and Health Informatics</a> at <a href="http://www.research.chop.edu" target=_blank>The Children's Hospital of Philadelphia Research Institute</a>, Harvest addresses the unique needs of biomedical researchers.</p>
             </div>
 
             <div class=col-md-6>
@@ -54,6 +54,18 @@ layout: base
             <h3><span class="fa fa-bullhorn"></span> Announcements</h3>
 
             {% include announcements.html %}
+
+            <hr>
+
+            <h3><span class="fa fa-envelope"></span> Mailing List</h3>
+
+            {% include mailing_list_form.html %}
+
+            <hr>
+
+            <h3><span class="fa fa-comments-o"></span> Chat</h3>
+
+            {% include chatroom.html %}
         </div>
 
         <div class=col-md-6>
@@ -62,13 +74,8 @@ layout: base
             {% assign post = site.posts[0] %}
             <h4><a href="{{ post.url }}">{{ post.title }}</a>
                 <small>{{ post.subtitle }}</small></h4>
-            {{ post.content | truncatewords:50 }}
-
-            <hr>
-
-            <h3><span class="fa fa-envelope"></span> Mailing List</h3>
-
-            {% include mailing_list_form.html %}
+            {{ post.content | truncatewords:120 }}
+            <a href="{{ post.url }}">continue reading</a>
         </div>
     </div>
 </div>

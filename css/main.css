@@ -103,11 +103,15 @@ pre, code, #header, #footer, section {
     margin-bottom: 0;
 }
 
-#header a:link, #header a:visited, #footer a:link, #footer a:visited {
+#header a:link, #header a:visited,
+#footer a:link, #footer a:visited,
+#attribution a:link, #attribution a:visited {
     color: #755E33;
 }
 
-#header a:hover, #header a:active, #footer a:hover, #footer a:active {
+#header a:hover, #header a:active,
+#footer a:hover, #footer a:active,
+#attribution a:hover, #attribution a:active {
     color: #524224;
 }
 
@@ -130,28 +134,20 @@ pre, code, #header, #footer, section {
     border-bottom: 1px dashed #e3e3e3;
 }
 
-#attribution a:link, #attribution a:visited {
-    color: inherit;
-}
-
-#attribution a:hover, #attribution a:active {
-    color: #448CCA;
-}
-
-.cbmi-logo {
+.dbhi-logo {
     transition: opacity 0.2s;
     display: inline-block;
-	background: transparent url(../img/cbmi-15.png) no-repeat;
-    background-image: url(../img/cbmi.svg), none;
+	background: transparent url(../img/dbhi.png) no-repeat;
+    /*background-image: url(../img/cbmi.svg), none;*/
     height: 15px;
-    width: 54px;
-    background-size: 54px 15px;
+    width: 31px;
+    background-size: 31px 15px;
     margin: 0 2px;
     vertical-align: text-top;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
-.cbmi-logo:hover {
+.dbhi-logo:hover {
     opacity: 1;
 }
 

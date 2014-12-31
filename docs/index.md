@@ -5,7 +5,7 @@ title: "Documentation"
 
 <p class=lead>We are in the process of organizing and updating the Harvest documentation as it has become fragmented across various sites.</p>
 
-If you have any immediate questions, head over to the [chatroom]({{ site.baseurl }}chat/) to get help or email us directly at info@harvest.io. If you would like to contribute to this process, head over to the [Harvest site issues](https://github.com/cbmi/harvest-site/issues/) to see what needs to be done.
+If you have any immediate questions, head over to the [chatroom]({{ site.baseurl }}chat/) to get help or email us directly at info@harvest.io. If you would like to contribute to this process, head over to the [Harvest site issues](https://github.com/chop-dbhi/harvest-site/issues/) to see what needs to be done.
 
 ---
 
