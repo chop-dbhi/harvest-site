@@ -10,7 +10,7 @@ subtitle: "Videos, publications, press, and other resources"
 
 ### Publications
 
-- [Harvest: an open platform for developing web-based biomedical data discovery and reporting applications](http://jamia.bmj.com/content/early/2013/10/16/amiajnl-2013-001825.full) - Journal of the American Medical Informatics Association (JAMIA)
+- [Harvest: an open platform for developing web-based biomedical data discovery and reporting applications](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3932456/) - Journal of the American Medical Informatics Association (JAMIA)
 
 ### Videos
 
