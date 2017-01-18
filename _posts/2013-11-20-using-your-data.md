@@ -49,7 +49,7 @@ In order for a DataField to show up in the Harvest query view, it must be includ
 
 ## Contact Us for Help
 
-For those of you who need more information (probably most people) to make your Harvest experience successful, stop in to the [chatroom]({{ site.baseurl }}chat/), join the listserv at https://groups.google.com/forum/#!forum/harveststack, or send us a direct email at info@harvest.io. We'd love to help.
+For those of you who need more information (probably most people) to make your Harvest experience successful, stop in to the [chatroom](http://harvest-platform.slack.com/), join the listserv at https://groups.google.com/forum/#!forum/harveststack, or send us a direct email at info@harvest.io. We'd love to help.
 
 ---
 
