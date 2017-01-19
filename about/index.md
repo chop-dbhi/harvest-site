@@ -36,6 +36,6 @@ There are lots of details to think about when setting up your own project since 
 
 While we'd love to include a standard recipe here, production deployment environments can vary quite a bit. The CBMi team has deployed and maintains multiple production instances and we're happy to help you set up your own instance of Harvest and pass on the lessons we've learned.
 
-From Django models to Harvest Concepts, sparse data to complete CRFs, we're here to help you get the most out of your data and make something great happen. We are happy to help you directly and put you in touch with others using Harvest for similar data needs. Contact us at cbmisupport@email.chop.edu
+From Django models to Harvest Concepts, sparse data to complete CRFs, we're here to help you get the most out of your data and make something great happen. We are happy to help you directly and put you in touch with others using Harvest for similar data needs. Contact us at <info@harvest.io>.
 
 If you do create a production instance of Harvest, we'd appreciate a quick mention. Include a link back to Harvest http://harvest.research.chop.edu or a mention of [our manuscript](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3932456/).
